@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content | Nyra Lifestyle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --ink: #111111;
+      --ink-soft: #4a4a4a;
+      --ink-mute: #8a8a8a;
+      --rose: #d4a0a0;
+      --rose-dark: #c48a8a;
+      --rose-pale: #f0e4e4;
+      --gold: #c9a84c;
+      --white: #ffffff;
+      --cream: #faf6f0;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'DM Sans',sans-serif;
+      color:var(--ink);
+      background:var(--cream);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    h1,h2,h3,h4 {
+      font-family:'Bodoni Moda',serif;
+      font-weight:600;
+      color:var(--ink);
+      line-height:1.15;
+    }
+
+    .navbar {
+      position:fixed; top:0; left:0; right:0;
+      z-index:1000;
+      background:rgba(250,246,240,0.92);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(0,0,0,0.04);
+      padding:0 2rem;
+      transition:all 0.3s ease;
+    }
+    .navbar.scrolled { box-shadow:var(--shadow-sm); }
+    .nav-container {
+      max-width:1280px; margin:0 auto;
+      display:flex; justify-content:space-between; align-items:center;
+      height:68px;
+    }
+    .nav-logo {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.4rem; font-weight:700;
+      color:var(--ink);
+      text-decoration:none; letter-spacing:-0.5px;
+    }
+    .nav-logo span { color:var(--rose-dark); }
+    .nav-links {
+      display:flex; list-style:none; gap:0.15rem; align-items:center;
+    }
+    .nav-links a {
+      color:var(--ink-soft);
+      text-decoration:none;
+      font-size:0.8rem; font-weight:500;
+      padding:0.45rem 0.7rem;
+      border-radius:6px;
+      transition:all 0.25s ease;
+      letter-spacing:0.2px;
+    }
+    .nav-links a:hover { background:var(--rose-pale); color:var(--ink); }
+    .nav-links a.active { background:var(--rose); color:var(--white); }
+    .hamburger {
+      display:none; flex-direction:column; cursor:pointer;
+      gap:5px; padding:5px;
+    }
+    .hamburger span {
+      width:22px; height:2px;
+      background:var(--ink);
+      transition:all 0.3s ease; border-radius:2px;
+    }
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+    .hero {
+      padding:6rem 2rem 4rem;
+      background:linear-gradient(135deg, var(--ink) 0%, #1a1a2e 100%);
+      color:var(--white);
+      text-align:center;
+    }
+    .hero .label {
+      display:inline-block;
+      font-size:0.7rem; text-transform:uppercase;
+      letter-spacing:2px; color:var(--gold);
+      font-weight:600; margin-bottom:0.75rem;
+    }
+    .hero h1 {
+      color:var(--white);
+      font-size:clamp(2rem,4vw,3rem);
+      margin-bottom:0.75rem;
+    }
+    .hero p {
+      color:rgba(255,255,255,0.6);
+      max-width:520px; margin:0 auto 2rem;
+      font-size:1.05rem;
+    }
+    .hero-cta { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+    .btn {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      padding:0.85rem 1.8rem;
+      border-radius:50px;
+      font-weight:600; font-size:0.9rem;
+      text-decoration:none;
+      transition:all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+      border:none; cursor:pointer;
+      letter-spacing:0.2px;
+    }
+    .btn-rose {
+      background:var(--rose); color:var(--white);
+      box-shadow:0 4px 14px rgba(212,160,160,0.25);
+    }
+    .btn-rose:hover {
+      background:var(--rose-dark);
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(212,160,160,0.35);
+    }
+    .btn-ghost {
+      background:transparent; color:var(--white);
+      border:1.5px solid rgba(255,255,255,0.2);
+    }
+    .btn-ghost:hover {
+      border-color:var(--white);
+      background:rgba(255,255,255,0.05);
+      transform:translateY(-2px);
+    }
+
+    .section { padding:4.5rem 2rem; max-width:1280px; margin:0 auto; }
+    .section-header { text-align:center; margin-bottom:3rem; }
+    .section-label {
+      display:inline-block;
+      font-size:0.7rem; text-transform:uppercase;
+      letter-spacing:2px; color:var(--rose-dark);
+      font-weight:600; margin-bottom:0.75rem;
+    }
+    .section-title { font-size:clamp(1.8rem,3.5vw,2.5rem); margin-bottom:0.75rem; }
+    .section-desc { color:var(--ink-soft); max-width:520px; margin:0 auto; font-size:1rem; }
+
+    .content-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.25rem;
+    }
+    .content-card {
+      background:var(--white);
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:var(--shadow-sm);
+      transition:all 0.3s ease;
+      cursor:pointer;
+    }
+    .content-card:hover {
+      transform:translateY(-3px);
+      box-shadow:var(--shadow-md);
+    }
+    .content-card .card-img {
+      height:180px;
+      position:relative;
+      overflow:hidden;
+    }
+    .content-card .card-img img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .content-card .card-img .gradient {
+      position:absolute; inset:0;
+    }
+    .content-card .card-img .play-btn {
+      width:52px; height:52px;
+      border-radius:50%;
+      background:var(--white);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--rose-dark);
+      font-size:1.3rem;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      position:relative;
+      z-index:1;
+    }
+    .content-card .card-img .icon-only {
+      color:rgba(255,255,255,0.25);
+      font-size:2.5rem;
+      position:relative;
+      z-index:1;
+    }
+    .content-card .card-body {
+      padding:1.25rem;
+    }
+    .content-card .card-body .platform {
+      font-size:0.68rem; text-transform:uppercase;
+      letter-spacing:1px; color:var(--rose-dark);
+      font-weight:600; margin-bottom:0.4rem;
+    }
+    .content-card .card-body h3 {
+      font-size:1.1rem;
+      margin-bottom:0.3rem;
+    }
+    .content-card .card-body p {
+      color:var(--ink-soft);
+      font-size:0.88rem;
+    }
+    .content-card .card-footer {
+      padding:0 1.25rem 1.25rem;
+      display:flex; gap:0.4rem;
+      flex-wrap:wrap;
+    }
+    .content-card .card-footer .badge {
+      padding:0.2rem 0.5rem;
+      border-radius:4px;
+      font-size:0.68rem; font-weight:600;
+      background:var(--cream);
+      color:var(--ink-mute);
+    }
+    .content-card .card-footer .badge.new {
+      background:var(--rose);
+      color:var(--white);
+    }
+
+    /* ── Social Media Handles ── */
+    .platform-tabs {
+      display:flex;
+      gap:0.5rem;
+      margin-bottom:2rem;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .platform-tab {
+      padding:0.55rem 1.4rem;
+      border:1.5px solid var(--ink-soft);
+      border-radius:50px;
+      background:transparent;
+      color:var(--ink);
+      font-weight:600;
+      font-size:0.82rem;
+      cursor:pointer;
+      transition:all 0.3s ease;
+      font-family:'DM Sans',sans-serif;
+      display:inline-flex;
+      align-items:center;
+      gap:0.4rem;
+    }
+    .platform-tab:hover,
+    .platform-tab.active {
+      background:var(--ink);
+      color:var(--white);
+    }
+    .platform-tab .fa-instagram { color:#E4405F; }
+    .platform-tab .fa-youtube { color:#FF0000; }
+    .platform-tab .fa-pinterest { color:#E60023; }
+    .platform-tab .fa-tiktok { color:#00F2EA; }
+
+    .social-posts-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:1.25rem;
+    }
+    .social-post {
+      background:var(--white);
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:var(--shadow-sm);
+      transition:all 0.3s ease;
+      position:relative;
+      cursor:pointer;
+    }
+    .social-post:hover {
+      transform:translateY(-4px);
+      box-shadow:var(--shadow-md);
+    }
+    .post-img {
+      min-height:180px;
+      height:auto;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .post-img .play-badge {
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      background:var(--white);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--rose-dark);
+      font-size:1.2rem;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      position:relative;
+      z-index:1;
+    }
+    .post-img .play-badge.tiktok {
+      color:var(--ink);
+      background:var(--ink);
+    }
+    .post-overlay {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-end;
+      padding:0.8rem;
+      opacity:0;
+      transition:opacity 0.3s ease;
+    }
+    .social-post:hover .post-overlay { opacity:1; }
+    .post-overlay i {
+      font-size:1.5rem;
+      color:var(--white);
+      margin-bottom:0.2rem;
+    }
+    .post-overlay span {
+      font-size:0.65rem;
+      color:rgba(255,255,255,0.7);
+      text-transform:uppercase;
+      letter-spacing:1px;
+      font-weight:600;
+    }
+    .post-info {
+      padding:0.85rem 1rem 1rem;
+    }
+    .post-platform {
+      font-size:0.68rem;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      font-weight:600;
+      color:var(--rose-dark);
+    }
+    .post-info h4 {
+      font-size:0.95rem;
+      margin:0.2rem 0 0.15rem;
+      line-height:1.3;
+    }
+    .post-info p {
+      font-size:0.8rem;
+      color:var(--ink-soft);
+      margin:0;
+    }
+    .post-link {
+      position:absolute;
+      top:0.5rem;
+      right:0.5rem;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--ink);
+      font-size:0.75rem;
+      text-decoration:none;
+      opacity:0;
+      transition:all 0.3s ease;
+      z-index:2;
+    }
+    .social-post:hover .post-link { opacity:1; }
+    .post-link:hover {
+      background:var(--rose);
+      color:var(--white);
+    }
+
+    .footer {
+      background:var(--ink);
+      color:rgba(255,255,255,0.55);
+      padding:2.5rem 2rem 1.5rem;
+      text-align:center;
+    }
+    .footer-logo {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.8rem; font-weight:700;
+      color:var(--white); margin-bottom:0.25rem;
+    }
+    .footer-logo span { color:var(--rose); }
+    .footer-tagline {
+      font-family:'Dancing Script',cursive;
+      font-size:1.1rem; color:var(--gold);
+      margin-bottom:1.25rem;
+    }
+    .footer-social {
+      display:flex; justify-content:center;
+      gap:0.75rem; margin-bottom:1.25rem;
+    }
+    .footer-social a {
+      width:38px; height:38px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--white);
+      text-decoration:none;
+      transition:all 0.25s ease;
+    }
+    .footer-social a:hover {
+      background:var(--rose);
+      border-color:var(--rose);
+      transform:translateY(-2px);
+    }
+    .footer-bottom {
+      padding-top:1rem;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+    .footer-bottom p { font-size:0.75rem; }
+
+    @media (max-width:768px) {
+      .nav-links {
+        display:none;
+        position:absolute;
+        top:68px; left:0; right:0;
+        background:rgba(250,246,240,0.98);
+        flex-direction:column;
+        padding:1rem;
+        box-shadow:var(--shadow-md);
+        border-top:1px solid rgba(0,0,0,0.04);
+      }
+      .nav-links.active { display:flex; }
+      .nav-links a { padding:0.65rem 0.9rem; width:100%; }
+      .hamburger { display:flex; }
+      .social-posts-grid { grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Nyra<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html" class="active">Content</a></li>
+        <li><a href="exclusive.html">Exclusive</a></li>
+        <li><a href="work-with-me.html">Work With Me</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <span class="label">My Content</span>
+    <h1>Stories That Connect</h1>
+    <p>Explore my latest content across all platforms — from Instagram reels to YouTube vlogs.</p>
+    <div class="hero-cta">
+      <a href="#featured" class="btn btn-rose">Featured Content</a>
+      <a href="https://www.instagram.com/nyra.luxe.lifestyle" class="btn btn-ghost" target="_blank">
+        <i class="fab fa-instagram"></i> Follow on Instagram
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="featured">
+    <div class="section-header">
+      <span class="section-label">Latest Posts</span>
+      <h2 class="section-title">Featured Content</h2>
+      <p class="section-desc">
+        A curated selection of my best-performing content across all social media platforms.
+      </p>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <div class="card-img">
+          <img src="images/content-1.jpg" alt="Summer Fashion Essentials">
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="platform">Instagram Reel</div>
+          <h3>Summer Fashion Essentials</h3>
+          <p>Top picks for the season</p>
+        </div>
+        <div class="card-footer">
+          <span class="badge"><i class="fab fa-instagram"></i> Instagram</span>
+          <span class="badge">12.5K views</span>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="card-img">
+          <img src="images/content-2.jpg" alt="A Day in My Life">
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="platform">TikTok Video</div>
+          <h3>A Day in My Life</h3>
+          <p>Behind-the-scenes vlog</p>
+        </div>
+        <div class="card-footer">
+          <span class="badge"><i class="fab fa-tiktok"></i> TikTok</span>
+          <span class="badge">45K views</span>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="card-img">
+          <img src="images/content-3.jpg" alt="Travel Guide NYC">
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="platform">YouTube Video</div>
+          <h3>Travel Guide: NYC</h3>
+          <p>Hidden gems & local tips</p>
+        </div>
+        <div class="card-footer">
+          <span class="badge"><i class="fab fa-youtube"></i> YouTube</span>
+          <span class="badge">28K views</span>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="card-img">
+          <img src="images/content-7.jpg" alt="Style Inspiration" style="width:100%;height:100%;object-fit:cover;">
+          <div class="icon-only"><i class="fas fa-camera"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="platform">Photo Gallery</div>
+          <h3>Style Inspiration</h3>
+          <p>Curated fashion looks</p>
+        </div>
+        <div class="card-footer">
+          <span class="badge"><i class="fas fa-images"></i> Photos</span>
+          <span class="badge new">New</span>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="card-img">
+          <img src="images/content-3.jpg" alt="Morning Routine 2024" style="width:100%;height:100%;object-fit:cover;">
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="platform">YouTube Shorts</div>
+          <h3>Morning Routine 2024</h3>
+          <p>Productive morning habits</p>
+        </div>
+        <div class="card-footer">
+          <span class="badge"><i class="fab fa-youtube"></i> Shorts</span>
+          <span class="badge">18K views</span>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="card-img">
+          <div class="gradient" style="background:linear-gradient(135deg, #fccb90 0%, #d57eeb 100%);"></div>
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="platform">TikTok Series</div>
+          <h3>Get Ready With Me</h3>
+          <p>GRWM fashion series</p>
+        </div>
+        <div class="card-footer">
+          <span class="badge"><i class="fab fa-tiktok"></i> TikTok</span>
+          <span class="badge">32K views</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Social Media Handles Section -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-label">My Social Media</span>
+      <h2 class="section-title">Follow My Handles</h2>
+      <p class="section-desc">
+        Explore my latest content across all platforms — click any post to visit the original.
+      </p>
+    </div>
+
+    <div class="platform-tabs">
+      <button class="platform-tab active" data-platform="all">
+        <i class="fas fa-th"></i> All
+      </button>
+      <button class="platform-tab" data-platform="instagram">
+        <i class="fab fa-instagram"></i> Instagram
+      </button>
+      <button class="platform-tab" data-platform="youtube">
+        <i class="fab fa-youtube"></i> YouTube
+      </button>
+      <button class="platform-tab" data-platform="pinterest">
+        <i class="fab fa-pinterest"></i> Pinterest
+      </button>
+      <button class="platform-tab" data-platform="tiktok">
+        <i class="fab fa-tiktok"></i> TikTok
+      </button>
+    </div>
+
+    <div class="social-posts-grid">
+      <!-- Instagram Posts -->
+      <div class="social-post" data-platform="instagram">
+        <div class="post-img" style="background:url('images/content-1.jpg') center/cover;">
+          <div class="post-overlay">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">Instagram</span>
+          <h4>Summer Fashion Essentials</h4>
+          <p>12.5K likes</p>
+        </div>
+        <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="View on Instagram">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="instagram">
+        <div class="post-img" style="background:url('images/content-4.jpg') center/cover;">
+          <div class="post-overlay">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">Instagram</span>
+          <h4>NYC Travel Diary</h4>
+          <p>8.3K likes</p>
+        </div>
+        <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="View on Instagram">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="instagram">
+        <div class="post-img" style="background:url('images/content-5.jpg') center/cover;">
+          <div class="post-overlay">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">Instagram</span>
+          <h4>Wellness Morning Routine</h4>
+          <p>6.7K likes</p>
+        </div>
+        <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="View on Instagram">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="instagram">
+        <div class="post-img" style="background:url('images/content-6.jpg') center/cover;">
+          <div class="post-overlay">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">Instagram</span>
+          <h4>Best Cafes in Mumbai</h4>
+          <p>5.2K likes</p>
+        </div>
+        <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="View on Instagram">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="instagram">
+        <div class="post-img" style="background:url('images/content-7.jpg') center/cover;">
+          <div class="post-overlay">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">Instagram</span>
+          <h4>Skincare Favorites</h4>
+          <p>4.8K likes</p>
+        </div>
+        <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="View on Instagram">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <!-- YouTube Posts -->
+      <div class="social-post" data-platform="youtube">
+        <div class="post-img" style="background:url('images/content-2.jpg') center/cover;">
+          <div class="play-badge">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <div class="post-overlay">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">YouTube</span>
+          <h4>Travel Guide: New York City</h4>
+          <p>28K views</p>
+        </div>
+        <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="post-link" aria-label="View on YouTube">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="youtube">
+        <div class="post-img" style="background:url('images/content-5.jpg') center/cover;">
+          <div class="play-badge">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <div class="post-overlay">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">YouTube</span>
+          <h4>Morning Routine 2024</h4>
+          <p>18K views</p>
+        </div>
+        <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="post-link" aria-label="View on YouTube">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="youtube">
+        <div class="post-img" style="background:url('images/content-6.jpg') center/cover;">
+          <div class="play-badge">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <div class="post-overlay">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">YouTube</span>
+          <h4>Mumbai Food Tour</h4>
+          <p>15K views</p>
+        </div>
+        <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="post-link" aria-label="View on YouTube">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="youtube">
+        <div class="post-img" style="background:url('images/content-3.jpg') center/cover;">
+          <div class="play-badge">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <div class="post-overlay">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">YouTube</span>
+          <h4>Fashion Haul & Styling Tips</h4>
+          <p>12K views</p>
+        </div>
+        <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="post-link" aria-label="View on YouTube">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="youtube">
+        <div class="post-img" style="background:url('images/content-7.jpg') center/cover;">
+          <div class="play-badge">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <div class="post-overlay">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">YouTube</span>
+          <h4>Self-Care Sunday Routine</h4>
+          <p>9K views</p>
+        </div>
+        <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="post-link" aria-label="View on YouTube">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <!-- Pinterest Posts -->
+      <div class="social-post" data-platform="pinterest">
+        <div class="post-img" style="background:url('images/content-7.jpg') center/cover;">
+          <div class="post-overlay">
+            <i class="fab fa-pinterest"></i>
+            <span>Pinterest</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">Pinterest</span>
+          <h4>Spring Outfit Inspiration</h4>
+          <p>2.1K saves</p>
+        </div>
+        <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="View on Pinterest">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="pinterest">
+        <div class="post-img" style="background:url('images/content-3.jpg') center/cover;">
+          <div class="post-overlay">
+            <i class="fab fa-pinterest"></i>
+            <span>Pinterest</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">Pinterest</span>
+          <h4>Home Decor Ideas</h4>
+          <p>1.8K saves</p>
+        </div>
+        <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="View on Pinterest">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="pinterest">
+        <div class="post-img" style="background:url('images/content-1.jpg') center/cover;">
+          <div class="post-overlay">
+            <i class="fab fa-pinterest"></i>
+            <span>Pinterest</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">Pinterest</span>
+          <h4>Healthy Recipes to Try</h4>
+          <p>1.5K saves</p>
+        </div>
+        <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="View on Pinterest">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="pinterest">
+        <div class="post-img" style="background:url('images/content-4.jpg') center/cover;">
+          <div class="post-overlay">
+            <i class="fab fa-pinterest"></i>
+            <span>Pinterest</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">Pinterest</span>
+          <h4>Summer Travel Goals</h4>
+          <p>1.2K saves</p>
+        </div>
+        <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="View on Pinterest">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="pinterest">
+        <div class="post-img" style="background:url('images/content-6.jpg') center/cover;">
+          <div class="post-overlay">
+            <i class="fab fa-pinterest"></i>
+            <span>Pinterest</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">Pinterest</span>
+          <h4>DIY Beauty Treatments</h4>
+          <p>1.1K saves</p>
+        </div>
+        <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="View on Pinterest">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <!-- TikTok Posts -->
+      <div class="social-post" data-platform="tiktok">
+        <div class="post-img" style="background:url('images/content-4.jpg') center/cover;">
+          <div class="play-badge tiktok">
+            <i class="fab fa-tiktok"></i>
+          </div>
+          <div class="post-overlay">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">TikTok</span>
+          <h4>Day in My Life</h4>
+          <p>45K views</p>
+        </div>
+        <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="View on TikTok">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="tiktok">
+        <div class="post-img" style="background:url('images/content-1.jpg') center/cover;">
+          <div class="play-badge tiktok">
+            <i class="fab fa-tiktok"></i>
+          </div>
+          <div class="post-overlay">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">TikTok</span>
+          <h4>Get Ready With Me</h4>
+          <p>32K views</p>
+        </div>
+        <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="View on TikTok">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="tiktok">
+        <div class="post-img" style="background:url('images/content-2.jpg') center/cover;">
+          <div class="play-badge tiktok">
+            <i class="fab fa-tiktok"></i>
+          </div>
+          <div class="post-overlay">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">TikTok</span>
+          <h4>Fashion Transition</h4>
+          <p>28K views</p>
+        </div>
+        <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="View on TikTok">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="tiktok">
+        <div class="post-img" style="background:url('images/content-5.jpg') center/cover;">
+          <div class="play-badge tiktok">
+            <i class="fab fa-tiktok"></i>
+          </div>
+          <div class="post-overlay">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">TikTok</span>
+          <h4>Mumbai Vlog</h4>
+          <p>22K views</p>
+        </div>
+        <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="View on TikTok">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="social-post" data-platform="tiktok">
+        <div class="post-img" style="background:url('images/content-6.jpg') center/cover;">
+          <div class="play-badge tiktok">
+            <i class="fab fa-tiktok"></i>
+          </div>
+          <div class="post-overlay">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+          </div>
+        </div>
+        <div class="post-info">
+          <span class="post-platform">TikTok</span>
+          <h4>Beauty Hacks</h4>
+          <p>19K views</p>
+        </div>
+        <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="View on TikTok">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div style="text-align:center; padding:3rem 2rem; background:var(--white); margin:0 2rem 3rem; border-radius:14px; box-shadow:var(--shadow-sm);">
+    <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" class="btn btn-rose" style="padding:1rem 2.2rem;">
+      <i class="fab fa-instagram"></i> Follow Me
+    </a>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">Nyra<span>.</span></div>
+    <div class="footer-tagline">"Fashion, travel, lifestyle"</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/nyra.luxe.lifestyle" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.youtube.com/@nyraluxelifestyle" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://pin.it/6qtLMTBnw" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nyra. All rights reserved. &nbsp;·&nbsp; Mumbai, India</p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Platform tabs - filter social posts
+    const platformTabs = document.querySelectorAll('.platform-tab');
+    const socialPosts = document.querySelectorAll('.social-post');
+    platformTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        platformTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const platform = tab.dataset.platform;
+        socialPosts.forEach(post => {
+          if (platform === 'all' || post.dataset.platform === platform) {
+            post.style.display = 'block';
+          } else {
+            post.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

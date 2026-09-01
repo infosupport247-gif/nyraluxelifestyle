@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work With Me | Nyra Lifestyle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --ink: #111111;
+      --ink-soft: #4a4a4a;
+      --ink-mute: #8a8a8a;
+      --rose: #d4a0a0;
+      --rose-dark: #c48a8a;
+      --rose-pale: #f0e4e4;
+      --gold: #c9a84c;
+      --white: #ffffff;
+      --cream: #faf6f0;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'DM Sans',sans-serif;
+      color:var(--ink);
+      background:var(--cream);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    h1,h2,h3,h4 {
+      font-family:'Bodoni Moda',serif;
+      font-weight:600;
+      color:var(--ink);
+      line-height:1.15;
+    }
+
+    .navbar {
+      position:fixed; top:0; left:0; right:0;
+      z-index:1000;
+      background:rgba(250,246,240,0.92);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(0,0,0,0.04);
+      padding:0 2rem;
+      transition:all 0.3s ease;
+    }
+    .navbar.scrolled { box-shadow:var(--shadow-sm); }
+    .nav-container {
+      max-width:1280px; margin:0 auto;
+      display:flex; justify-content:space-between; align-items:center;
+      height:68px;
+    }
+    .nav-logo {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.4rem; font-weight:700;
+      color:var(--ink);
+      text-decoration:none; letter-spacing:-0.5px;
+    }
+    .nav-logo span { color:var(--rose-dark); }
+    .nav-links {
+      display:flex; list-style:none; gap:0.15rem; align-items:center;
+    }
+    .nav-links a {
+      color:var(--ink-soft);
+      text-decoration:none;
+      font-size:0.8rem; font-weight:500;
+      padding:0.45rem 0.7rem;
+      border-radius:6px;
+      transition:all 0.25s ease;
+      letter-spacing:0.2px;
+    }
+    .nav-links a:hover { background:var(--rose-pale); color:var(--ink); }
+    .nav-links a.active { background:var(--rose); color:var(--white); }
+    .hamburger {
+      display:none; flex-direction:column; cursor:pointer;
+      gap:5px; padding:5px;
+    }
+    .hamburger span {
+      width:22px; height:2px;
+      background:var(--ink);
+      transition:all 0.3s ease; border-radius:2px;
+    }
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+    .hero {
+      padding:6rem 2rem 4rem;
+      background:linear-gradient(135deg, var(--ink) 0%, #1a1a2e 100%);
+      color:var(--white);
+      text-align:center;
+    }
+    .hero .label {
+      display:inline-block;
+      font-size:0.7rem; text-transform:uppercase;
+      letter-spacing:2px; color:var(--gold);
+      font-weight:600; margin-bottom:0.75rem;
+    }
+    .hero h1 {
+      color:var(--white);
+      font-size:clamp(2rem,4vw,3rem);
+      margin-bottom:0.75rem;
+    }
+    .hero p {
+      color:rgba(255,255,255,0.6);
+      max-width:520px; margin:0 auto 2rem;
+      font-size:1.05rem;
+    }
+    .hero-cta { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+    .btn {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      padding:0.85rem 1.8rem;
+      border-radius:50px;
+      font-weight:600; font-size:0.9rem;
+      text-decoration:none;
+      transition:all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+      border:none; cursor:pointer;
+      letter-spacing:0.2px;
+    }
+    .btn-rose {
+      background:var(--rose); color:var(--white);
+      box-shadow:0 4px 14px rgba(212,160,160,0.25);
+    }
+    .btn-rose:hover {
+      background:var(--rose-dark);
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(212,160,160,0.35);
+    }
+    .btn-ghost {
+      background:transparent; color:var(--white);
+      border:1.5px solid rgba(255,255,255,0.2);
+    }
+    .btn-ghost:hover {
+      border-color:var(--white);
+      background:rgba(255,255,255,0.05);
+      transform:translateY(-2px);
+    }
+
+    .section { padding:4.5rem 2rem; max-width:1280px; margin:0 auto; }
+    .section-header { text-align:center; margin-bottom:3rem; }
+    .section-label {
+      display:inline-block;
+      font-size:0.7rem; text-transform:uppercase;
+      letter-spacing:2px; color:var(--rose-dark);
+      font-weight:600; margin-bottom:0.75rem;
+    }
+    .section-title { font-size:clamp(1.8rem,3.5vw,2.5rem); margin-bottom:0.75rem; }
+    .section-desc { color:var(--ink-soft); max-width:520px; margin:0 auto; font-size:1rem; }
+
+    .service-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1.25rem;
+    }
+    .service-card {
+      background:var(--white);
+      border-radius:14px;
+      padding:2rem;
+      box-shadow:var(--shadow-sm);
+      transition:all 0.3s ease;
+      border:1px solid rgba(0,0,0,0.03);
+      position:relative;
+      overflow:hidden;
+    }
+    .service-card::after {
+      content:'';
+      position:absolute;
+      bottom:0; left:0; right:0;
+      height:3px;
+      background:linear-gradient(90deg,var(--rose),var(--gold));
+      transform:scaleX(0);
+      transition:transform 0.3s ease;
+    }
+    .service-card:hover::after { transform:scaleX(1); }
+    .service-card:hover {
+      transform:translateY(-3px);
+      box-shadow:var(--shadow-md);
+    }
+    .service-card .svc-icon {
+      width:56px; height:56px;
+      border-radius:12px;
+      background:var(--rose-pale);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--rose-dark);
+      font-size:1.4rem;
+      margin-bottom:1.25rem;
+    }
+    .service-card h3 { font-size:1.2rem; margin-bottom:0.5rem; }
+    .service-card p { color:var(--ink-soft); font-size:0.9rem; margin-bottom:1.25rem; }
+    .service-card ul { list-style:none; }
+    .service-card li {
+      padding:0.35rem 0;
+      font-size:0.88rem;
+      display:flex; align-items:center; gap:0.4rem;
+    }
+    .service-card li i { color:var(--rose); font-size:0.7rem; }
+
+    .package-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1.25rem;
+      margin-top:2rem;
+    }
+    .pkg-card {
+      background:var(--white);
+      border-radius:14px;
+      padding:2rem;
+      box-shadow:var(--shadow-sm);
+      transition:all 0.3s ease;
+      border:2px solid transparent;
+    }
+    .pkg-card:hover {
+      transform:translateY(-3px);
+      box-shadow:var(--shadow-md);
+    }
+    .pkg-card.popular { border-color:var(--rose); }
+    .pkg-card .pkg-badge {
+      position:absolute;
+      top:-0.6rem; right:1.25rem;
+      background:var(--rose);
+      color:var(--white);
+      font-size:0.65rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      padding:0.25rem 0.75rem;
+      border-radius:50px;
+    }
+    .pkg-card h3 { font-size:1.3rem; margin-bottom:0.3rem; }
+    .pkg-card .pkg-desc {
+      color:var(--ink-soft);
+      font-size:0.88rem;
+      margin-bottom:1.5rem;
+    }
+    .pkg-card ul { list-style:none; margin-bottom:1.5rem; }
+    .pkg-card li {
+      padding:0.35rem 0;
+      font-size:0.88rem;
+      display:flex; align-items:center; gap:0.4rem;
+    }
+    .pkg-card li i { color:var(--rose); font-size:0.7rem; }
+    .pkg-card .pkg-price {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.4rem; font-weight:700;
+      color:var(--rose-dark);
+      margin-bottom:1.25rem;
+    }
+    .pkg-card.featured .pkg-price { color:var(--gold); }
+
+    .process-steps {
+      background:var(--ink);
+      color:var(--white);
+      padding:4.5rem 2rem;
+    }
+    .process-steps .section-header { margin-bottom:2rem; }
+    .process-steps .section-label { color:var(--gold); }
+    .process-steps .section-title { color:var(--white); }
+    .process-steps .section-desc { color:rgba(255,255,255,0.6); }
+    .process-grid {
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:1rem;
+      max-width:1280px;
+      margin:0 auto;
+    }
+    .step-card {
+      text-align:center;
+      padding:1.25rem 0.75rem;
+      background:rgba(255,255,255,0.04);
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .step-card .step-num {
+      width:32px; height:32px;
+      border-radius:50%;
+      background:var(--rose);
+      color:var(--white);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Bodoni Moda',serif; font-weight:700;
+      font-size:0.9rem;
+      margin:0 auto 0.75rem;
+    }
+    .step-card h4 { font-size:0.95rem; margin-bottom:0.3rem; }
+    .step-card p { font-size:0.8rem; color:rgba(255,255,255,0.5); margin:0; }
+
+    .cta-section { text-align:center; margin-top:3rem; }
+    .cta-section .btn { padding:1rem 2.2rem; font-size:1rem; }
+
+    .footer {
+      background:var(--ink);
+      color:rgba(255,255,255,0.55);
+      padding:2.5rem 2rem 1.5rem;
+      text-align:center;
+    }
+    .footer-logo {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.8rem; font-weight:700;
+      color:var(--white); margin-bottom:0.25rem;
+    }
+    .footer-logo span { color:var(--rose); }
+    .footer-tagline {
+      font-family:'Dancing Script',cursive;
+      font-size:1.1rem; color:var(--gold);
+      margin-bottom:1.25rem;
+    }
+    .footer-social {
+      display:flex; justify-content:center;
+      gap:0.75rem; margin-bottom:1.25rem;
+    }
+    .footer-social a {
+      width:38px; height:38px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--white);
+      text-decoration:none;
+      transition:all 0.25s ease;
+    }
+    .footer-social a:hover {
+      background:var(--rose);
+      border-color:var(--rose);
+      transform:translateY(-2px);
+    }
+    .footer-bottom {
+      padding-top:1rem;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+    .footer-bottom p { font-size:0.75rem; }
+
+    @media (max-width:900px) {
+      .package-grid { grid-template-columns:1fr; }
+      .process-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:768px) {
+      .nav-links {
+        display:none;
+        position:absolute;
+        top:68px; left:0; right:0;
+        background:rgba(250,246,240,0.98);
+        flex-direction:column;
+        padding:1rem;
+        box-shadow:var(--shadow-md);
+        border-top:1px solid rgba(0,0,0,0.04);
+      }
+      .nav-links.active { display:flex; }
+      .nav-links a { padding:0.65rem 0.9rem; width:100%; }
+      .hamburger { display:flex; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Nyra<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Content</a></li>
+        <li><a href="exclusive.html">Exclusive</a></li>
+        <li><a href="work-with-me.html" class="active">Work With Me</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <span class="label">Partnerships</span>
+    <h1>Work With Me</h1>
+    <p>Let's create something extraordinary together. Here's how we can collaborate.</p>
+    <div class="hero-cta">
+      <a href="#services" class="btn btn-rose">View Services</a>
+      <a href="#process" class="btn btn-ghost">How It Works</a>
+    </div>
+  </section>
+
+  <section class="section" id="services" style="background:var(--white);">
+    <div class="section-header">
+      <span class="section-label">Collaboration Options</span>
+      <h2 class="section-title">How We Can Work Together</h2>
+      <p class="section-desc">
+        From single posts to full ambassadorship — flexible partnerships for every brand.
+      </p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="svc-icon"><i class="fas fa-handshake"></i></div>
+        <h3>Brand Partnerships</h3>
+        <p>Long-term collaborations that align with your brand values and reach my engaged audience.</p>
+        <ul>
+          <li><i class="fas fa-check"></i> Custom campaign strategy</li>
+          <li><i class="fas fa-check"></i> Multi-platform integration</li>
+          <li><i class="fas fa-check"></i> Performance metrics & reporting</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon"><i class="fas fa-tag"></i></div>
+        <h3>Sponsored Content</h3>
+        <p>Authentic sponsored posts that resonate with my followers and deliver real results.</p>
+        <ul>
+          <li><i class="fas fa-check"></i> Instagram posts & Stories</li>
+          <li><i class="fas fa-check"></i> TikTok sponsorships</li>
+          <li><i class="fas fa-check"></i> YouTube integrated content</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon"><i class="fas fa-box-open"></i></div>
+        <h3>Product Placements</h3>
+        <p>Seamless product integration in lifestyle content that feels natural and genuine.</p>
+        <ul>
+          <li><i class="fas fa-check"></i> Organic product integration</li>
+          <li><i class="fas fa-check"></i> Review videos & unboxings</li>
+          <li><i class="fas fa-check"></i> Long-term ambassadorship</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon"><i class="fas fa-calendar-alt"></i></div>
+        <h3>Event Appearances</h3>
+        <p>Personal brand presence at your events, launches, and promotional activities.</p>
+        <ul>
+          <li><i class="fas fa-check"></i> Product launch events</li>
+          <li><i class="fas fa-check"></i> Brand activations</li>
+          <li><i class="fas fa-check"></i> Panel discussions & MC roles</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon"><i class="fas fa-camera"></i></div>
+        <h3>Content Creation</h3>
+        <p>Professional content creation services for brands looking for authentic visual storytelling.</p>
+        <ul>
+          <li><i class="fas fa-check"></i> Photography sessions</li>
+          <li><i class="fas fa-check"></i> Video production</li>
+          <li><i class="fas fa-check"></i> Social media asset creation</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Campaign Packages</h3>
+        <p>Custom multi-platform campaigns designed to maximize reach, engagement, and conversions.</p>
+        <ul>
+          <li><i class="fas fa-check"></i> Cross-platform integration</li>
+          <li><i class="fas fa-check"></i> Custom content calendar</li>
+          <li><i class="fas fa-check"></i> ROI tracking & analytics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="packages" style="background:var(--white);">
+    <div class="section-header">
+      <span class="section-label">Campaign Packages</span>
+      <h2 class="section-title">Flexible Partnership Options</h2>
+      <p class="section-desc">Choose the package that best fits your brand objectives and budget.</p>
+    </div>
+    <div class="package-grid">
+      <div class="pkg-card">
+        <h3>Starter</h3>
+        <p class="pkg-desc">Perfect for brands looking to test the waters with a single content piece.</p>
+        <ul>
+          <li><i class="fas fa-check"></i> One Instagram post</li>
+          <li><i class="fas fa-check"></i> One Story series (3 frames)</li>
+          <li><i class="fas fa-check"></i> Basic usage rights (30 days)</li>
+          <li><i class="fas fa-check"></i> Performance report</li>
+        </ul>
+        <div class="pkg-price">Custom</div>
+        <a href="contact.html" class="btn btn-rose" style="width:100%;">Get Started</a>
+      </div>
+      <div class="pkg-card popular">
+        <div class="pkg-badge">Most Popular</div>
+        <h3>Growth</h3>
+        <p class="pkg-desc">Ideal for brands seeking multi-platform presence and stronger engagement.</p>
+        <ul>
+          <li><i class="fas fa-check"></i> Two Instagram posts</li>
+          <li><i class="fas fa-check"></i> TikTok video</li>
+          <li><i class="fas fa-check"></i> YouTube integration</li>
+          <li><i class="fas fa-check"></i> Story series</li>
+          <li><i class="fas fa-check"></i> Extended usage rights (90 days)</li>
+          <li><i class="fas fa-check"></i> Detailed analytics</li>
+        </ul>
+        <div class="pkg-price">Custom</div>
+        <a href="contact.html" class="btn btn-rose" style="width:100%;">Learn More</a>
+      </div>
+      <div class="pkg-card">
+        <h3>Premium</h3>
+        <p class="pkg-desc">Full-scale campaign with maximum reach and long-term brand alignment.</p>
+        <ul>
+          <li><i class="fas fa-check"></i> Everything in Growth</li>
+          <li><i class="fas fa-check"></i> Brand ambassadorship (3 months)</li>
+          <li><i class="fas fa-check"></i> Custom content calendar</li>
+          <li><i class="fas fa-check"></i> Live stream event</li>
+          <li><i class="fas fa-check"></i> Priority communication</li>
+          <li><i class="fas fa-check"></i> Full campaign report</li>
+        </ul>
+        <div class="pkg-price">Custom</div>
+        <a href="contact.html" class="btn btn-rose" style="width:100%;">Go Premium</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="process-steps" id="process">
+    <div class="section-header">
+      <span class="section-label">Process</span>
+      <h2 class="section-title">How We'll Work Together</h2>
+      <p class="section-desc">A simple process designed to make collaborating with me smooth and effective.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>Initial Contact</h4>
+        <p>Reach out through the contact form to discuss your brand and goals.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>Campaign Strategy</h4>
+        <p>We develop a customized strategy aligned with your brand.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>Content Creation</h4>
+        <p>I create authentic content that showcases your product naturally.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h4>Launch & Engage</h4>
+        <p>Content goes live with real-time engagement and interaction.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <h4>Results & Report</h4>
+        <p>Receive detailed performance metrics and campaign insights.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section cta-section" style="padding-top:0;">
+    <a href="contact.html" class="btn btn-rose">
+      <i class="fas fa-envelope"></i> Start a Collaboration
+    </a>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">Nyra<span>.</span></div>
+    <div class="footer-tagline">"Fashion, travel, lifestyle"</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/nyra.luxe.lifestyle" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.youtube.com/@nyraluxelifestyle" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://pin.it/6qtLMTBnw" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nyra. All rights reserved. &nbsp;·&nbsp; Mumbai, India</p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+</body>
+</html>

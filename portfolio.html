@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Nyra Lifestyle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --ink: #111111;
+      --ink-soft: #4a4a4a;
+      --ink-mute: #8a8a8a;
+      --rose: #d4a0a0;
+      --rose-dark: #c48a8a;
+      --rose-pale: #f0e4e4;
+      --gold: #c9a84c;
+      --white: #ffffff;
+      --cream: #faf6f0;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'DM Sans',sans-serif;
+      color:var(--ink);
+      background:var(--cream);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    h1,h2,h3,h4 {
+      font-family:'Bodoni Moda',serif;
+      font-weight:600;
+      color:var(--ink);
+      line-height:1.15;
+    }
+
+    .navbar {
+      position:fixed; top:0; left:0; right:0;
+      z-index:1000;
+      background:rgba(250,246,240,0.92);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(0,0,0,0.04);
+      padding:0 2rem;
+      transition:all 0.3s ease;
+    }
+    .navbar.scrolled { box-shadow:var(--shadow-sm); }
+    .nav-container {
+      max-width:1280px; margin:0 auto;
+      display:flex; justify-content:space-between; align-items:center;
+      height:68px;
+    }
+    .nav-logo {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.4rem; font-weight:700;
+      color:var(--ink);
+      text-decoration:none; letter-spacing:-0.5px;
+    }
+    .nav-logo span { color:var(--rose-dark); }
+    .nav-links {
+      display:flex; list-style:none; gap:0.15rem; align-items:center;
+    }
+    .nav-links a {
+      color:var(--ink-soft);
+      text-decoration:none;
+      font-size:0.8rem; font-weight:500;
+      padding:0.45rem 0.7rem;
+      border-radius:6px;
+      transition:all 0.25s ease;
+      letter-spacing:0.2px;
+    }
+    .nav-links a:hover { background:var(--rose-pale); color:var(--ink); }
+    .nav-links a.active { background:var(--rose); color:var(--white); }
+    .hamburger {
+      display:none; flex-direction:column; cursor:pointer;
+      gap:5px; padding:5px;
+    }
+    .hamburger span {
+      width:22px; height:2px;
+      background:var(--ink);
+      transition:all 0.3s ease; border-radius:2px;
+    }
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+    .hero {
+      padding:6rem 2rem 4rem;
+      background:linear-gradient(135deg, var(--ink) 0%, #1a1a2e 100%);
+      color:var(--white);
+      text-align:center;
+    }
+    .hero .label {
+      display:inline-block;
+      font-size:0.7rem; text-transform:uppercase;
+      letter-spacing:2px; color:var(--gold);
+      font-weight:600; margin-bottom:0.75rem;
+    }
+    .hero h1 {
+      color:var(--white);
+      font-size:clamp(2rem,4vw,3rem);
+      margin-bottom:0.75rem;
+    }
+    .hero p {
+      color:rgba(255,255,255,0.6);
+      max-width:520px; margin:0 auto 2rem;
+      font-size:1.05rem;
+    }
+    .hero-cta { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+    .btn {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      padding:0.85rem 1.8rem;
+      border-radius:50px;
+      font-weight:600; font-size:0.9rem;
+      text-decoration:none;
+      transition:all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+      border:none; cursor:pointer;
+      letter-spacing:0.2px;
+    }
+    .btn-rose {
+      background:var(--rose); color:var(--white);
+      box-shadow:0 4px 14px rgba(212,160,160,0.25);
+    }
+    .btn-rose:hover {
+      background:var(--rose-dark);
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(212,160,160,0.35);
+    }
+    .btn-ghost {
+      background:transparent; color:var(--white);
+      border:1.5px solid rgba(255,255,255,0.2);
+    }
+    .btn-ghost:hover {
+      border-color:var(--white);
+      background:rgba(255,255,255,0.05);
+      transform:translateY(-2px);
+    }
+
+    .section { padding:4.5rem 2rem; max-width:1280px; margin:0 auto; }
+    .section-header { text-align:center; margin-bottom:3rem; }
+    .section-label {
+      display:inline-block;
+      font-size:0.7rem; text-transform:uppercase;
+      letter-spacing:2px; color:var(--rose-dark);
+      font-weight:600; margin-bottom:0.75rem;
+    }
+    .section-title { font-size:clamp(1.8rem,3.5vw,2.5rem); margin-bottom:0.75rem; }
+    .section-desc { color:var(--ink-soft); max-width:520px; margin:0 auto; font-size:1rem; }
+
+    .portfolio-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:1.25rem;
+    }
+    .port-card {
+      background:var(--white);
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:var(--shadow-sm);
+      transition:all 0.3s ease;
+    }
+    .port-card:hover {
+      transform:translateY(-3px);
+      box-shadow:var(--shadow-md);
+    }
+    .port-card .pc-img {
+      min-height:180px;
+      display:flex; align-items:center; justify-content:center;
+      position:relative;
+    }
+    .port-card .pc-img img {
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+    }
+    .port-card .pc-img .gradient {
+      position:absolute; inset:0;
+    }
+    .port-card .pc-img .brand-tag {
+      position:absolute; top:1rem; left:1rem;
+      background:var(--white);
+      padding:0.25rem 0.7rem;
+      border-radius:50px;
+      font-size:0.72rem; font-weight:600;
+      color:var(--ink);
+      box-shadow:var(--shadow-sm);
+    }
+    .port-card .pc-body {
+      padding:1.25rem;
+    }
+    .port-card .pc-body h3 { font-size:1.1rem; margin-bottom:0.3rem; }
+    .port-card .pc-body p {
+      color:var(--ink-soft);
+      font-size:0.88rem;
+      margin-bottom:1rem;
+    }
+    .port-card .pc-metrics {
+      display:flex;
+      gap:1.25rem;
+      padding:0.75rem 0;
+      border-top:1px solid rgba(0,0,0,0.04);
+    }
+    .port-card .pc-metrics .m {
+      text-align:center;
+    }
+    .port-card .pc-metrics .m .v {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.2rem; font-weight:700;
+      color:var(--rose-dark);
+    }
+    .port-card .pc-metrics .m .l {
+      font-size:0.68rem; color:var(--ink-mute);
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+    }
+
+    .cta-section { text-align:center; margin-top:3rem; }
+
+    .footer {
+      background:var(--ink);
+      color:rgba(255,255,255,0.55);
+      padding:2.5rem 2rem 1.5rem;
+      text-align:center;
+    }
+    .footer-logo {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.8rem; font-weight:700;
+      color:var(--white); margin-bottom:0.25rem;
+    }
+    .footer-logo span { color:var(--rose); }
+    .footer-tagline {
+      font-family:'Dancing Script',cursive;
+      font-size:1.1rem; color:var(--gold);
+      margin-bottom:1.25rem;
+    }
+    .footer-social {
+      display:flex; justify-content:center;
+      gap:0.75rem; margin-bottom:1.25rem;
+    }
+    .footer-social a {
+      width:38px; height:38px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--white);
+      text-decoration:none;
+      transition:all 0.25s ease;
+    }
+    .footer-social a:hover {
+      background:var(--rose);
+      border-color:var(--rose);
+      transform:translateY(-2px);
+    }
+    .footer-bottom {
+      padding-top:1rem;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+    .footer-bottom p { font-size:0.75rem; }
+
+    @media (max-width:900px) {
+.stat { border-bottom:1px solid rgba(255,255,255,0.08); border-right:none; }
+      .stat:nth-child(2) { border-right:none; }
+    }
+    @media (max-width:768px) {
+      .nav-links {
+        display:none;
+        position:absolute;
+        top:68px; left:0; right:0;
+        background:rgba(250,246,240,0.98);
+        flex-direction:column;
+        padding:1rem;
+        box-shadow:var(--shadow-md);
+        border-top:1px solid rgba(0,0,0,0.04);
+      }
+      .nav-links.active { display:flex; }
+      .nav-links a { padding:0.65rem 0.9rem; width:100%; }
+      .hamburger { display:flex; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Nyra<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Content</a></li>
+        <li><a href="exclusive.html">Exclusive</a></li>
+        <li><a href="work-with-me.html">Work With Me</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <span class="label">Portfolio</span>
+    <h1>Previous Collaborations</h1>
+    <p>A showcase of successful brand partnerships and the results we achieved together.</p>
+    <div class="hero-cta">
+      <a href="#campaigns" class="btn btn-rose">View Campaigns</a>
+    </div>
+  </section>
+
+  <section class="section" id="campaigns" style="background:var(--white);">
+    <div class="section-header">
+      <span class="section-label">Campaigns</span>
+      <h2 class="section-title">Featured Work</h2>
+      <p class="section-desc">A selection of my most impactful brand collaborations across various industries.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="port-card">
+        <div class="pc-img">
+          <img src="images/hero-balcony.jpg" alt="Fashion campaign" style="width:100%;height:100%;object-fit:cover;">
+          <div class="brand-tag">Fashion Brand</div>
+        </div>
+        <div class="pc-body">
+          <h3>Summer Campaign 2024</h3>
+          <p>Full campaign management including Instagram, TikTok, and YouTube content across 4 weeks.</p>
+          <div class="pc-metrics">
+            <div class="m"><div class="v">2.1M</div><div class="l">Reach</div></div>
+            <div class="m"><div class="v">8.4%</div><div class="l">Engagement</div></div>
+            <div class="m"><div class="v">15K</div><div class="l">Conversions</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="port-card">
+        <div class="pc-img">
+          <img src="images/portrait-watch.jpg" alt="Technology launch" style="width:100%;height:100%;object-fit:cover;">
+          <div class="brand-tag">Tech Company</div>
+        </div>
+        <div class="pc-body">
+          <h3>Product Launch</h3>
+          <p>Product review and unboxing series that generated massive interest and pre-orders.</p>
+          <div class="pc-metrics">
+            <div class="m"><div class="v">890K</div><div class="l">Impressions</div></div>
+            <div class="m"><div class="v">12.3%</div><div class="l">Engagement</div></div>
+            <div class="m"><div class="v">5K</div><div class="l">Click-Through</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="port-card">
+        <div class="pc-img">
+          <img src="images/content-5.jpg" alt="Beauty brand" style="width:100%;height:100%;object-fit:cover;">
+          <div class="brand-tag">Beauty Brand</div>
+        </div>
+        <div class="pc-body">
+          <h3>Brand Ambassador Program</h3>
+          <p>6-month ambassadorship with monthly content deliverables and live stream events.</p>
+          <div class="pc-metrics">
+            <div class="m"><div class="v">3.2M</div><div class="l">Total Reach</div></div>
+            <div class="m"><div class="v">6.7%</div><div class="l">Avg Engagement</div></div>
+            <div class="m"><div class="v">4.8K</div><div class="l">Sales Driven</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo">Nyra<span>.</span></div>
+    <div class="footer-tagline">"Fashion, travel, lifestyle"</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/nyra.luxe.lifestyle" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.youtube.com/@nyraluxelifestyle" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://pin.it/6qtLMTBnw" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nyra. All rights reserved. &nbsp;·&nbsp; Mumbai, India</p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+</body>
+</html>

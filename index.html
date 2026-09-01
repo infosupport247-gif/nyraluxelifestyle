@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nyra | Lifestyle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --ink:#111111;
+      --ink-soft:#4a4a4a;
+      --ink-mute:#8a8a8a;
+      --rose:#d4a0a0;
+      --rose-dark:#c48a8a;
+      --gold:#c9a84c;
+      --gold-brown:#b8976a;
+      --white:#ffffff;
+      --cream:#faf7f2;
+      --shadow-sm:0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md:0 4px 14px rgba(0,0,0,0.08);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'DM Sans',sans-serif;
+      background:var(--cream);
+      color:var(--ink);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    .navbar {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      background:rgba(250,247,242,0.92);
+      backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(201,168,76,0.12);
+      padding:0 2rem;
+    }
+    .nav-container {
+      max-width:1280px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      height:68px;
+    }
+    .nav-brand { display:flex; flex-direction:column; gap:1px; text-decoration:none; }
+    .nav-brand .name { font-family:'Bodoni Moda',serif; font-size:1.2rem; font-weight:700; color:var(--ink); }
+    .nav-brand .name span { color:var(--rose); }
+    .nav-brand .script { font-family:'Dancing Script',cursive; font-size:0.75rem; color:var(--rose); }
+    .nav-links { display:flex; list-style:none; gap:0.25rem; }
+    .nav-links a {
+      color:var(--ink-soft); text-decoration:none; font-size:0.75rem;
+      font-weight:600; text-transform:uppercase; letter-spacing:1px;
+      padding:0.4rem 0.7rem; border-radius:2px; transition:all 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color:var(--ink); }
+    .nav-right { display:flex; align-items:center; gap:0.5rem; }
+    .nav-right a {
+      width:34px; height:34px; border-radius:50%;
+      background:rgba(17,17,17,0.04);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--ink); text-decoration:none; transition:all 0.25s ease;
+    }
+    .nav-right a:hover { background:var(--rose); color:var(--white); transform:translateY(-2px); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:transparent; border:none; }
+    .hamburger span { width:22px; height:2px; background:var(--ink); border-radius:2px; transition:all 0.3s ease; }
+    .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.active span:nth-child(2) { opacity:0; }
+    .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+    .hero {
+      min-height:100vh;
+      display:flex; align-items:center;
+      background:linear-gradient(135deg, #FAF7F2 0%, #F2EDE4 50%, #E8E0D5 100%);
+      position:relative; overflow:hidden; padding:8rem 2rem 4rem;
+    }
+    .hero-inner {
+      max-width:1280px; margin:0 auto;
+      display:grid; grid-template-columns:1fr 1fr; gap:4rem;
+      align-items:center; width:100%; position:relative; z-index:2;
+    }
+    .hero-left { max-width:560px; }
+    .hero-eyebrow {
+      display:inline-flex; align-items:center; gap:0.6rem;
+      font-size:0.7rem; text-transform:uppercase; letter-spacing:2.5px;
+      color:var(--gold-brown); font-weight:600; margin-bottom:1.5rem;
+    }
+    .hero-eyebrow .diamond { width:5px; height:5px; background:var(--gold); transform:rotate(45deg); }
+    .hero-monogram {
+      width:60px; height:60px; border-radius:50%;
+      border:1.5px solid var(--gold);
+      margin-bottom:1.5rem;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Bodoni Moda',serif; font-size:1.3rem; font-weight:700;
+      color:var(--gold); background:rgba(201,168,76,0.06);
+      position:relative;
+    }
+    .hero-monogram::before, .hero-monogram::after {
+      content:''; position:absolute; width:5px; height:5px;
+      border-radius:50%; background:var(--gold);
+    }
+    .hero-monogram::before { top:-3px; left:50%; transform:translateX(-50%); }
+    .hero-monogram::after { bottom:-3px; left:50%; transform:translateX(-50%); }
+    .hero-name {
+      font-family:'Bodoni Moda',serif;
+      font-size:clamp(3rem,5vw,4.5rem);
+      font-weight:700; line-height:1.05; letter-spacing:-0.02em;
+      margin-bottom:0.3rem; color:var(--ink);
+    }
+    .hero-script {
+      font-family:'Dancing Script',cursive;
+      font-size:clamp(1.6rem,2.5vw,2.2rem);
+      color:var(--rose); margin-bottom:1rem;
+    }
+    .hero-heart { font-size:0.85rem; color:var(--rose); }
+    .hero-divider { width:3rem; height:1px; background:var(--rose); margin:1rem 0; }
+    .hero-desc {
+      font-size:1rem; color:var(--ink-soft);
+      line-height:1.75; max-width:380px; margin-bottom:2.5rem;
+    }
+    .btn {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      font-family:'DM Sans',sans-serif; font-size:0.8rem; font-weight:600;
+      text-decoration:none; cursor:pointer; border:none;
+      transition:all 0.3s ease; letter-spacing:0.1em; text-transform:uppercase;
+    }
+    .btn-explore {
+      padding:0.9rem 2.2rem; border-radius:2px;
+      background:var(--rose); color:var(--white);
+      box-shadow:0 4px 14px rgba(212,160,160,0.3);
+      text-transform:uppercase; letter-spacing:0.08em;
+    }
+    .btn-explore:hover { background:var(--rose-dark); transform:translateY(-2px); box-shadow:0 8px 24px rgba(212,160,160,0.4); }
+    .btn-ghost {
+      padding:0.9rem 2.2rem; border-radius:2px;
+      background:transparent; color:var(--ink);
+      border:1.5px solid rgba(17,17,17,0.15);
+    }
+    .btn-ghost:hover { border-color:var(--ink); transform:translateY(-2px); }
+
+    .hero-right {
+      position:relative;
+      height:520px;
+      min-height:340px;
+    }
+    .hero-image {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      position:absolute; top:0; left:0;
+    }
+    .hero-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(135deg, rgba(250,247,242,0.06) 0%, rgba(250,247,242,0) 40%, rgba(184,151,106,0.04) 100%);
+      pointer-events:none;
+    }
+    .flatlay {
+      position:absolute; bottom:1.5rem; left:0;
+      display:flex; gap:0.7rem; align-items:flex-end; opacity:0.55;
+      pointer-events:none;
+    }
+    .flatlay i { font-size:1.5rem; color:var(--ink-soft); opacity:0.5; }
+    .flatlay i.fa-heart { color:var(--rose); }
+
+    .category-bar {
+      position:absolute; bottom:0; left:0; right:0;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+      border-top:1px solid rgba(17,17,17,0.06);
+      padding:0.8rem 2rem;
+      display:flex; justify-content:center; align-items:center;
+      gap:0; z-index:3;
+    }
+    .cat-item {
+      display:flex; flex-direction:column; align-items:center; gap:0.3rem;
+      cursor:pointer; padding:0 1rem; transition:all 0.25s ease;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .cat-divider { width:1px; height:24px; background:rgba(17,17,17,0.1); }
+    .cat-icon {
+      width:36px; height:36px; border-radius:50%;
+      background:rgba(17,17,17,0.03);
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.95rem; color:var(--ink-soft);
+      transition:all 0.25s ease;
+    }
+    .cat-item:hover .cat-icon, .cat-item.active .cat-icon {
+      background:var(--rose); color:var(--white); transform:translateY(-3px);
+    }
+    .cat-label { font-size:0.6rem; text-transform:uppercase; letter-spacing:1px; color:var(--ink-mute); font-weight:600; }
+    .cat-item:hover .cat-label { color:var(--ink); }
+
+    .bottom-tagline {
+      text-align:center; padding:1.2rem 2rem 2.5rem;
+      font-family:'Bodoni Moda',serif; font-size:1rem; font-weight:500;
+      color:var(--gold-brown); letter-spacing:0.5px;
+    }
+    .bottom-tagline .bullet { margin:0 0.5rem; color:rgba(184,151,106,0.4); }
+
+    .footer {
+      background:var(--ink); color:rgba(255,255,255,0.55);
+      padding:2.5rem 2rem 1.5rem; text-align:center;
+    }
+    .footer-logo { font-family:'Bodoni Moda',serif; font-size:1.8rem; font-weight:700; color:var(--white); margin-bottom:0.25rem; }
+    .footer-logo span { color:var(--rose); }
+    .footer-tagline { font-family:'Dancing Script',cursive; font-size:1.1rem; color:var(--gold); margin-bottom:1.25rem; }
+    .footer-social { display:flex; justify-content:center; gap:0.75rem; margin-bottom:1.25rem; }
+    .footer-social a {
+      width:38px; height:38px; border-radius:50%;
+      background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--white); text-decoration:none; transition:all 0.25s ease;
+    }
+    .footer-social a:hover { background:var(--rose); border-color:var(--rose); transform:translateY(-2px); }
+    .footer-bottom { padding-top:1rem; border-top:1px solid rgba(255,255,255,0.08); }
+    .footer-bottom p { font-size:0.75rem; line-height:1.6; }
+    .footer-bottom a { color:rgba(255,255,255,0.4); text-decoration:none; transition:color 0.2s; }
+    .footer-bottom a:hover { color:var(--rose); }
+
+    @media (max-width:900px) {
+      .hero-inner { grid-template-columns:1fr; gap:2rem; }
+      .hero-left { max-width:100%; text-align:center; }
+      .hero-eyebrow { justify-content:center; }
+      .hero-desc { margin-left:auto; margin-right:auto; }
+      .hero-cta { justify-content:center; }
+      .hero-right { min-height:340px; }
+      .flatlay { left:50%; transform:translateX(-50%); }
+    }
+    @media (max-width:540px) {
+      .navbar { padding:0 1rem; }
+      .nav-links { display:none; position:absolute; top:68px; left:0; right:0; background:rgba(250,247,242,0.98); flex-direction:column; padding:1rem; box-shadow:var(--shadow-md); border-top:1px solid rgba(0,0,0,0.04); }
+      .nav-links.active { display:flex; }
+      .nav-links a { padding:0.65rem 0.9rem; width:100%; }
+      .hamburger { display:flex; }
+      .hero { padding:7rem 1.5rem 3rem; }
+      .category-bar { padding:0.6rem 1rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <span class="name">Nyra</span>
+        <span class="script">Lifestyle</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Content</a></li>
+        <li><a href="exclusive.html">Exclusive</a></li>
+        <li><a href="work-with-me.html">Work With Me</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="https://www.instagram.com/nyra.luxe.lifestyle/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.youtube.com/@nyraluxelifestyle" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://pin.it/6qtLMTBnw" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+        <a href="contact.html" aria-label="Contact"><i class="fas fa-envelope"></i></a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          Welcome to my little corner
+          <span class="diamond"></span>
+        </div>
+
+        <div class="hero-monogram">NS</div>
+
+        <h1 class="hero-name">Nyra</h1>
+        <p class="hero-script">Lifestyle <span class="hero-heart"><i class="far fa-heart"></i></span></p>
+
+        <div class="hero-divider"></div>
+
+        <p class="hero-desc">
+          Fashion, travel, lifestyle and beautiful experiences — thoughtfully discovered, genuinely loved, and honestly shared.
+        </p>
+
+        <a href="about.html" class="btn btn-explore">
+          EXPLORE MY WORLD <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="hero-right">
+        <picture>
+          <source srcset="images/hero-sofa-v2.png" type="image/png">
+          <img src="images/hero-sofa-v2.png" alt="Nyra relaxing at home" class="hero-image" loading="eager" decoding="async" fetchpriority="high">
+        </picture>
+        <div class="hero-overlay"></div>
+
+        <div class="flatlay" aria-hidden="true">
+          <i class="fas fa-book-open"></i>
+          <i class="fas fa-seedling"></i>
+          <i class="fas fa-mug-hot"></i>
+          <i class="fas fa-vase"></i>
+          <i class="fas fa-couch"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-bar" role="navigation" aria-label="Content categories">
+      <div class="cat-item active" tabindex="0" role="button" aria-label="Fashion">
+        <div class="cat-icon"><i class="fas fa-tshirt"></i></div>
+        <span class="cat-label">Fashion</span>
+      </div>
+      <div class="cat-divider"></div>
+      <div class="cat-item" tabindex="0" role="button" aria-label="Travel">
+        <div class="cat-icon"><i class="fas fa-suitcase-rolling"></i></div>
+        <span class="cat-label">Travel</span>
+      </div>
+      <div class="cat-divider"></div>
+      <div class="cat-item" tabindex="0" role="button" aria-label="Lifestyle">
+        <div class="cat-icon"><i class="fas fa-leaf"></i></div>
+        <span class="cat-label">Lifestyle</span>
+      </div>
+      <div class="cat-divider"></div>
+      <div class="cat-item" tabindex="0" role="button" aria-label="Beauty">
+        <div class="cat-icon"><i class="fas fa-flask"></i></div>
+        <span class="cat-label">Beauty</span>
+      </div>
+      <div class="cat-divider"></div>
+      <div class="cat-item" tabindex="0" role="button" aria-label="Inspiration">
+        <div class="cat-icon"><i class="fas fa-heart"></i></div>
+        <span class="cat-label">Inspo</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="bottom-tagline">
+    style <span class="bullet">&bull;</span> travel <span class="bullet">&bull;</span> everyday luxury
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">Nyra<span>.</span></div>
+    <div class="footer-tagline">"Fashion, travel, lifestyle"</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/nyra.luxe.lifestyle" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.youtube.com/@nyraluxelifestyle" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://pin.it/6qtLMTBnw" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nyra. All rights reserved. &nbsp;&middot;&nbsp; Mumbai, India</p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+    document.querySelectorAll('.cat-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+      item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); } });
+    });
+  </script>
+</body>
+</html>

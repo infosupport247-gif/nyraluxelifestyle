@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Nyra Lifestyle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --ink: #111111;
+      --ink-soft: #4a4a4a;
+      --ink-mute: #8a8a8a;
+      --rose: #d4a0a0;
+      --rose-dark: #c48a8a;
+      --rose-pale: #f0e4e4;
+      --gold: #c9a84c;
+      --white: #ffffff;
+      --cream: #faf6f0;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
+      --shadow-lg: 0 20px 50px rgba(0,0,0,0.08);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'DM Sans',sans-serif;
+      color:var(--ink);
+      background:var(--cream);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    h1,h2,h3,h4 {
+      font-family:'Bodoni Moda',serif;
+      font-weight:600;
+      color:var(--ink);
+      line-height:1.15;
+    }
+    .script { font-family:'Dancing Script',cursive; }
+
+    /* Nav */
+    .navbar {
+      position:fixed; top:0; left:0; right:0;
+      z-index:1000;
+      background:rgba(250,246,240,0.92);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(0,0,0,0.04);
+      padding:0 2rem;
+      transition:all 0.3s ease;
+    }
+    .navbar.scrolled { box-shadow:var(--shadow-sm); }
+    .nav-container {
+      max-width:1280px; margin:0 auto;
+      display:flex; justify-content:space-between; align-items:center;
+      height:68px;
+    }
+    .nav-logo {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.4rem; font-weight:700;
+      color:var(--ink);
+      text-decoration:none; letter-spacing:-0.5px;
+    }
+    .nav-logo span { color:var(--rose-dark); }
+    .nav-links {
+      display:flex; list-style:none; gap:0.15rem; align-items:center;
+    }
+    .nav-links a {
+      color:var(--ink-soft);
+      text-decoration:none;
+      font-size:0.8rem; font-weight:500;
+      padding:0.45rem 0.7rem;
+      border-radius:6px;
+      transition:all 0.25s ease;
+      letter-spacing:0.2px;
+    }
+    .nav-links a:hover { background:var(--rose-pale); color:var(--ink); }
+    .nav-links a.active { background:var(--rose); color:var(--white); }
+    .hamburger {
+      display:none; flex-direction:column; cursor:pointer;
+      gap:5px; padding:5px;
+    }
+    .hamburger span {
+      width:22px; height:2px;
+      background:var(--ink);
+      transition:all 0.3s ease; border-radius:2px;
+    }
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+    /* Hero */
+    .hero {
+      padding:7rem 2rem 4rem;
+      background:linear-gradient(135deg, var(--ink) 0%, #1a1a2e 100%);
+      color:var(--white);
+      text-align:center;
+    }
+    .hero .label {
+      display:inline-block;
+      font-size:0.7rem; text-transform:uppercase;
+      letter-spacing:2px; color:var(--gold);
+      font-weight:600; margin-bottom:0.75rem;
+    }
+    .hero h1 {
+      color:var(--white);
+      font-size:clamp(2rem,4vw,3rem);
+      margin-bottom:0.75rem;
+    }
+    .hero p {
+      color:rgba(255,255,255,0.6);
+      max-width:520px; margin:0 auto 2rem;
+      font-size:1.05rem;
+    }
+    .hero-cta { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+    .btn {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      padding:0.85rem 1.8rem;
+      border-radius:50px;
+      font-weight:600; font-size:0.9rem;
+      text-decoration:none;
+      transition:all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+      border:none; cursor:pointer;
+      letter-spacing:0.2px;
+    }
+    .btn-rose {
+      background:var(--rose); color:var(--white);
+      box-shadow:0 4px 14px rgba(212,160,160,0.25);
+    }
+    .btn-rose:hover {
+      background:var(--rose-dark);
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(212,160,160,0.35);
+    }
+    .btn-ghost {
+      background:transparent; color:var(--white);
+      border:1.5px solid rgba(255,255,255,0.2);
+    }
+    .btn-ghost:hover {
+      border-color:var(--white);
+      background:rgba(255,255,255,0.05);
+      transform:translateY(-2px);
+    }
+
+    /* Section */
+    .section { padding:4.5rem 2rem; max-width:1280px; margin:0 auto; }
+    .section-header { text-align:center; margin-bottom:3rem; }
+    .section-label {
+      display:inline-block;
+      font-size:0.7rem; text-transform:uppercase;
+      letter-spacing:2px; color:var(--rose-dark);
+      font-weight:600; margin-bottom:0.75rem;
+    }
+    .section-title { font-size:clamp(1.8rem,3.5vw,2.5rem); margin-bottom:0.75rem; }
+    .section-desc { color:var(--ink-soft); max-width:520px; margin:0 auto; font-size:1rem; }
+
+    .split {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:4rem; align-items:start;
+    }
+    .split-image {
+      width:100%;
+      max-width:420px;
+      height:auto;
+      border-radius:16px;
+      overflow:hidden;
+      position:relative;
+    }
+    .split-image img {
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .split-image .img-overlay {
+      position:absolute;
+      bottom:0; left:0; right:0;
+      height:40%;
+      background:linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%);
+      pointer-events:none;
+    }
+    .split-text h2 { font-size:2rem; margin-bottom:1rem; }
+    .split-text p { color:var(--ink-soft); font-size:1.05rem; margin-bottom:1rem; }
+
+    .timeline {
+      margin-top:2rem;
+      padding-left:1.5rem;
+      border-left:2px solid var(--rose);
+    }
+    .timeline-item {
+      position:relative;
+      padding-left:1.5rem; margin-bottom:1.5rem;
+    }
+    .timeline-item::before {
+      content:'';
+      position:absolute;
+      left:-0.35rem; top:0.3rem;
+      width:10px; height:10px;
+      border-radius:50%;
+      background:var(--rose);
+      border:2px solid var(--cream);
+    }
+    .timeline-item .year {
+      font-family:'Bodoni Moda',serif;
+      font-size:0.85rem; color:var(--rose-dark);
+      font-weight:600; margin-bottom:0.15rem;
+    }
+    .timeline-item h4 { font-size:1rem; margin-bottom:0.2rem; }
+    .timeline-item p { color:var(--ink-soft); font-size:0.88rem; margin:0; }
+
+    .expertise-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+      margin-top:1rem;
+    }
+    .expertise-item {
+      background:var(--cream);
+      border-radius:10px;
+      padding:1.25rem;
+      text-align:center;
+      transition:all 0.3s ease;
+      border:1px solid rgba(0,0,0,0.03);
+    }
+    .expertise-item:hover {
+      transform:translateY(-2px);
+      box-shadow:var(--shadow-sm);
+      border-color:rgba(212,160,160,0.15);
+    }
+    .expertise-item .e-icon {
+      font-size:1.8rem; color:var(--rose-dark);
+      margin-bottom:0.75rem;
+    }
+    .expertise-item h4 { font-size:0.95rem; margin-bottom:0.3rem; }
+    .expertise-item p { color:var(--ink-soft); font-size:0.82rem; margin:0; }
+
+    /* Footer */
+    .footer {
+      background:var(--ink);
+      color:rgba(255,255,255,0.55);
+      padding:2.5rem 2rem 1.5rem;
+      text-align:center;
+    }
+    .footer-logo {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.8rem; font-weight:700;
+      color:var(--white); margin-bottom:0.25rem;
+    }
+    .footer-logo span { color:var(--rose); }
+    .footer-tagline {
+      font-family:'Dancing Script',cursive;
+      font-size:1.1rem; color:var(--gold);
+      margin-bottom:1.25rem;
+    }
+    .footer-social {
+      display:flex; justify-content:center;
+      gap:0.75rem; margin-bottom:1.25rem;
+    }
+    .footer-social a {
+      width:38px; height:38px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--white);
+      text-decoration:none;
+      transition:all 0.25s ease;
+    }
+    .footer-social a:hover {
+      background:var(--rose);
+      border-color:var(--rose);
+      transform:translateY(-2px);
+    }
+    .footer-bottom {
+      padding-top:1rem;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+    .footer-bottom p { font-size:0.75rem; }
+
+    @media (max-width:900px) {
+      .split { grid-template-columns:1fr; gap:2rem; }
+.expertise-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:768px) {
+      .nav-links {
+        display:none;
+        position:absolute;
+        top:68px; left:0; right:0;
+        background:rgba(250,246,240,0.98);
+        flex-direction:column;
+        padding:1rem;
+        box-shadow:var(--shadow-md);
+        border-top:1px solid rgba(0,0,0,0.04);
+      }
+      .nav-links.active { display:flex; }
+      .nav-links a { padding:0.65rem 0.9rem; width:100%; }
+      .hamburger { display:flex; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Nyra<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="blog.html">Content</a></li>
+        <li><a href="exclusive.html">Exclusive</a></li>
+        <li><a href="work-with-me.html">Work With Me</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <span class="label">My Story</span>
+    <h1>About Me</h1>
+    <p>Get to know the person behind the content — my journey, my values, and what drives my creativity.</p>
+    <div class="hero-cta">
+      <a href="#story" class="btn btn-rose">My Journey</a>
+      <a href="#expertise" class="btn btn-ghost">Expertise</a>
+    </div>
+  </section>
+
+  <section class="section" id="story">
+    <div class="split">
+      <div class="split-image">
+        <img src="images/portrait-watch.jpg" alt="Nyra">
+        <span>NYRA — Lifestyle Creator</span>
+      </div>
+      <div class="split-text">
+        <h2>Hi, I'm Nyra</h2>
+        <p>
+          I'm a passionate content creator and social media personality based in Mumbai. What started as a hobby sharing daily moments on Instagram has evolved into a thriving career building authentic connections with audiences worldwide.
+        </p>
+        <p>
+          With a background in visual arts and digital media, I bring a unique creative perspective to every piece of content I create. My focus is on lifestyle, fashion, and the beauty of everyday moments — always with an authentic, genuine voice.
+        </p>
+        <p>
+          I believe that content should inspire, entertain, and connect people. Whether I'm sharing fashion tips, travel adventures, or behind-the-scenes glimpses, my goal is to build a community that feels like family.
+        </p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="year">2019</div>
+            <h4>Started My Journey</h4>
+            <p>Began sharing lifestyle content on Instagram, quickly building an engaged community</p>
+          </div>
+          <div class="timeline-item">
+            <div class="year">2020</div>
+            <h4>Expanded to TikTok</h4>
+            <p>Reached 100K followers on TikTok with viral lifestyle and fashion content</p>
+          </div>
+          <div class="timeline-item">
+            <div class="year">2022</div>
+            <h4>YouTube Channel Launch</h4>
+            <p>Started creating in-depth content including travel vlogs and lifestyle guides</p>
+          </div>
+          <div class="timeline-item">
+            <div class="year">2024</div>
+            <h4>Brand Partnership Leader</h4>
+            <p>Collaborated with 120+ brands and became a sought-after partner for lifestyle campaigns</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="expertise">
+    <div class="section-header">
+      <span class="section-label">What I Do</span>
+      <h2 class="section-title">Areas of Expertise</h2>
+      <p class="section-desc">
+        My content spans multiple categories, each designed to inspire and engage my audience.
+      </p>
+    </div>
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <div class="e-icon"><i class="fas fa-tshirt"></i></div>
+        <h4>Fashion & Style</h4>
+        <p>Trend forecasting, outfit inspiration, styling tips, and brand collaborations</p>
+      </div>
+      <div class="expertise-item">
+        <div class="e-icon"><i class="fas fa-umbrella-beach"></i></div>
+        <h4>Travel & Adventure</h4>
+        <p>Destination guides, travel tips, hidden gems, and cultural experiences</p>
+      </div>
+      <div class="expertise-item">
+        <div class="e-icon"><i class="fas fa-spa"></i></div>
+        <h4>Beauty & Wellness</h4>
+        <p>Skincare routines, makeup tutorials, self-care tips, and product reviews</p>
+      </div>
+      <div class="expertise-item">
+        <div class="e-icon"><i class="fas fa-camera"></i></div>
+        <h4>Content Creation</h4>
+        <p>Photography, videography, editing, and creative storytelling techniques</p>
+      </div>
+      <div class="expertise-item">
+        <div class="e-icon"><i class="fas fa-utensils"></i></div>
+        <h4>Lifestyle & Food</h4>
+        <p>Cooking, dining experiences, home decor, and everyday lifestyle inspiration</p>
+      </div>
+      <div class="expertise-item">
+        <div class="e-icon"><i class="fas fa-bullhorn"></i></div>
+        <h4>Brand Partnerships</h4>
+        <p>Campaign strategy, sponsored content, product placements, and ambassador roles</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo">Nyra<span>.</span></div>
+    <div class="footer-tagline">"Fashion, travel, lifestyle"</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/nyra.luxe.lifestyle" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.youtube.com/@nyraluxelifestyle" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://pin.it/6qtLMTBnw" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nyra. All rights reserved. &nbsp;·&nbsp; Mumbai, India</p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+</body>
+</html>
