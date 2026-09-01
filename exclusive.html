@@ -453,12 +453,11 @@
         <div class="hl-label">Exclusive Videos</div>
       </div>
     </div>
-    <div class="cta-section">
-      <button class="btn btn-subscribe" id="joinCommunityBtn">
-        <i class="fas fa-user-plus"></i> Join the Exclusive Community
-      </button>
-    </div>
-
+  <div class="cta-section">
+    <button class="btn btn-subscribe" id="joinCommunityBtn">
+      <i class="fas fa-user-plus"></i> Join the Exclusive Community
+    </button>
+  </div>
   <!-- Subscribe Modal -->
   <div class="subscribe-modal" id="subscribeModal">
     <div class="modal-box">
@@ -542,7 +541,9 @@
 
     modalSubscribe.addEventListener('click', () => {
       modal.classList.remove('open');
-      window.location.href = 'https://buy.stripe.com/test_monthly_subscription';
+      // Redirect to Stripe payment page
+      // Replace this URL with your real Stripe Payment Link
+      window.location.href = 'https://buy.stripe.com/pharma_vip_monthly';
     });
   </script>
 </body>
