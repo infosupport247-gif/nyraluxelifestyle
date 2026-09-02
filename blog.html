@@ -146,13 +146,17 @@
     }
     .blog-card-img {
       width: 100%;
-      aspect-ratio: 16/9;
+      min-height: 180px;
       overflow: hidden;
       background: var(--border);
     }
     .blog-card-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
       transition: transform 0.4s;
     }
     .blog-card:hover .blog-card-img img { transform: scale(1.04); }
@@ -528,7 +532,7 @@
         tag: 'Everyday Joy',
         date: 'September 2, 2026',
         readTime: '5 min read',
-        img: 'images/ig_post_1.jpg',
+        img: 'images/blog-little-things.jpg',
         content: `
           <p>There's a difference between rushing through your day and actually living it. I used to think the good parts of life were the big ones — the trips, the celebrations, the milestones. But somewhere along the way I started noticing the small things. The little things. And I realised they were carrying more of my happiness than I'd ever given them credit for.</p>
           <p>It's the morning chai, steaming in a steel cup, made slightly too sweet just the way I like it. It's getting ready in front of the mirror without rushing, choosing an outfit that feels like me rather than what I think I should be wearing. It's the favourite song that comes on while I'm doing absolutely nothing else, and how it somehow makes the whole afternoon feel lighter.</p>
