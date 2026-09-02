@@ -29,7 +29,8 @@
       color: var(--ink);
       line-height: 1.6;
     }
-    /* Navbar */
+
+    /* ── Navbar ── */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: rgba(250,246,240,0.92);
@@ -74,14 +75,17 @@
       display: none; background: none; border: none;
       font-size: 1.3rem; color: var(--ink); cursor: pointer;
     }
-    /* Hero */
+
+    /* ── Hero ── */
     .hero {
-      min-height: 90vh;
+      min-height: 85vh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center;
       padding: 100px 24px 60px;
-      position: relative; overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
     }
     .hero h1 {
       font-family: 'Bodoni Moda', serif;
@@ -95,33 +99,114 @@
       max-width: 520px; margin: 0 auto;
       font-weight: 400;
     }
-    /* Footer */
-    .footer {
-      background: var(--ink); color: var(--cream);
-      padding: 40px 24px 24px;
+
+    /* ── Section Shell ── */
+    section { padding: 60px 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* ── Section Label ── */
+    .section-label {
+      font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: 2.5px; color: var(--rose);
+      font-weight: 600;
+      display: block; margin-bottom: 6px;
     }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; flex-direction: column; align-items: center;
-      gap: 16px;
+    .section-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 2rem; font-weight: 700;
+      margin-bottom: 8px;
     }
-    .footer-logo { font-family: 'Bodoni Moda', serif; font-size: 1.8rem; font-weight: 700; }
-    .footer-logo span { color: var(--rose); }
-    .footer-social { display: flex; gap: 18px; }
-    .footer-social a {
-      color: var(--cream); font-size: 1.2rem;
-      transition: color 0.3s, transform 0.3s;
+    .section-desc {
+      color: var(--ink-soft); font-size: 0.95rem;
+      max-width: 540px; margin: 0 auto 40px;
     }
-    .footer-social a:hover { color: var(--rose); transform: translateY(-2px); }
-    /* Platform Tabs */
+    .section-header-center {
+      text-align: center; margin-bottom: 40px;
+    }
+
+    /* ── Blog Cards (Stories That Connect) ── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .blog-card {
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .blog-card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--border);
+    }
+    .blog-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .blog-card:hover .blog-card-img img { transform: scale(1.04); }
+    .blog-card-body {
+      padding: 20px 22px 22px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .blog-card-tag {
+      font-size: 0.68rem; text-transform: uppercase;
+      letter-spacing: 1.5px; font-weight: 600;
+      color: var(--rose);
+      margin-bottom: 6px;
+    }
+    .blog-card-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.25rem; font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .blog-card-excerpt {
+      font-size: 0.88rem; color: var(--ink-soft);
+      line-height: 1.5;
+      flex: 1;
+      margin-bottom: 14px;
+    }
+    .blog-card-meta {
+      font-size: 0.75rem; color: var(--ink-soft);
+      display: flex; align-items: center; gap: 8px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      margin-top: auto;
+    }
+    .blog-card-meta span { font-weight: 500; }
+    .blog-card-read {
+      margin-top: 14px;
+      font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--rose);
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: gap 0.3s;
+    }
+    .blog-card:hover .blog-card-read { gap: 10px; }
+
+    /* ── Platform Tabs ── */
     .platform-tabs {
       display: flex; gap: 10px; justify-content: center;
-      flex-wrap: wrap; margin-bottom: 32px;
+      flex-wrap: wrap; margin-bottom: 36px;
     }
     .platform-tab {
       padding: 10px 22px;
-      font-size: 0.82rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 1px; color: var(--ink-soft);
+      font-size: 0.82rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--ink-soft);
       background: #fff; border: 1.5px solid var(--border);
       border-radius: 100px; cursor: pointer;
       display: inline-flex; align-items: center; gap: 8px;
@@ -133,7 +218,8 @@
       background: var(--ink); color: var(--cream);
       border-color: var(--ink);
     }
-    /* Social Posts Grid */
+
+    /* ── Social Post Grid ── */
     .social-posts-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -143,22 +229,29 @@
       background: #fff; border-radius: var(--radius-sm);
       overflow: hidden; cursor: pointer;
       transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none; color: inherit;
+      display: block;
     }
-    .social-post:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .social-post:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
     .post-img {
-      position: relative; width: 100%; aspect-ratio: 4/5;
+      position: relative; width: 100%;
+      aspect-ratio: 4/5;
       overflow: hidden;
     }
     .post-img img {
-      width: 100%; height: 100%; object-fit: contain;
+      width: 100%; height: 100%;
+      object-fit: contain;
     }
     .post-overlay {
       position: absolute; inset: 0;
-      background: rgba(26,26,46,0.6);
+      background: rgba(26,26,46,0.55);
       display: flex; align-items: center; justify-content: center;
       opacity: 0; transition: opacity 0.3s;
       color: var(--cream);
-      font-size: 0.75rem; font-weight: 600;
+      font-size: 0.72rem; font-weight: 600;
       text-transform: uppercase; letter-spacing: 1px;
     }
     .social-post:hover .post-overlay { opacity: 1; }
@@ -175,58 +268,69 @@
       padding: 12px 14px;
     }
     .post-platform {
-      font-size: 0.7rem; text-transform: uppercase;
+      font-size: 0.68rem; text-transform: uppercase;
       letter-spacing: 1.5px; color: var(--ink-soft);
       font-weight: 600;
     }
     .post-info h4 {
       font-family: 'Bodoni Moda', serif;
-      font-size: 1.05rem; font-weight: 600;
-      margin: 4px 0;
-      color: var(--ink);
+      font-size: 1rem; font-weight: 600;
+      margin: 4px 0; color: var(--ink);
+      line-height: 1.3;
     }
-    .post-info p { font-size: 0.82rem; color: var(--ink-soft); }
-    /* Section */
-    section { padding: 30px 24px; }
-    .container { max-width: 1200px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 32px; }
-    .section-label {
-      font-size: 0.75rem; text-transform: uppercase;
-      letter-spacing: 2px; color: var(--rose);
-      font-weight: 600;
+    .post-info p {
+      font-size: 0.8rem; color: var(--ink-soft);
+      line-height: 1.4;
     }
-    .section-title {
+
+    /* ── Empty state for filtered tabs ── */
+    .empty-state {
+      text-align: center; padding: 60px 20px;
+      color: var(--ink-soft);
+    }
+    .empty-state i { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.4; display: block; }
+    .empty-state p { font-size: 0.95rem; }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--ink); color: var(--cream);
+      padding: 40px 24px 24px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 16px;
+    }
+    .footer-logo {
       font-family: 'Bodoni Moda', serif;
-      font-size: 1.8rem; font-weight: 600;
-      margin: 8px 0;
+      font-size: 1.8rem; font-weight: 700;
     }
-    .section-desc { color: var(--ink-soft); font-size: 0.95rem; max-width: 540px; margin: 0 auto; }
-    /* Show More */
-    .show-more-wrap { text-align: center; margin-top: 28px; }
-    .btn-show-more {
-      background: none; border: 1.5px solid var(--border);
-      padding: 10px 28px; border-radius: 100px;
-      font-size: 0.82rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--ink-soft);
-      cursor: pointer; transition: all 0.3s;
-      display: inline-flex; align-items: center; gap: 8px;
+    .footer-logo span { color: var(--rose); }
+    .footer-social { display: flex; gap: 18px; }
+    .footer-social a {
+      color: var(--cream); font-size: 1.2rem;
+      transition: color 0.3s, transform 0.3s;
     }
-    .btn-show-more:hover { border-color: var(--rose); color: var(--ink); }
-    .all-posts-section { display: none; }
-    .all-posts-section.visible { display: block; }
-    /* Blog Manager */
-    /* Modal */
+    .footer-social a:hover { color: var(--rose); transform: translateY(-2px); }
+    .footer-bottom {
+      font-size: 0.8rem; color: rgba(250,246,240,0.5);
+    }
+    .footer-bottom p { margin: 0; }
+
+    /* ── Blog Detail Modal ── */
     .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      position: fixed; inset: 0; background: rgba(0,0,0,0.55);
       display: none; align-items: center; justify-content: center;
       z-index: 200; padding: 20px;
+      backdrop-filter: blur(4px);
     }
     .modal-overlay.open { display: flex; }
     .modal-box {
       background: var(--cream);
-      border-radius: 16px;
-      max-width: 440px; width: 100%;
-      padding: 2rem;
+      border-radius: var(--radius);
+      max-width: 640px; width: 100%;
+      max-height: 85vh; overflow-y: auto;
+      padding: 2.5rem 2rem;
       position: relative;
       box-shadow: 0 20px 60px rgba(0,0,0,0.4);
       animation: modalIn 0.3s ease;
@@ -236,40 +340,53 @@
       to { transform: translateY(0); opacity: 1; }
     }
     .modal-close {
-      position: absolute; top: 12px; right: 12px;
-      background: none; border: none; font-size: 1.2rem;
-      color: var(--ink-soft); cursor: pointer; width: 30px; height: 30px;
+      position: absolute; top: 14px; right: 14px;
+      background: none; border: none;
+      font-size: 1.3rem; color: var(--ink-soft);
+      cursor: pointer; width: 32px; height: 32px;
       display: flex; align-items: center; justify-content: center;
       border-radius: 50%; transition: background 0.2s;
     }
     .modal-close:hover { background: var(--border); }
-    .modal-box h3 { font-family: 'Bodoni Moda', serif; font-size: 1.4rem; margin-bottom: 8px; }
-    .modal-desc { color: var(--ink-soft); font-size: 0.88rem; margin-bottom: 16px; }
-    .modal-features { list-style: none; margin-bottom: 16px; }
-    .modal-features li { font-size: 0.85rem; padding: 6px 0; display: flex; align-items: center; gap: 8px; color: var(--ink); }
-    .modal-features li i { color: var(--rose); }
-    .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
-    .modal-note { font-size: 0.75rem; color: var(--ink-soft); text-align: center; }
-    /* Buttons */
-    .btn {
+    .modal-tag {
+      font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: 1.5px; font-weight: 600;
+      color: var(--rose); margin-bottom: 6px;
+    }
+    .modal-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.6rem; font-weight: 700;
+      line-height: 1.2; margin-bottom: 12px;
+    }
+    .modal-meta {
+      font-size: 0.78rem; color: var(--ink-soft);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .modal-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+    .modal-body {
+      font-size: 0.95rem; color: var(--ink);
+      line-height: 1.7;
+    }
+    .modal-body p { margin-bottom: 14px; }
+    .modal-body p:last-child { margin-bottom: 0; }
+    .modal-image {
+      width: 100%; border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+    }
+    .modal-image img { width: 100%; display: block; border-radius: var(--radius-sm); }
+    .modal-back {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 10px 22px;
-      font-size: 0.82rem; font-weight: 600;
+      font-size: 0.78rem; font-weight: 600;
       text-transform: uppercase; letter-spacing: 1.5px;
-      border-radius: 100px; cursor: pointer;
-      text-decoration: none; transition: all 0.3s;
-      border: none;
+      color: var(--ink-soft); cursor: pointer;
+      background: none; border: none;
+      margin-top: 8px;
+      transition: color 0.3s;
     }
-    .btn-rose {
-      background: var(--rose); color: #fff;
-    }
-    .btn-rose:hover { background: #c99090; transform: translateY(-1px); }
-    .btn-ghost {
-      background: transparent; color: var(--ink);
-      border: 1.5px solid var(--border);
-    }
-    .btn-ghost:hover { border-color: var(--rose); color: var(--rose); }
-    /* Responsive */
+    .modal-back:hover { color: var(--rose); }
+
+    /* ── Responsive ── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: block; }
@@ -280,11 +397,15 @@
         border-bottom: 1px solid var(--border);
       }
       .hero h1 { font-size: 2.4rem; }
-      .social-posts-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+      .blog-grid { grid-template-columns: 1fr; }
+      .social-posts-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+      .section-title { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
+
+  <!-- ═════════════ NAVBAR ═════════════ -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="index.html" class="brand">
@@ -292,7 +413,7 @@
         <span class="brand-tagline">Lifestyle</span>
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="index.html" class="active">Home</a>
+        <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="blog.html" class="active">Content</a>
         <a href="exclusive.html">Exclusive</a>
@@ -300,7 +421,7 @@
         <a href="portfolio.html">Portfolio</a>
         <a href="contact.html">Contact</a>
       </div>
-      <a href="#latest-posts" class="nav-email">
+      <a href="#latest-from-my-world" class="nav-email">
         <i class="fab fa-instagram"></i>
       </a>
       <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -309,24 +430,35 @@
     </div>
   </nav>
 
-  <section class="hero">
-    <h1>Stories That <span>Connect</span></h1>
-    <p>Explore my latest content across all platforms — from Instagram reels to YouTube vlogs.</p>
-  </section>
-
-  <!-- Latest Posts -->
-  <section id="latest-posts">
+  <!-- ═════════════ SECTION 1: STORIES THAT CONNECT ═════════════ -->
+  <section id="stories-that-connect" style="padding-top:80px;">
     <div class="container">
-      <div class="section-header">
-        <span class="section-label">Latest</span>
-        <h2 class="section-title">From My World</h2>
-        <p class="section-desc">Fresh content from Instagram, YouTube, Pinterest & TikTok.</p>
+      <div class="section-header-center">
+        <span class="section-label">Section 01</span>
+        <h2 class="section-title">Stories That Connect</h2>
+        <p class="section-desc">Thoughts, stories, and ideas I want to share with you — my personal blog posts.</p>
       </div>
 
-      <!-- Platform Tabs -->
-      <div class="platform-tabs">
+      <div class="blog-grid" id="blogGrid">
+        <!-- Blog posts are rendered here by JavaScript.
+             Add your blog posts in the blogPosts array below. -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ SECTION 2: LATEST FROM MY WORLD ═════════════ -->
+  <section id="latest-from-my-world">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-label">Section 02</span>
+        <h2 class="section-title">Latest From My World</h2>
+        <p class="section-desc">What I'm posting right now across Instagram, YouTube, Pinterest, and TikTok.</p>
+      </div>
+
+      <!-- Platform Filter Tabs -->
+      <div class="platform-tabs" id="platformTabs">
         <button class="platform-tab active" data-platform="all">
-          <i class="fas fa-th-large"></i> All
+          <i class="fas fa-th-large"></i> All Platforms
         </button>
         <button class="platform-tab" data-platform="instagram">
           <i class="fab fa-instagram"></i> Instagram
@@ -342,375 +474,23 @@
         </button>
       </div>
 
-      <!-- Instagram Posts -->
-      <div class="social-posts-grid" data-platform-group="instagram">
-        <div class="social-post" data-platform="instagram">
-          <div class="post-img">
-            <img src="images/ig_post_1.jpg" alt="Found the Dress That Does All the Talking" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-instagram"></i> Instagram</div>
-            <a href="https://www.instagram.com/nyra.luxe.lifestyle/" target="_blank" class="post-link" aria-label="Follow on Instagram"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Instagram Reel</span>
-            <h4>Found the Dress That Does All the Talking</h4>
-            <p>✨ Effortless, silky, made for late-night party moments. 🔍</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="instagram">
-          <div class="post-img">
-            <img src="images/ig_post_2.jpg" alt="Yash Movie Review" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-instagram"></i> Instagram</div>
-            <a href="https://www.instagram.com/nyra.luxe.lifestyle/" target="_blank" class="post-link" aria-label="Follow on Instagram"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Instagram Reel</span>
-            <h4>Yash Movie Review: Visuals vs Story</h4>
-            <p>Yash + visuals = impressive; story + screenplay = disappointing. ~2.5/5</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="instagram">
-          <div class="post-img">
-            <img src="images/ig_post_3.jpg" alt="Hi, I'm Nyra! Welcome to My Corner" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-instagram"></i> Instagram</div>
-            <a href="https://www.instagram.com/nyra.luxe.lifestyle/" target="_blank" class="post-link" aria-label="Follow on Instagram"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Instagram Reel</span>
-            <h4>Hi, I'm Nyra! Welcome to My Corner</h4>
-            <p>✨ Fashion, travel, lifestyle, finds & everything I'm loving lately. 🔎</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="instagram">
-          <div class="post-img">
-            <img src="images/ig_post_4.jpg" alt="Happy Independence Day" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-instagram"></i> Instagram</div>
-            <a href="https://www.instagram.com/nyra.luxe.lifestyle/" target="_blank" class="post-link" aria-label="Follow on Instagram"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Instagram Post</span>
-            <h4>Happy Independence Day!</h4>
-            <p>🇮🇳 May our tricolour always fly high and our country continue to move forward with pride.</p>
-          </div>
-        </div>
+      <!-- Social Posts Grid -->
+      <div class="social-posts-grid" id="socialGrid">
+        <!-- Posts rendered by JavaScript -->
       </div>
 
-      <!-- YouTube Posts -->
-      <div class="social-posts-grid" data-platform-group="youtube">
-        <div class="social-post" data-platform="youtube">
-          <div class="post-img">
-            <img src="images/yt_video_1.jpg" alt="This Is Just the Beginning - NYRA LUXE LIFESTYLE" loading="lazy">
-            <div class="play-badge"><i class="fab fa-youtube"></i></div>
-            <div class="post-overlay"><i class="fab fa-youtube"></i> YouTube</div>
-            <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="post-link" aria-label="Follow on YouTube"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">YouTube Video</span>
-            <h4>This Is Just the Beginning</h4>
-            <p>NYRA LUXE LIFESTYLE</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pinterest Posts -->
-      <div class="social-posts-grid" data-platform-group="pinterest">
-        <div class="social-post" data-platform="pinterest">
-          <div class="post-img">
-            <img src="images/ig_post_1.jpg" alt="Nyra's Curated Finds" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-pinterest"></i> Pinterest</div>
-            <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="Follow on Pinterest"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Pinterest Board</span>
-            <h4>Nyra's Curated Finds</h4>
-            <p>Fashion, lifestyle & travel inspiration</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="pinterest">
-          <div class="post-img">
-            <img src="images/ig_post_2.jpg" alt="Style Inspiration" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-pinterest"></i> Pinterest</div>
-            <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="Follow on Pinterest"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Pinterest Board</span>
-            <h4>Style Inspiration</h4>
-            <p>Curated fashion looks & outfit ideas</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="pinterest">
-          <div class="post-img">
-            <img src="images/ig_post_3.jpg" alt="Travel Goals" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-pinterest"></i> Pinterest</div>
-            <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="Follow on Pinterest"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Pinterest Board</span>
-            <h4>Travel Goals</h4>
-            <p>Beautiful destinations & travel tips</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="pinterest">
-          <div class="post-img">
-            <img src="images/ig_post_4.jpg" alt="Lifestyle Ideas" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-pinterest"></i> Pinterest</div>
-            <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="Follow on Pinterest"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Pinterest Board</span>
-            <h4>Lifestyle Ideas</h4>
-            <p>Home decor, wellness & everyday inspiration</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- TikTok Posts -->
-      <div class="social-posts-grid" data-platform-group="tiktok">
-        <div class="social-post" data-platform="tiktok">
-          <div class="post-img">
-            <img src="images/ig_post_3.jpg" alt="Day in My Life" loading="lazy">
-            <div class="play-badge tiktok"><i class="fab fa-tiktok"></i></div>
-            <div class="post-overlay"><i class="fab fa-tiktok"></i> TikTok</div>
-            <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="Follow on TikTok"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">TikTok Video</span>
-            <h4>Day in My Life</h4>
-            <p>Behind-the-scenes vlog — coming soon</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="tiktok">
-          <div class="post-img">
-            <img src="images/ig_post_1.jpg" alt="Fashion Haul" loading="lazy">
-            <div class="play-badge tiktok"><i class="fab fa-tiktok"></i></div>
-            <div class="post-overlay"><i class="fab fa-tiktok"></i> TikTok</div>
-            <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="Follow on TikTok"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">TikTok Video</span>
-            <h4>Fashion Haul</h4>
-            <p>Latest fashion finds — coming soon</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="tiktok">
-          <div class="post-img">
-            <img src="images/ig_post_2.jpg" alt="Movie Reviews" loading="lazy">
-            <div class="play-badge tiktok"><i class="fab fa-tiktok"></i></div>
-            <div class="post-overlay"><i class="fab fa-tiktok"></i> TikTok</div>
-            <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="Follow on TikTok"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">TikTok Video</span>
-            <h4>Movie Reviews</h4>
-            <p>Quick takes on the latest films — coming soon</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="tiktok">
-          <div class="post-img">
-            <img src="images/ig_post_4.jpg" alt="Independence Day Special" loading="lazy">
-            <div class="play-badge tiktok"><i class="fab fa-tiktok"></i></div>
-            <div class="post-overlay"><i class="fab fa-tiktok"></i> TikTok</div>
-            <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="Follow on TikTok"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">TikTok Video</span>
-            <h4>Independence Day Special</h4>
-            <p>Celebrating in style — coming soon</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Show More Toggle -->
-  <div class="show-more-wrap">
-    <button class="btn-show-more" id="showMoreBtn">
-      <i class="fas fa-chevron-down"></i> Show More
-    </button>
-  </div>
-
-  <!-- All Posts (hidden by default, shown via Show More) -->
-  <section id="all-posts" class="all-posts-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">All Content</span>
-        <h2 class="section-title">Every Post From My Platforms</h2>
-        <p class="section-desc">All the content I've shared across Instagram, YouTube, Pinterest, and TikTok.</p>
-      </div>
-      <div class="social-posts-grid">
-        <!-- Instagram -->
-        <div class="social-post" data-platform="instagram">
-          <div class="post-img">
-            <img src="images/ig_post_1.jpg" alt="Found the Dress That Does All the Talking" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-instagram"></i> Instagram</div>
-            <a href="https://www.instagram.com/nyra.luxe.lifestyle/" target="_blank" class="post-link" aria-label="Follow on Instagram"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Instagram Reel</span>
-            <h4>Found the Dress That Does All the Talking</h4>
-            <p>✨ Effortless, silky, made for late-night party moments. 🔍</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="instagram">
-          <div class="post-img">
-            <img src="images/ig_post_2.jpg" alt="Yash Movie Review" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-instagram"></i> Instagram</div>
-            <a href="https://www.instagram.com/nyra.luxe.lifestyle/" target="_blank" class="post-link" aria-label="Follow on Instagram"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Instagram Reel</span>
-            <h4>Yash Movie Review: Visuals vs Story</h4>
-            <p>Yash + visuals = impressive; story + screenplay = disappointing. ~2.5/5</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="instagram">
-          <div class="post-img">
-            <img src="images/ig_post_3.jpg" alt="Hi, I'm Nyra! Welcome to My Corner" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-instagram"></i> Instagram</div>
-            <a href="https://www.instagram.com/nyra.luxe.lifestyle/" target="_blank" class="post-link" aria-label="Follow on Instagram"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Instagram Reel</span>
-            <h4>Hi, I'm Nyra! Welcome to My Corner</h4>
-            <p>✨ Fashion, travel, lifestyle, finds & everything I'm loving lately. 🔎</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="instagram">
-          <div class="post-img">
-            <img src="images/ig_post_4.jpg" alt="Happy Independence Day" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-instagram"></i> Instagram</div>
-            <a href="https://www.instagram.com/nyra.luxe.lifestyle/" target="_blank" class="post-link" aria-label="Follow on Instagram"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Instagram Post</span>
-            <h4>Happy Independence Day!</h4>
-            <p>🇮🇳 May our tricolour always fly high and our country continue to move forward with pride.</p>
-          </div>
-        </div>
-        <!-- YouTube -->
-        <div class="social-post" data-platform="youtube">
-          <div class="post-img">
-            <img src="images/yt_video_1.jpg" alt="This Is Just the Beginning - NYRA LUXE LIFESTYLE" loading="lazy">
-            <div class="play-badge"><i class="fab fa-youtube"></i></div>
-            <div class="post-overlay"><i class="fab fa-youtube"></i> YouTube</div>
-            <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="post-link" aria-label="Follow on YouTube"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">YouTube Video</span>
-            <h4>This Is Just the Beginning</h4>
-            <p>NYRA LUXE LIFESTYLE</p>
-          </div>
-        </div>
-        <!-- Pinterest -->
-        <div class="social-post" data-platform="pinterest">
-          <div class="post-img">
-            <img src="images/ig_post_1.jpg" alt="Nyra's Curated Finds" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-pinterest"></i> Pinterest</div>
-            <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="Follow on Pinterest"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Pinterest Board</span>
-            <h4>Nyra's Curated Finds</h4>
-            <p>Fashion, lifestyle & travel inspiration</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="pinterest">
-          <div class="post-img">
-            <img src="images/ig_post_2.jpg" alt="Style Inspiration" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-pinterest"></i> Pinterest</div>
-            <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="Follow on Pinterest"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Pinterest Board</span>
-            <h4>Style Inspiration</h4>
-            <p>Curated fashion looks & outfit ideas</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="pinterest">
-          <div class="post-img">
-            <img src="images/ig_post_3.jpg" alt="Travel Goals" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-pinterest"></i> Pinterest</div>
-            <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="Follow on Pinterest"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Pinterest Board</span>
-            <h4>Travel Goals</h4>
-            <p>Beautiful destinations & travel tips</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="pinterest">
-          <div class="post-img">
-            <img src="images/ig_post_4.jpg" alt="Lifestyle Ideas" loading="lazy">
-            <div class="post-overlay"><i class="fab fa-pinterest"></i> Pinterest</div>
-            <a href="https://pin.it/6qtLMTBnw" target="_blank" class="post-link" aria-label="Follow on Pinterest"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">Pinterest Board</span>
-            <h4>Lifestyle Ideas</h4>
-            <p>Home decor, wellness & everyday inspiration</p>
-          </div>
-        </div>
-        <!-- TikTok -->
-        <div class="social-post" data-platform="tiktok">
-          <div class="post-img">
-            <img src="images/ig_post_3.jpg" alt="Day in My Life" loading="lazy">
-            <div class="play-badge tiktok"><i class="fab fa-tiktok"></i></div>
-            <div class="post-overlay"><i class="fab fa-tiktok"></i> TikTok</div>
-            <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="Follow on TikTok"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">TikTok Video</span>
-            <h4>Day in My Life</h4>
-            <p>Behind-the-scenes vlog — coming soon</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="tiktok">
-          <div class="post-img">
-            <img src="images/ig_post_1.jpg" alt="Fashion Haul" loading="lazy">
-            <div class="play-badge tiktok"><i class="fab fa-tiktok"></i></div>
-            <div class="post-overlay"><i class="fab fa-tiktok"></i> TikTok</div>
-            <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="Follow on TikTok"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">TikTok Video</span>
-            <h4>Fashion Haul</h4>
-            <p>Latest fashion finds — coming soon</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="tiktok">
-          <div class="post-img">
-            <img src="images/ig_post_2.jpg" alt="Movie Reviews" loading="lazy">
-            <div class="play-badge tiktok"><i class="fab fa-tiktok"></i></div>
-            <div class="post-overlay"><i class="fab fa-tiktok"></i> TikTok</div>
-            <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="Follow on TikTok"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">TikTok Video</span>
-            <h4>Movie Reviews</h4>
-            <p>Quick takes on the latest films — coming soon</p>
-          </div>
-        </div>
-        <div class="social-post" data-platform="tiktok">
-          <div class="post-img">
-            <img src="images/ig_post_4.jpg" alt="Independence Day Special" loading="lazy">
-            <div class="play-badge tiktok"><i class="fab fa-tiktok"></i></div>
-            <div class="post-overlay"><i class="fab fa-tiktok"></i> TikTok</div>
-            <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="post-link" aria-label="Follow on TikTok"><i class="fas fa-external-link-alt"></i></a>
-          </div>
-          <div class="post-info">
-            <span class="post-platform">TikTok Video</span>
-            <h4>Independence Day Special</h4>
-            <p>Celebrating in style — coming soon</p>
-          </div>
-        </div>
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <i class="fas fa-inbox"></i>
+        <p>No posts from this platform yet. Check back soon!</p>
       </div>
     </div>
   </section>
 
+  <!-- ═════════════ FOOTER ═════════════ -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-logo">Nyra<span>.</span></div>
-      <div class="footer-tagline">Fashion, travel, lifestyle</div>
+      <div class="footer-tagline" style="font-family:'Dancing Script',cursive;font-size:0.9rem;color:rgba(250,246,240,0.6);">Fashion, travel, lifestyle</div>
       <div class="footer-social">
         <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
@@ -724,14 +504,391 @@
     </div>
   </footer>
 
+  <!-- ═════════════ BLOG DETAIL MODAL ═════════════ -->
+  <div class="modal-overlay" id="blogModal">
+    <div class="modal-box">
+      <button class="modal-close" id="blogModalClose" aria-label="Close">&times;</button>
+      <div id="modalContent">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Hamburger nav
+    /* ═══════════════════════════════════════════════
+       DATA: Blog Posts (Section 1)
+       Add/remove/edit blog posts here.
+       Click a blog card → opens the detail modal.
+       ═══════════════════════════════════════════════ */
+    const blogPosts = [
+      {
+        id: 1,
+        title: 'Finding Myself Through Fashion',
+        excerpt: 'How style became my way of expressing who I really am — beyond the filters and trends.',
+        tag: 'Personal Story',
+        date: 'September 2, 2026',
+        readTime: '5 min read',
+        img: 'images/ig_post_1.jpg',
+        content: `
+          <p>There was a time when getting dressed felt like a chore. I'd open my closet, stare at the same old pieces, and sigh. Fashion wasn't something I thought about — it was just… there.</p>
+          <p>Then somewhere along the way, I started paying attention. Not to trends or what everyone else was wearing, but to what made <em>me</em> feel like <em>me</em>. A certain cut that flattered my shape. A colour that brightened my face. A fabric that felt like a second skin.</p>
+          <p>That's when it clicked — fashion isn't about copying someone else's look. It's about discovering your own language. Every piece you choose is a word, every outfit a sentence. And the story you tell doesn't have to follow anyone else's rules.</p>
+          <p>I started experimenting. Mixing textures I never would have paired before. Wearing colours I'd previously dismissed because they "weren't my thing." And each time, I felt a little more like the person I wanted to be.</p>
+          <p>Now, when I open my closet, I don't see clothes. I see possibilities. I see the version of myself I'm going to be that day. And honestly? That's the most empowering feeling there is.</p>
+          <p style="font-family:'Bodoni Moda',serif;font-style:italic;color:var(--ink-soft);margin-top:20px;">— Nyra</p>
+        `
+      },
+      {
+        id: 2,
+        title: 'My Morning Routine That Changed Everything',
+        excerpt: 'A simple morning ritual that shifted my entire day — from rushed chaos to calm intention.',
+        tag: 'Lifestyle',
+        date: 'August 28, 2026',
+        readTime: '4 min read',
+        img: 'images/ig_post_2.jpg',
+        content: `
+          <p>For years, my mornings were a race. Alarm goes off, I hit snooze three times, scramble to get ready, grab whatever's closest to eat, and rush out the door already behind. Sound familiar?</p>
+          <p>The turning point came on a random Tuesday. I was late, stressed, and miserable before 9 AM. I stopped and asked myself: <em>why am I starting every day like this?</em></p>
+          <p>So I changed one thing. Just one. I started waking up 30 minutes earlier — not to do more, but to do <em>nothing</em>. No phone. No notifications. Just me, a cup of chai, and the quiet.</p>
+          <p>That half hour became my anchor. In those still moments, I could think clearly. I could choose how I wanted the day to feel instead of just reacting to whatever hit me first.</p>
+          <p>Slowly, I added more. A stretch. A walk around the block. Writing three things I'm grateful for in a notebook I keep by my bed. None of it is complicated. None of it takes more than an hour total.</p>
+          <p>But the difference is enormous. I'm calmer. I'm more present. I actually <em>enjoy</em> my mornings now instead of surviving them. And when your mornings change, everything else starts to shift too.</p>
+          <p style="font-family:'Bodoni Moda',serif;font-style:italic;color:var(--ink-soft);margin-top:20px;">— Nyra</p>
+        `
+      },
+      {
+        id: 3,
+        title: 'The Cities That Shaped My Style',
+        excerpt: 'Mumbai, Paris, Istanbul — the places that taught me what fashion really means.',
+        tag: 'Travel & Style',
+        date: 'August 15, 2026',
+        readTime: '6 min read',
+        img: 'images/ig_post_3.jpg',
+        content: `
+          <p>Style doesn't live in magazines. It lives in the streets. In the way a woman in Mumbai wraps her scarf on a humid afternoon. In the elegant simplicity of a Parisian woman on the métro. In the vibrant layers of an Istanbul market.</p>
+          <p>I've always believed that the best fashion education doesn't happen in front of a screen — it happens when you're somewhere new and you watch how people express themselves.</p>
+          <p>Mumbai taught me boldness. The city doesn't whisper — it sings. And the women here wear that energy in everything from a bright sari to a pair of scuffed canvas shoes that have seen a thousand commutes.</p>
+          <p>Paris taught me restraint. There's a quiet confidence in less. A well-fitted coat. A perfect red lip. The understanding that elegance isn't about having more — it's about choosing what matters.</p>
+          <p>Istanbul taught me warmth. The colours there, the textiles, the way layers tell stories of generations. Fashion there isn't a statement — it's a welcome.</p>
+          <p>My style today is a mosaic of all of it. A little Mumbai edge, a touch of Parisian calm, and the warmth of places that reminded me style is really just... love made visible.</p>
+          <p style="font-family:'Bodoni Moda',serif;font-style:italic;color:var(--ink-soft);margin-top:20px;">— Nyra</p>
+        `
+      },
+      {
+        id: 4,
+        title: 'What I Learned From 100 Failed Photoshoots',
+        excerpt: 'The art of getting the perfect shot isn't about getting it right — it's about not giving up.',
+        tag: 'Behind the Lens',
+        date: 'August 1, 2026',
+        readTime: '5 min read',
+        img: 'images/ig_post_4.jpg',
+        content: `
+          <p>The first time I tried to do a photoshoot — for myself, by myself — it was a disaster. The lighting was wrong. I didn't know how to pose. I looked awkward, the photos looked worse, and I wanted to delete everything immediately.</p>
+          <p>That was photoshoot number one. There were ninety-nine more before I got one I actually liked.</p>
+          <p>Here's what those ninety-nine failures taught me: the perfect shot doesn't exist on the first try. It lives somewhere between patience and playfulness.</p>
+          <p>I learned to pay attention to light — not the harsh overhead kind, but the soft window light in the late afternoon that makes everything glow. I learned that the camera doesn't want perfection; it wants presence. The most beautiful photos are the ones where you forget the camera exists for a moment.</p>
+          <p>I learned to stop trying to look "photogenic" and start trying to look like <em>me</em>. The real me. Not the version I think people want to see.</p>
+          <p>And I learned something I didn't expect: the failures were just as valuable as the successes. Each bad shot taught me what didn't work. Each awkward moment taught me where to adjust. The hundred failures weren't wasted time — they were the tuition I paid for the few shots that made it all worth it.</p>
+          <p>So if you're trying to create something and it's not working? Keep going. The hundredth try is closer than you think.</p>
+          <p style="font-family:'Bodoni Moda',serif;font-style:italic;color:var(--ink-soft);margin-top:20px;">— Nyra</p>
+        `
+      }
+    ];
+
+    /* ═══════════════════════════════════════════════
+       DATA: Social Posts (Section 2 — Latest From My World)
+       These are static copies of what's currently live
+       on each platform. Update these when you post new content.
+       ═══════════════════════════════════════════════ */
+    const socialPosts = [
+      // ── Instagram ──
+      {
+        platform: 'instagram',
+        platformLabel: 'Instagram Reel',
+        title: 'Found the Dress That Does All the Talking',
+        desc: 'Effortless, silky, made for late-night party moments. One dress, endless possibilities.',
+        img: 'images/ig_post_1.jpg',
+        link: 'https://www.instagram.com/nyra.luxe.lifestyle/',
+        date: 'Aug 31, 2026',
+        badgeIcon: 'fab fa-instagram'
+      },
+      {
+        platform: 'instagram',
+        platformLabel: 'Instagram Reel',
+        title: 'Yash Movie Review: Visuals vs Story',
+        desc: 'Yash + visuals = impressive. Story + screenplay = disappointing. My honest take — ~2.5/5.',
+        img: 'images/ig_post_2.jpg',
+        link: 'https://www.instagram.com/nyra.luxe.lifestyle/',
+        date: 'Aug 30, 2026',
+        badgeIcon: 'fab fa-instagram'
+      },
+      {
+        platform: 'instagram',
+        platformLabel: 'Instagram Reel',
+        title: "Hi, I'm Nyra! Welcome to My Corner",
+        desc: 'Fashion, travel, lifestyle, finds & everything I\'m loving lately. So glad you\'re here.',
+        img: 'images/ig_post_3.jpg',
+        link: 'https://www.instagram.com/nyra.luxe.lifestyle/',
+        date: 'Aug 29, 2026',
+        badgeIcon: 'fab fa-instagram'
+      },
+      {
+        platform: 'instagram',
+        platformLabel: 'Instagram Post',
+        title: 'Happy Independence Day!',
+        desc: 'May our tricolour always fly high and our country continue to move forward with pride. 🇮🇳',
+        img: 'images/ig_post_4.jpg',
+        link: 'https://www.instagram.com/nyra.luxe.lifestyle/',
+        date: 'Aug 14, 2026',
+        badgeIcon: 'fab fa-instagram'
+      },
+      // ── YouTube ──
+      {
+        platform: 'youtube',
+        platformLabel: 'YouTube Video',
+        title: 'This Is Just the Beginning',
+        desc: 'NYRA LUXE LIFESTYLE — the channel is live. Subscribe for fashion, lifestyle, and everything in between.',
+        img: 'images/yt_video_1.jpg',
+        link: 'https://www.youtube.com/@nyraluxelifestyle',
+        date: 'Aug 30, 2026',
+        badgeIcon: 'fab fa-youtube',
+        isVideo: true
+      },
+      // ── Pinterest ──
+      {
+        platform: 'pinterest',
+        platformLabel: 'Pinterest Board',
+        title: "Nyra's Curated Finds",
+        desc: 'Fashion, lifestyle & travel inspiration — all in one place.',
+        img: 'images/ig_post_1.jpg',
+        link: 'https://pin.it/6qtLMTBnw',
+        date: 'Ongoing',
+        badgeIcon: 'fab fa-pinterest'
+      },
+      {
+        platform: 'pinterest',
+        platformLabel: 'Pinterest Board',
+        title: 'Style Inspiration',
+        desc: 'Curated fashion looks & outfit ideas I love.',
+        img: 'images/ig_post_2.jpg',
+        link: 'https://pin.it/6qtLMTBnw',
+        date: 'Ongoing',
+        badgeIcon: 'fab fa-pinterest'
+      },
+      {
+        platform: 'pinterest',
+        platformLabel: 'Pinterest Board',
+        title: 'Travel Goals',
+        desc: 'Beautiful destinations & travel tips for your next trip.',
+        img: 'images/ig_post_3.jpg',
+        link: 'https://pin.it/6qtLMTBnw',
+        date: 'Ongoing',
+        badgeIcon: 'fab fa-pinterest'
+      },
+      {
+        platform: 'pinterest',
+        platformLabel: 'Pinterest Board',
+        title: 'Lifestyle Ideas',
+        desc: 'Home decor, wellness & everyday inspiration.',
+        img: 'images/ig_post_4.jpg',
+        link: 'https://pin.it/6qtLMTBnw',
+        date: 'Ongoing',
+        badgeIcon: 'fab fa-pinterest'
+      },
+      // ── TikTok ──
+      {
+        platform: 'tiktok',
+        platformLabel: 'TikTok Video',
+        title: 'Day in My Life',
+        desc: 'Behind-the-scenes vlog — coming soon to your FYP.',
+        img: 'images/ig_post_3.jpg',
+        link: 'https://www.tiktok.com/@nyra.luxe.lifestyle',
+        date: 'Coming Soon',
+        badgeIcon: 'fab fa-tiktok'
+      },
+      {
+        platform: 'tiktok',
+        platformLabel: 'TikTok Video',
+        title: 'Fashion Haul',
+        desc: 'Latest fashion finds — what I bought and what I\'ll actually wear.',
+        img: 'images/ig_post_1.jpg',
+        link: 'https://www.tiktok.com/@nyra.luxe.lifestyle',
+        date: 'Coming Soon',
+        badgeIcon: 'fab fa-tiktok'
+      },
+      {
+        platform: 'tiktok',
+        platformLabel: 'TikTok Video',
+        title: 'Movie Reviews',
+        desc: 'Quick takes on the latest films — no spoilers, just honest opinions.',
+        img: 'images/ig_post_2.jpg',
+        link: 'https://www.tiktok.com/@nyra.luxe.lifestyle',
+        date: 'Coming Soon',
+        badgeIcon: 'fab fa-tiktok'
+      },
+      {
+        platform: 'tiktok',
+        platformLabel: 'TikTok Video',
+        title: 'Independence Day Special',
+        desc: 'Celebrating in style — a special post for a special day.',
+        img: 'images/ig_post_4.jpg',
+        link: 'https://www.tiktok.com/@nyra.luxe.lifestyle',
+        date: 'Coming Soon',
+        badgeIcon: 'fab fa-tiktok'
+      }
+    ];
+
+    /* ═══════════════════════════════════════════════
+       RENDER: Blog Cards (Section 1)
+       ═══════════════════════════════════════════════ */
+    const blogGrid = document.getElementById('blogGrid');
+
+    function renderBlogCards() {
+      blogGrid.innerHTML = blogPosts.map(post => `
+        <a href="#" class="blog-card" data-blog-id="${post.id}">
+          <div class="blog-card-img">
+            <img src="${post.img}" alt="${post.title}" loading="lazy">
+          </div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag">${post.tag}</span>
+            <h3 class="blog-card-title">${post.title}</h3>
+            <p class="blog-card-excerpt">${post.excerpt}</p>
+            <div class="blog-card-meta">
+              <span>${post.date}</span>
+              <span class="dot" style="width:3px;height:3px;border-radius:50%;background:var(--border);display:inline-block;"></span>
+              <span>${post.readTime}</span>
+            </div>
+            <span class="blog-card-read">
+              Read More <i class="fas fa-arrow-right"></i>
+            </span>
+          </div>
+        </a>
+      `).join('');
+
+      // Blog card click → open modal
+      blogGrid.querySelectorAll('.blog-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          e.preventDefault();
+          const id = parseInt(card.dataset.blogId);
+          const post = blogPosts.find(p => p.id === id);
+          if (post) openBlogModal(post);
+        });
+      });
+    }
+
+    /* ═══════════════════════════════════════════════
+       RENDER: Social Posts (Section 2)
+       ═══════════════════════════════════════════════ */
+    const socialGrid = document.getElementById('socialGrid');
+    const emptyState = document.getElementById('emptyState');
+    let currentPlatform = 'all';
+
+    function renderSocialPosts(platform) {
+      currentPlatform = platform;
+      const filtered = platform === 'all'
+        ? socialPosts
+        : socialPosts.filter(p => p.platform === platform);
+
+      if (filtered.length === 0) {
+        socialGrid.innerHTML = '';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+
+      socialGrid.innerHTML = filtered.map(post => {
+        const badgeClass = post.isVideo ? 'play-badge' : '';
+        return `
+          <a href="${post.link}" target="_blank" class="social-post" data-platform="${post.platform}">
+            <div class="post-img">
+              <img src="${post.img}" alt="${post.title}" loading="lazy">
+              ${post.isVideo ? `<div class="${badgeClass}"><i class="fab fa-youtube"></i></div>` : ''}
+              <div class="post-overlay">
+                <i class="${post.badgeIcon}"></i> ${post.platformLabel}
+              </div>
+              <span class="post-link"></span>
+            </div>
+            <div class="post-info">
+              <span class="post-platform">${post.platformLabel}</span>
+              <h4>${post.title}</h4>
+              <p>${post.desc}</p>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+
+    // Platform tab switching
+    const platformTabs = document.querySelectorAll('.platform-tab');
+    platformTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        platformTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        renderSocialPosts(tab.dataset.platform);
+      });
+    });
+
+    /* ═══════════════════════════════════════════════
+       BLOG DETAIL MODAL
+       ═══════════════════════════════════════════════ */
+    const modalOverlay = document.getElementById('blogModal');
+    const modalContent = document.getElementById('modalContent');
+    const modalClose = document.getElementById('blogModalClose');
+
+    function openBlogModal(post) {
+      modalContent.innerHTML = `
+        <span class="modal-tag">${post.tag}</span>
+        <h3 class="modal-title">${post.title}</h3>
+        <div class="modal-meta">
+          <span>${post.date}</span>
+          <span class="dot"></span>
+          <span>${post.readTime}</span>
+        </div>
+        <div class="modal-image">
+          <img src="${post.img}" alt="${post.title}">
+        </div>
+        <div class="modal-body">
+          ${post.content}
+        </div>
+        <button class="modal-back" id="modalBackBtn">
+          <i class="fas fa-arrow-left"></i> Back to Stories
+        </button>
+      `;
+      modalOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBlogModal() {
+      modalOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeBlogModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeBlogModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeBlogModal();
+    });
+    // Handle modal-back button (delegated since content is dynamic)
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target.id === 'modalBackBtn' || e.target.closest('#modalBackBtn')) {
+        closeBlogModal();
+      }
+    });
+
+    /* ═══════════════════════════════════════════════
+       NAVBAR: hamburger + scroll shadow
+       ═══════════════════════════════════════════════ */
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
+
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('open');
     });
+
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
@@ -740,43 +897,16 @@
         link.classList.add('active');
       });
     });
+
     window.addEventListener('scroll', () => {
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Platform tabs
-    const platformTabs = document.querySelectorAll('.platform-tab');
-    const socialPosts = document.querySelectorAll('.social-post');
-    platformTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        platformTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const platform = tab.dataset.platform;
-        socialPosts.forEach(post => {
-          if (platform === 'all' || post.dataset.platform === platform) {
-            post.style.display = 'block';
-          } else {
-            post.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // Show More toggle
-    const showMoreBtn = document.getElementById('showMoreBtn');
-    const allPostsSection = document.getElementById('all-posts');
-    if (showMoreBtn && allPostsSection) {
-      showMoreBtn.addEventListener('click', () => {
-        const isShowing = allPostsSection.classList.contains('visible');
-        if (isShowing) {
-          allPostsSection.classList.remove('visible');
-          showMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show More';
-        } else {
-          allPostsSection.classList.add('visible');
-          showMoreBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Show Less';
-        }
-      });
-    }
+    /* ═══════════════════════════════════════════════
+       INIT
+       ═══════════════════════════════════════════════ */
+    renderBlogCards();
+    renderSocialPosts('all');
   </script>
 </body>
 </html>
