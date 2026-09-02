@@ -512,6 +512,7 @@
             <i class="fas fa-lock"></i> Subscribe Now — $9.99/month
           </button>
           <p class="modal-note">You'll be redirected to Stripe to complete your secure payment. Payment via credit/debit card.</p>
+          <p class="modal-setup-hint" style="font-size:0.72rem;color:var(--ink-mute);margin-top:10px;line-height:1.5;border-top:1px solid var(--border);padding-top:10px;">To activate payments: Create a free Stripe Payment Link at stripe.com/payment_links, then paste the URL in exclusive.html (replace the href in the JavaScript around line 586).</p>
         </div>
       </div>
     </div>
@@ -578,12 +579,13 @@
 
     modalSubscribe.addEventListener('click', () => {
       modal.classList.remove('open');
-      // Redirect to Stripe payment page
-      // Replace this URL with your real Stripe Payment Link
-            // Replace the URL below with your real Stripe Payment Link
-      // Get one free at: https://dashboard.stripe.com/payments/payment_links
-      // Then paste it here between the quotes:
+      // Replace this URL with your real Stripe Payment Link from: dashboard.stripe.com/payments/payment_links
+      // Example URL format: https://buy.stripe.com/XXXXXXXX
       window.location.href = 'https://buy.stripe.com/test_monthly_subscription';
+      // If the link above returns AccessDenied, create your own Payment Link:
+      // 1. Log in at stripe.com/dashboard
+      // 2. Products → Add product → Name: "Nyra Exclusive — $9.99/month" → Price: $9.99, Recurring monthly
+      // 3. Click "Create Payment Link" → Copy the URL → Paste it above
     });
   </script>
 </body>
