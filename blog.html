@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Content | Nyra Lifestyle</title>
+  <title>Content — Nyra | Lifestyle</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,475 +12,287 @@
     :root {
       --ink: #1a1a2e;
       --ink-soft: #4a4a5a;
-      --rose: #d4a0a0;
-      --rose-dark: #b88080;
-      --rose-pale: #f0e4e4;
-      --gold: #c9a84c;
       --cream: #faf6f0;
-      --white: #ffffff;
-      --bg: #fdfaf7;
-      --border: #e8e0d5;
-      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-      --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
-      --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+      --rose: #d4a0a0;
+      --gold: #c9a84c;
+      --border: #e5e0d8;
+      --bg: #f8f5f0;
       --radius: 16px;
       --radius-sm: 10px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family:'DM Sans',sans-serif;
-      background:var(--bg);
-      color:var(--ink);
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
     }
-    a { text-decoration:none; color:inherit; }
-    ul { list-style:none; }
-    img { max-width:100%; height:auto; display:block; }
-
+    /* Navbar */
     .navbar {
-      position:fixed; top:0; left:0; right:0; z-index:1000;
-      background:rgba(250,246,240,0.95);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--border);
-      transition:box-shadow 0.3s;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,246,240,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      transition: box-shadow 0.3s;
     }
-    .navbar.scrolled { box-shadow:var(--shadow-sm); }
-    .navbar-inner {
-      max-width:1200px; margin:0 auto;
-      padding:14px 24px;
-      display:flex; align-items:center; justify-content:space-between;
+    .navbar.scrolled { box-shadow: var(--shadow-md); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .brand { display:flex; align-items:center; gap:8px; }
-    .brand-logo { font-family:'Bodoni Moda',serif; font-size:1.5rem; font-weight:700; color:var(--ink); letter-spacing:-0.5px; }
-    .brand-script { font-family:'Dancing Script',cursive; font-size:0.85rem; font-weight:700; color:var(--rose); display:block; line-height:1; }
-    .nav-links { display:flex; align-items:center; gap:28px; }
+    .brand {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none; color: var(--ink);
+    }
+    .brand-main {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.5rem; font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .brand-tagline {
+      font-family: 'Dancing Script', cursive;
+      font-size: 0.9rem; color: var(--rose);
+      font-weight: 700;
+    }
+    .nav-links { display: flex; gap: 28px; }
     .nav-links a {
-      font-size:0.85rem; font-weight:600; text-transform:uppercase;
-      color:var(--ink-soft); transition:color 0.3s; letter-spacing:0.5px;
+      text-decoration: none; color: var(--ink);
+      font-size: 0.82rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      transition: color 0.3s;
     }
-    .nav-links a:hover { color:var(--ink); }
-    .nav-links a.active { color:var(--ink); }
-    .nav-email { display:flex; align-items:center; gap:6px; }
-    .nav-email i { font-size:1rem; }
-    #hamburger {
-      display:none; background:none; border:none; cursor:pointer;
-      font-size:1.4rem; color:var(--ink); padding:4px;
+    .nav-links a:hover, .nav-links a.active { color: var(--rose); }
+    .nav-email {
+      color: var(--ink); font-size: 1.1rem;
+      transition: color 0.3s;
     }
-
+    .nav-email:hover { color: var(--rose); }
+    .hamburger {
+      display: none; background: none; border: none;
+      font-size: 1.3rem; color: var(--ink); cursor: pointer;
+    }
+    /* Hero */
     .hero {
-      min-height:90vh;
-      display:flex; flex-direction:column;
-      align-items:center; justify-content:center;
-      text-align:center;
-      padding:80px 24px 20px;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero::before {
-      content:''; position:absolute; top:0; left:0; right:0; bottom:0;
-      background:radial-gradient(ellipse at 30% 20%, rgba(212,160,160,0.08) 0%, transparent 60%),
-                  radial-gradient(ellipse at 70% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
-      pointer-events:none;
+      min-height: 90vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 100px 24px 60px;
+      position: relative; overflow: hidden;
     }
     .hero h1 {
-      font-family:'Bodoni Moda',serif;
-      font-size:clamp(2.5rem,6vw,4.5rem);
-      font-weight:700; color:var(--ink);
-      line-height:1.1; margin-bottom:16px;
-      position:relative; z-index:1;
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 700; letter-spacing: -1px;
+      margin-bottom: 16px;
     }
+    .hero h1 span { color: var(--rose); }
     .hero p {
-      font-family:'DM Sans',sans-serif;
-      font-size:1.1rem; color:var(--ink-soft);
-      max-width:560px; margin:0 auto 40px;
-      position:relative; z-index:1;
+      font-size: 1.05rem; color: var(--ink-soft);
+      max-width: 520px; margin: 0 auto;
+      font-weight: 400;
     }
-
-    .btn {
-      display:inline-flex; align-items:center; gap:8px;
-      padding:12px 28px;
-      font-family:'DM Sans',sans-serif;
-      font-size:0.82rem; font-weight:600; text-transform:uppercase;
-      letter-spacing:1.5px; border-radius:100px;
-      border:2px solid transparent; cursor:pointer;
-      transition:all 0.3s ease;
-    }
-    .btn-rose {
-      background:var(--rose); color:var(--white);
-      border-color:var(--rose);
-    }
-    .btn-rose:hover { background:var(--rose-dark); border-color:var(--rose-dark); transform:translateY(-2px); }
-    .btn-ghost {
-      background:transparent; color:var(--ink);
-      border-color:var(--ink);
-    }
-    .btn-ghost:hover { background:var(--ink); color:var(--white); transform:translateY(-2px); }
-    .btn i { font-size:0.9rem; }
-    .btn-sm {
-      padding:8px 18px;
-      font-size:0.75rem;
-      border-radius:100px;
-    }
-
-    section { padding:30px 24px; }
-    .container { max-width:1200px; margin:0 auto; }
-
-    /* Blog Manager */
-    .blog-manager {
-      background:#fff; border-radius:var(--radius);
-      box-shadow:var(--shadow-sm); padding:20px 24px;
-      margin-bottom:24px;
-    }
-    .blog-actions { display:flex; gap:10px; flex-wrap:wrap; }
-    .blog-list {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:16px;
-    }
-    .blog-item {
-      display:flex; align-items:center; gap:14px;
-      padding:12px 14px;
-      border:1px solid var(--border); border-radius:var(--radius-sm);
-      background:var(--bg);
-      transition:border-color 0.2s, box-shadow 0.2s;
-    }
-    .blog-item:hover { border-color:var(--rose); box-shadow:var(--shadow-sm); }
-    .blog-item-icon {
-      width:40px; height:40px; border-radius:50%;
-      background:var(--rose-pale);
-      display:flex; align-items:center; justify-content:center;
-      color:var(--rose-dark); font-size:1rem; flex-shrink:0;
-    }
-    .blog-item-info { flex:1; min-width:0; }
-    .blog-item-info h4 {
-      font-size:0.9rem; font-weight:600; color:var(--ink);
-      margin-bottom:2px; line-height:1.3;
-    }
-    .blog-item-info p {
-      font-size:0.75rem; color:var(--ink-soft); margin:0;
-    }
-    .blog-item-status {
-      font-size:0.7rem; font-weight:600;
-      padding:3px 10px; border-radius:100px;
-      text-transform:uppercase; letter-spacing:0.5px;
-    }
-    .status-live {
-      background:rgba(76,175,80,0.12); color:#2e7d32;
-      border:1px solid rgba(76,175,80,0.2);
-    }
-    .status-draft {
-      background:rgba(200,0,0,0.08); color:#c62828;
-      border:1px solid rgba(200,0,0,0.15);
-    }
-
-    /* Show More */
-    .show-more-wrap {
-      text-align:center; margin:20px 0 10px;
-    }
-    .btn-show-more {
-      padding:10px 32px;
-      font-size:0.8rem;
-      background:transparent; color:var(--ink);
-      border:1.5px dashed var(--border);
-      border-radius:100px;
-      cursor:pointer;
-      transition:all 0.3s;
-    }
-    .btn-show-more:hover {
-      border-color:var(--rose); color:var(--rose-dark);
-      background:rgba(212,160,160,0.05);
-    }
-    .btn-show-more.showing {
-      background:var(--rose); color:var(--white);
-      border-color:var(--rose);
-    }
-
-    .all-posts-section {
-      display:none;
-    }
-    .all-posts-section.visible {
-      display:block;
-    }
-
-    /* Social Posts Grid */
-    .section-header { text-align:center; margin-bottom:48px; }
-    .section-label {
-      display:inline-block; font-size:0.72rem; font-weight:600;
-      text-transform:uppercase; letter-spacing:2px;
-      color:var(--rose-dark); margin-bottom:12px;
-    }
-    .section-title {
-      font-family:'Bodoni Moda',serif;
-      font-size:clamp(1.8rem,4vw,2.8rem);
-      font-weight:700; color:var(--ink); margin-bottom:12px;
-    }
-    .section-desc {
-      font-size:1rem; color:var(--ink-soft);
-      max-width:540px; margin:0 auto;
-    }
-
-    .platform-tabs {
-      display:flex; gap:10px; justify-content:center;
-      flex-wrap:wrap; margin-bottom:40px;
-    }
-    .platform-tab {
-      padding:10px 22px;
-      font-size:0.82rem; font-weight:600; text-transform:uppercase;
-      letter-spacing:1px; color:var(--ink-soft);
-      background:#fff; border:1.5px solid var(--border);
-      border-radius:100px; cursor:pointer;
-      display:inline-flex; align-items:center; gap:8px;
-      transition:all 0.3s;
-    }
-    .platform-tab i { font-size:0.85rem; }
-    .platform-tab:hover { border-color:var(--rose); color:var(--ink); }
-    .platform-tab.active {
-      background:var(--ink); color:var(--cream);
-      border-color:var(--ink);
-    }
-
-    .social-posts-grid {
-      display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-      gap:20px;
-    }
-
-    .social-post {
-      background:#fff; border-radius:var(--radius-sm);
-      overflow:hidden; box-shadow:var(--shadow-sm);
-      transition:transform 0.3s, box-shadow 0.3s;
-      display:flex; flex-direction:column;
-    }
-    .social-post:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); }
-
-    .post-img {
-      width:100%;
-      min-height:180px;
-      display:flex; align-items:center; justify-content:center;
-      background:#f0ebe3;
-      position:relative; overflow:visible;
-      padding:12px;
-    }
-    .post-img img {
-      width:100%; height:auto; max-height:240px;
-      object-fit:contain;
-      display:block;
-      border-radius:6px;
-    }
-    .post-overlay {
-      position:absolute; top:10px; left:10px;
-      display:flex; align-items:center; gap:6px;
-      font-size:0.68rem; font-weight:600; text-transform:uppercase;
-      letter-spacing:0.5px; color:var(--white);
-      background:rgba(26,26,46,0.7);
-      padding:4px 10px; border-radius:100px;
-      backdrop-filter:blur(4px);
-    }
-    .post-overlay i { font-size:0.75rem; }
-    .play-badge {
-      width:42px; height:42px;
-      border-radius:50%;
-      background:var(--white);
-      display:flex; align-items:center; justify-content:center;
-      color:var(--rose-dark);
-      font-size:1.1rem;
-      box-shadow:0 3px 10px rgba(0,0,0,0.12);
-      position:absolute; top:10px; left:10px;
-      z-index:2;
-    }
-    .play-badge.tiktok { color:var(--ink); }
-    .post-info {
-      padding:14px 16px 16px;
-    }
-    .post-platform {
-      font-size:0.68rem; font-weight:600; text-transform:uppercase;
-      letter-spacing:1px; color:var(--rose-dark); margin-bottom:4px;
-    }
-    .post-info h4 {
-      font-family:'Bodoni Moda',serif;
-      font-size:1.05rem; font-weight:600; color:var(--ink);
-      margin-bottom:4px; line-height:1.3;
-    }
-    .post-info p {
-      font-size:0.8rem; color:var(--ink-soft);
-      line-height:1.4; margin:0;
-    }
-    .post-link {
-      position:absolute; top:10px; right:10px;
-      width:32px; height:32px;
-      border-radius:50%;
-      background:rgba(255,255,255,0.9);
-      display:flex; align-items:center; justify-content:center;
-      color:var(--ink); font-size:0.75rem;
-      transition:background 0.3s, color 0.3s;
-      z-index:2;
-    }
-    .post-link:hover { background:var(--ink); color:var(--white); }
-
-    /* Modals */
-    .blog-manager-modal {
-      display:none; position:fixed; inset:0; z-index:2000;
-      background:rgba(17,17,17,0.7);
-      align-items:center; justify-content:center;
-      padding:1.5rem;
-      backdrop-filter:blur(4px);
-    }
-    .blog-manager-modal.open { display:flex; }
-    .blog-manager-modal .modal-box {
-      background:var(--cream);
-      border-radius:16px;
-      max-width:480px; width:100%;
-      padding:2.5rem 2rem 2rem;
-      position:relative;
-      box-shadow:0 20px 60px rgba(0,0,0,0.4);
-      animation:modalIn 0.3s ease;
-    }
-    @keyframes modalIn {
-      from { opacity:0; transform:scale(0.95) translateY(10px); }
-      to { opacity:1; transform:scale(1) translateY(0); }
-    }
-    .modal-close {
-      position:absolute; top:1rem; right:1rem;
-      background:none; border:none;
-      font-size:1.5rem; color:var(--ink-soft);
-      cursor:pointer; width:36px; height:36px;
-      display:flex; align-items:center; justify-content:center;
-      border-radius:50%;
-      transition:background 0.2s;
-    }
-    .modal-close:hover { background:var(--rose-pale); color:var(--ink); }
-    .modal-box h3 {
-      font-family:'Bodoni Moda',serif;
-      font-size:1.4rem; margin-bottom:0.4rem; color:var(--ink);
-    }
-    .modal-desc {
-      color:var(--ink-soft); font-size:0.9rem;
-      margin-bottom:1.5rem; line-height:1.5;
-    }
-    .modal-features {
-      list-style:none; margin:1.25rem 0 1.5rem;
-      display:flex; flex-direction:column; gap:0.55rem;
-    }
-    .modal-features li {
-      display:flex; align-items:center; gap:0.6rem;
-      font-size:0.85rem; color:var(--ink-soft);
-    }
-    .modal-features li i {
-      color:var(--rose-dark); font-size:0.75rem; width:16px;
-    }
-    .modal-actions {
-      display:flex; gap:12px; flex-wrap:wrap;
-      margin-bottom:1rem;
-    }
-    .modal-note {
-      text-align:center; margin-top:0.8rem;
-      font-size:0.72rem; color:var(--ink-soft);
-    }
-
-    .subscribe-modal {
-      display:none; position:fixed; inset:0; z-index:2000;
-      background:rgba(17,17,17,0.7);
-      align-items:center; justify-content:center;
-      padding:1.5rem;
-      backdrop-filter:blur(4px);
-    }
-    .subscribe-modal.open { display:flex; }
-    .subscribe-modal .modal-box {
-      background:var(--cream);
-      border-radius:16px;
-      max-width:440px; width:100%;
-      padding:2.5rem 2rem 2rem;
-      position:relative;
-      box-shadow:0 20px 60px rgba(0,0,0,0.4);
-      animation:modalIn 0.3s ease;
-    }
-    .modal-price {
-      font-family:'Bodoni Moda',serif;
-      font-size:2.8rem; font-weight:700;
-      color:var(--ink); margin-bottom:0.2rem;
-    }
-    .modal-price-span {
-      font-size:0.9rem; color:var(--ink-soft);
-      font-family:'DM Sans',sans-serif; font-weight:400;
-    }
-    .modal-subscribe {
-      width:100%;
-      padding:1rem;
-      background:var(--ink); color:var(--white);
-      border:none; border-radius:50px;
-      font-weight:600; font-size:0.9rem;
-      cursor:pointer;
-      transition:background 0.3s;
-      display:flex; align-items:center; justify-content:center; gap:0.6rem;
-    }
-    .modal-subscribe:hover { background:var(--rose-dark); }
-    .modal-subscribe i { font-size:0.85rem; }
-
     /* Footer */
     .footer {
-      background:var(--ink); color:var(--cream);
-      padding:40px 24px 24px;
+      background: var(--ink); color: var(--cream);
+      padding: 40px 24px 24px;
     }
     .footer-inner {
-      max-width:1200px; margin:0 auto;
-      display:flex; flex-direction:column; align-items:center;
-      gap:20px;
+      max-width: 1200px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 16px;
     }
-    .footer-logo {
-      font-family:'Bodoni Moda',serif;
-      font-size:1.8rem; font-weight:700; color:var(--cream);
-      letter-spacing:-0.5px;
-    }
-    .footer-logo span { color:var(--rose); }
-    .footer-tagline {
-      font-family:'Dancing Script',cursive;
-      font-size:1rem; color:rgba(250,246,240,0.6);
-    }
-    .footer-social {
-      display:flex; gap:16px; margin:8px 0;
-    }
+    .footer-logo { font-family: 'Bodoni Moda', serif; font-size: 1.8rem; font-weight: 700; }
+    .footer-logo span { color: var(--rose); }
+    .footer-social { display: flex; gap: 18px; }
     .footer-social a {
-      width:44px; height:44px; border-radius:50%;
-      background:rgba(250,246,240,0.1);
-      display:flex; align-items:center; justify-content:center;
-      color:var(--cream); font-size:1.1rem;
-      transition:background 0.3s, color 0.3s;
+      color: var(--cream); font-size: 1.2rem;
+      transition: color 0.3s, transform 0.3s;
     }
-    .footer-social a:hover { background:var(--rose); color:var(--white); }
-    .footer-bottom {
-      font-size:0.78rem; color:rgba(250,246,240,0.4);
-      padding-top:20px; border-top:1px solid rgba(250,246,240,0.1);
-      margin-top:8px;
+    .footer-social a:hover { color: var(--rose); transform: translateY(-2px); }
+    /* Platform Tabs */
+    .platform-tabs {
+      display: flex; gap: 10px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 32px;
     }
-
-    @media (max-width:768px) {
-      .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:rgba(250,246,240,0.98); flex-direction:column; padding:16px 24px; gap:16px; border-bottom:1px solid var(--border); }
-      .nav-links.open { display:flex; }
-      .nav-links a { font-size:0.9rem; }
-      #hamburger { display:block; }
-      .hero { padding:80px 20px 50px; }
-      section { padding:40px 16px; }
-      .social-posts-grid { grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; }
-      .post-img { min-height:140px; padding:8px; }
-      .post-img img { max-height:160px; }
-      .post-overlay, .play-badge, .post-link { top:6px; left:6px; }
-      .post-link { position:static; margin-top:8px; justify-content:center; }
+    .platform-tab {
+      padding: 10px 22px;
+      font-size: 0.82rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--ink-soft);
+      background: #fff; border: 1.5px solid var(--border);
+      border-radius: 100px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.3s;
     }
-    @media (max-width:480px) {
-      .btn { width:100%; max-width:280px; justify-content:center; }
-      .social-posts-grid { grid-template-columns:1fr; }
+    .platform-tab i { font-size: 0.85rem; }
+    .platform-tab:hover { border-color: var(--rose); color: var(--ink); }
+    .platform-tab.active {
+      background: var(--ink); color: var(--cream);
+      border-color: var(--ink);
+    }
+    /* Social Posts Grid */
+    .social-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .social-post {
+      background: #fff; border-radius: var(--radius-sm);
+      overflow: hidden; cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .social-post:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .post-img {
+      position: relative; width: 100%; aspect-ratio: 4/5;
+      overflow: hidden;
+    }
+    .post-img img {
+      width: 100%; height: 100%; object-fit: contain;
+    }
+    .post-overlay {
+      position: absolute; inset: 0;
+      background: rgba(26,26,46,0.6);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s;
+      color: var(--cream);
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .social-post:hover .post-overlay { opacity: 1; }
+    .play-badge {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(250,246,240,0.92);
+      color: var(--ink); border-radius: 50%;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+    }
+    .post-link { position: absolute; inset: 0; }
+    .post-info {
+      padding: 12px 14px;
+    }
+    .post-platform {
+      font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--ink-soft);
+      font-weight: 600;
+    }
+    .post-info h4 {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.05rem; font-weight: 600;
+      margin: 4px 0;
+      color: var(--ink);
+    }
+    .post-info p { font-size: 0.82rem; color: var(--ink-soft); }
+    /* Section */
+    section { padding: 30px 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 32px; }
+    .section-label {
+      font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--rose);
+      font-weight: 600;
+    }
+    .section-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.8rem; font-weight: 600;
+      margin: 8px 0;
+    }
+    .section-desc { color: var(--ink-soft); font-size: 0.95rem; max-width: 540px; margin: 0 auto; }
+    /* Show More */
+    .show-more-wrap { text-align: center; margin-top: 28px; }
+    .btn-show-more {
+      background: none; border: 1.5px solid var(--border);
+      padding: 10px 28px; border-radius: 100px;
+      font-size: 0.82rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--ink-soft);
+      cursor: pointer; transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-show-more:hover { border-color: var(--rose); color: var(--ink); }
+    .all-posts-section { display: none; }
+    .all-posts-section.visible { display: block; }
+    /* Blog Manager */
+    /* Modal */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      display: none; align-items: center; justify-content: center;
+      z-index: 200; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--cream);
+      border-radius: 16px;
+      max-width: 440px; width: 100%;
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute; top: 12px; right: 12px;
+      background: none; border: none; font-size: 1.2rem;
+      color: var(--ink-soft); cursor: pointer; width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; transition: background 0.2s;
+    }
+    .modal-close:hover { background: var(--border); }
+    .modal-box h3 { font-family: 'Bodoni Moda', serif; font-size: 1.4rem; margin-bottom: 8px; }
+    .modal-desc { color: var(--ink-soft); font-size: 0.88rem; margin-bottom: 16px; }
+    .modal-features { list-style: none; margin-bottom: 16px; }
+    .modal-features li { font-size: 0.85rem; padding: 6px 0; display: flex; align-items: center; gap: 8px; color: var(--ink); }
+    .modal-features li i { color: var(--rose); }
+    .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+    .modal-note { font-size: 0.75rem; color: var(--ink-soft); text-align: center; }
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 22px;
+      font-size: 0.82rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      border-radius: 100px; cursor: pointer;
+      text-decoration: none; transition: all 0.3s;
+      border: none;
+    }
+    .btn-rose {
+      background: var(--rose); color: #fff;
+    }
+    .btn-rose:hover { background: #c99090; transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent; color: var(--ink);
+      border: 1.5px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--rose); color: var(--rose); }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .nav-links.open {
+        display: flex; position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--cream); flex-direction: column;
+        padding: 16px 24px; gap: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .hero h1 { font-size: 2.4rem; }
+      .social-posts-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
     }
   </style>
 </head>
 <body>
-
   <nav class="navbar" id="navbar">
-    <div class="navbar-inner">
+    <div class="nav-inner">
       <a href="index.html" class="brand">
-        <div class="brand-logo">Nyra<span class="brand-script">Lifestyle</span></div>
+        <span class="brand-main">Nyra</span>
+        <span class="brand-tagline">Lifestyle</span>
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="index.html">Home</a>
+        <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
         <a href="blog.html" class="active">Content</a>
         <a href="exclusive.html">Exclusive</a>
@@ -491,49 +303,43 @@
       <a href="#latest-posts" class="nav-email">
         <i class="fab fa-instagram"></i>
       </a>
-      <button id="hamburger" aria-label="Menu">
+      <button class="hamburger" id="hamburger" aria-label="Menu">
         <i class="fas fa-bars"></i>
       </button>
     </div>
   </nav>
 
   <section class="hero">
-    <h1>Stories That Connect</h1>
+    <h1>Stories That <span>Connect</span></h1>
     <p>Explore my latest content across all platforms — from Instagram reels to YouTube vlogs.</p>
   </section>
-
-  <div class="container">
-    <!-- Blog Manager -->
-    <div class="blog-manager">
-      <div class="blog-actions">
-        <button class="btn btn-rose btn-sm" id="openBlogModalBtn">
-          <i class="fas fa-pen"></i> Add New Post
-        </button>
-      </div>
-      <div class="blog-list" id="blogList">
-        <!-- Blog items rendered by JS -->
-      </div>
-    </div>
-
-    <!-- Show More toggle -->
-    <div class="show-more-wrap">
-      <button class="btn-show-more" id="showMoreBtn">
-        <i class="fas fa-chevron-down"></i> Show More
-      </button>
-    </div>
-  </div>
 
   <!-- Latest Posts -->
   <section id="latest-posts">
     <div class="container">
+      <div class="section-header">
+        <span class="section-label">Latest</span>
+        <h2 class="section-title">From My World</h2>
+        <p class="section-desc">Fresh content from Instagram, YouTube, Pinterest & TikTok.</p>
+      </div>
 
       <!-- Platform Tabs -->
       <div class="platform-tabs">
-        <button class="platform-tab active" data-platform="all"><i class="fas fa-th"></i> All</button>
-        <button class="platform-tab" data-platform="instagram"><i class="fab fa-instagram"></i> Instagram</button>
-        <button class="platform-tab" data-platform="youtube"><i class="fab fa-youtube"></i> YouTube</button>
-        <button class="platform-tab" data-platform="pinterest"><i class="fab fa-pinterest"></i> Pinterest</button>
-        <button class="platform-tab" data-platform="tiktok"><i class="fab fa-tiktok"></i> TikTok</button>
+        <button class="platform-tab active" data-platform="all">
+          <i class="fas fa-th-large"></i> All
+        </button>
+        <button class="platform-tab" data-platform="instagram">
+          <i class="fab fa-instagram"></i> Instagram
+        </button>
+        <button class="platform-tab" data-platform="youtube">
+          <i class="fab fa-youtube"></i> YouTube
+        </button>
+        <button class="platform-tab" data-platform="pinterest">
+          <i class="fab fa-pinterest"></i> Pinterest
+        </button>
+        <button class="platform-tab" data-platform="tiktok">
+          <i class="fab fa-tiktok"></i> TikTok
+        </button>
       </div>
 
       <!-- Instagram Posts -->
@@ -716,6 +522,13 @@
     </div>
   </section>
 
+  <!-- Show More Toggle -->
+  <div class="show-more-wrap">
+    <button class="btn-show-more" id="showMoreBtn">
+      <i class="fas fa-chevron-down"></i> Show More
+    </button>
+  </div>
+
   <!-- All Posts (hidden by default, shown via Show More) -->
   <section id="all-posts" class="all-posts-section">
     <div class="container">
@@ -894,53 +707,6 @@
     </div>
   </section>
 
-  <!-- Blog Manager Modal -->
-  <div class="blog-manager-modal" id="blogModal">
-    <div class="modal-box">
-      <button class="modal-close" id="blogModalClose" aria-label="Close">&times;</button>
-      <h3>Manage Your Blog Posts</h3>
-      <p class="modal-desc">Update titles, captions, and images for your 4 blog posts. Connect to your Instagram and YouTube accounts to auto-sync new content.</p>
-      <div class="modal-features">
-        <li><i class="fas fa-check-circle"></i> 4 blog posts already connected</li>
-        <li><i class="fas fa-check-circle"></i> Auto-sync from Instagram</li>
-        <li><i class="fas fa-check-circle"></i> Auto-sync from YouTube</li>
-        <li><i class="fas fa-check-circle"></i> Add custom posts manually</li>
-        <li><i class="fas fa-check-circle"></i> Edit captions and descriptions</li>
-      </div>
-      <div class="modal-actions">
-        <a href="https://www.instagram.com/nyra.luxe.lifestyle/" target="_blank" class="btn btn-rose">
-          <i class="fab fa-instagram"></i> Connect Instagram
-        </a>
-        <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="btn btn-ghost">
-          <i class="fab fa-youtube"></i> Connect YouTube
-        </a>
-      </div>
-      <p class="modal-note">You'll be redirected to log in to your account to grant access.</p>
-    </div>
-  </div>
-
-  <!-- Subscribe Modal -->
-  <div class="subscribe-modal" id="subscribeModal">
-    <div class="modal-box">
-      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-      <h3>Join the Inner Circle</h3>
-      <p class="modal-desc">Get exclusive content, behind-the-scenes access, and special perks — all for one low monthly price.</p>
-      <div class="modal-price">$9.99 <span class="modal-price-span">/month</span></div>
-      <ul class="modal-features">
-        <li><i class="fas fa-check-circle"></i> Exclusive videos & extended cuts</li>
-        <li><i class="fas fa-check-circle"></i> Behind-the-scenes access</li>
-        <li><i class="fas fa-check-circle"></i> Private posts & personal updates</li>
-        <li><i class="fas fa-check-circle"></i> Early access to collaborations</li>
-        <li><i class="fas fa-check-circle"></i> Special member-only offers</li>
-        <li><i class="fas fa-check-circle"></i> Cancel anytime — no commitment</li>
-      </ul>
-      <button class="modal-subscribe" id="modalSubscribe">
-        <i class="fas fa-lock"></i> Subscribe Now — 1 Month
-      </button>
-      <p class="modal-note">You'll be redirected to Stripe to complete your secure payment.</p>
-    </div>
-  </div>
-
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-logo">Nyra<span>.</span></div>
@@ -996,44 +762,6 @@
       });
     });
 
-    // Blog Manager - render 4 blog posts
-    const blogList = document.getElementById('blogList');
-    const blogPosts = [
-      { title: 'Found the Dress That Does All the Talking', platform: 'Instagram', status: 'live', icon: 'fa-instagram' },
-      { title: 'Yash Movie Review: Visuals vs Story', platform: 'Instagram', status: 'live', icon: 'fa-instagram' },
-      { title: "Hi, I'm Nyra! Welcome to My Corner", platform: 'Instagram', status: 'live', icon: 'fa-instagram' },
-      { title: 'Happy Independence Day!', platform: 'Instagram', status: 'live', icon: 'fa-instagram' }
-    ];
-    if (blogList) {
-      blogList.innerHTML = blogPosts.map(b => `
-        <div class="blog-item">
-          <div class="blog-item-icon"><i class="fab ${b.icon}"></i></div>
-          <div class="blog-item-info">
-            <h4>${b.title}</h4>
-            <p>${b.platform} &middot; Updated today</p>
-          </div>
-          <span class="blog-item-status status-${b.status}">${b.status}</span>
-        </div>
-      `).join('');
-    }
-
-    // Blog Modal
-    const openBlogBtn = document.getElementById('openBlogModalBtn');
-    const blogModal = document.getElementById('blogModal');
-    const blogModalClose = document.getElementById('blogModalClose');
-    if (openBlogBtn && blogModal) {
-      openBlogBtn.addEventListener('click', () => blogModal.classList.add('open'));
-      if (blogModalClose) blogModalClose.addEventListener('click', () => blogModal.classList.remove('open'));
-      blogModal.addEventListener('click', (e) => {
-        if (e.target === blogModal) blogModal.classList.remove('open');
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && blogModal.classList.contains('open')) {
-          blogModal.classList.remove('open');
-        }
-      });
-    }
-
     // Show More toggle
     const showMoreBtn = document.getElementById('showMoreBtn');
     const allPostsSection = document.getElementById('all-posts');
@@ -1047,26 +775,6 @@
           allPostsSection.classList.add('visible');
           showMoreBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Show Less';
         }
-      });
-    }
-
-    // Subscribe Modal (from exclusive page - keep for consistency)
-    const subscribeModal = document.getElementById('subscribeModal');
-    const modalCloseBtn = document.getElementById('modalClose');
-    const modalSubscribeBtn = document.getElementById('modalSubscribe');
-    if (subscribeModal) {
-      subscribeModal.addEventListener('click', (e) => {
-        if (e.target === subscribeModal) subscribeModal.classList.remove('open');
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && subscribeModal.classList.contains('open')) {
-          subscribeModal.classList.remove('open');
-        }
-      });
-      if (modalCloseBtn) modalCloseBtn.addEventListener('click', () => subscribeModal.classList.remove('open'));
-      if (modalSubscribeBtn) modalSubscribeBtn.addEventListener('click', () => {
-        subscribeModal.classList.remove('open');
-        window.location.href = 'https://buy.stripe.com/pharma_vip_monthly';
       });
     }
   </script>
