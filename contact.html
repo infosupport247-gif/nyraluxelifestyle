@@ -328,7 +328,7 @@
         <input type="hidden" name="_subject" value="New Contact Form Submission - Nyra Lifestyle">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="index.html">
+        <input type="hidden" name="_next" value="https://infosupport247-gif.github.io/nyraluxelifestyle/">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name *</label>
@@ -434,10 +434,7 @@
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
     });
     const form = document.getElementById('contactForm');
-    form.addEventListener('submit', function(e) {
-      // Let the form submit normally to FormSubmit.co
-      // The _next redirect will handle the success page
-    });
+    // FormSubmit.co handles the POST + redirect natively — no JS needed
   </script>
 </body>
 </html>
