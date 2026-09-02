@@ -737,3 +737,175 @@
 
     /* ═══════════════════════════════════════════════
        NAVBAR
+    /* ═══════════════════════════════════════════════
+       NAVBAR: hamburger + scroll shadow
+       ═══════════════════════════════════════════════ */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    /* ═══════════════════════════════════════════════
+       RENDER: Blog Cards (Section 1)
+       ═══════════════════════════════════════════════ */
+    const blogGrid = document.getElementById('blogGrid');
+
+    function renderBlogCards() {
+      blogGrid.innerHTML = blogPosts.map(post => `
+        <a href="#" class="blog-card" data-blog-id="${post.id}">
+          <div class="blog-card-img">
+            <img src="${post.img}" alt="${post.title}" loading="lazy">
+          </div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag">${post.tag}</span>
+            <h3 class="blog-card-title">${post.title}</h3>
+            <p class="blog-card-excerpt">${post.excerpt}</p>
+            <div class="blog-card-meta">
+              <span>${post.date}</span>
+              <span style="width:3px;height:3px;border-radius:50%;background:var(--border);display:inline-block;margin:0 6px;"></span>
+              <span>${post.readTime}</span>
+            </div>
+            <span class="blog-card-read">
+              Read More <i class="fas fa-arrow-right"></i>
+            </span>
+          </div>
+        </a>
+      `).join('');
+
+      blogGrid.querySelectorAll('.blog-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          e.preventDefault();
+          const id = parseInt(card.dataset.blogId);
+          const post = blogPosts.find(p => p.id === id);
+          if (post) openBlogModal(post);
+        });
+      });
+    }
+
+    /* ═══════════════════════════════════════════════
+       RENDER: Social Posts (Section 2)
+       ═══════════════════════════════════════════════ */
+    const socialGrid = document.getElementById('socialGrid');
+    const emptyState = document.getElementById('emptyState');
+    let currentPlatform = 'all';
+
+    function renderSocialPosts(platform) {
+      currentPlatform = platform;
+      const filtered = platform === 'all'
+        ? socialPosts
+        : socialPosts.filter(p => p.platform === platform);
+
+      if (filtered.length === 0) {
+        socialGrid.innerHTML = '';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+
+      socialGrid.innerHTML = filtered.map(post => {
+        const badgeHtml = post.isVideo
+          ? `<div class="play-badge"><i class="fab fa-youtube"></i></div>`
+          : '';
+        return `
+          <a href="${post.link}" target="_blank" class="social-post" data-platform="${post.platform}">
+            <div class="post-img">
+              <img src="${post.img}" alt="${post.title}" loading="lazy">
+              ${badgeHtml}
+              <div class="post-overlay">
+                <i class="${post.badgeIcon}"></i> ${post.platformLabel}
+              </div>
+              <span class="post-link"></span>
+            </div>
+            <div class="post-info">
+              <span class="post-platform">${post.platformLabel}</span>
+              <h4>${post.title}</h4>
+              <p>${post.desc}</p>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+
+    // Platform tab switching
+    const platformTabsEl = document.querySelectorAll('.platform-tab');
+    platformTabsEl.forEach(tab => {
+      tab.addEventListener('click', () => {
+        platformTabsEl.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        renderSocialPosts(tab.dataset.platform);
+      });
+    });
+
+    /* ═══════════════════════════════════════════════
+       BLOG DETAIL MODAL
+       ═══════════════════════════════════════════════ */
+    const modalOverlay = document.getElementById('blogModal');
+    const modalContent = document.getElementById('modalContent');
+    const modalClose = document.getElementById('blogModalClose');
+
+    function openBlogModal(post) {
+      modalContent.innerHTML = `
+        <span class="modal-tag">${post.tag}</span>
+        <h3 class="modal-title">${post.title}</h3>
+        <div class="modal-meta">
+          <span>${post.date}</span>
+          <span style="width:4px;height:4px;border-radius:50%;background:var(--border);display:inline-block;margin:0 8px;"></span>
+          <span>${post.readTime}</span>
+        </div>
+        <div class="modal-image">
+          <img src="${post.img}" alt="${post.title}">
+        </div>
+        <div class="modal-body">
+          ${post.content}
+        </div>
+        <button class="modal-back" id="modalBackBtn">
+          <i class="fas fa-arrow-left"></i> Back to Stories
+        </button>
+      `;
+      modalOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBlogModal() {
+      modalOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeBlogModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeBlogModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeBlogModal();
+    });
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target.id === 'modalBackBtn' || e.target.closest('#modalBackBtn')) {
+        closeBlogModal();
+      }
+    });
+
+    /* ═══════════════════════════════════════════════
+       INIT
+       ═══════════════════════════════════════════════ */
+    renderBlogCards();
+    renderSocialPosts('all');
+  </script>
+</body>
+</html>
