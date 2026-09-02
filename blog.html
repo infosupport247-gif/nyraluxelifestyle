@@ -130,21 +130,21 @@
     /* Blog Manager */
     .blog-manager {
       background:#fff; border-radius:var(--radius);
-      box-shadow:var(--shadow-sm); padding:32px;
-      margin-bottom:32px;
+      box-shadow:var(--shadow-sm); padding:20px 24px;
+      margin-bottom:24px;
     }
     .blog-manager-header {
       display:flex; align-items:center; justify-content:space-between;
-      flex-wrap:wrap; gap:16px; margin-bottom:20px;
+      flex-wrap:wrap; gap:16px; margin-bottom:14px;
     }
     .blog-manager-title {
       font-family:'Bodoni Moda',serif;
-      font-size:1.4rem; font-weight:600; color:var(--ink);
+      font-size:1.2rem; font-weight:600; color:var(--ink);
+      line-height:0; margin:0;
+      overflow:hidden; clip-path:inset(0 0 100% 0);
     }
     .blog-manager-title span {
-      font-size:0.75rem; color:var(--ink-soft);
-      font-family:'DM Sans',sans-serif; font-weight:400;
-      display:block; margin-top:2px;
+      display:none;
     }
     .blog-actions { display:flex; gap:10px; flex-wrap:wrap; }
     .blog-list {
@@ -516,18 +516,12 @@
   </section>
 
   <div class="container">
-    <!-- Blog Manager: Update My Blogs -->
+    <!-- Blog Manager -->
     <div class="blog-manager">
-      <div class="blog-manager-header">
-        <div class="blog-manager-title">
-          Update My Blogs
-          <span>Manage and edit your 4 blog posts</span>
-        </div>
-        <div class="blog-actions">
-          <button class="btn btn-rose btn-sm" id="openBlogModalBtn">
-            <i class="fas fa-pen"></i> Add New Post
-          </button>
-        </div>
+      <div class="blog-actions">
+        <button class="btn btn-rose btn-sm" id="openBlogModalBtn">
+          <i class="fas fa-pen"></i> Add New Post
+        </button>
       </div>
       <div class="blog-list" id="blogList">
         <!-- Blog items rendered by JS -->
