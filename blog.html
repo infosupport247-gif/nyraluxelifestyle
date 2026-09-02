@@ -144,25 +144,25 @@
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
     }
-    .blog-card-img {
-      width: 100%;
-      min-height: 180px;
+    .blog-card {
+      background: #fff;
+      border-radius: var(--radius-sm);
       overflow: hidden;
-      background: var(--border);
-    }
-    .blog-card-img img {
-      width: 100%;
-      height: auto;
+      cursor: pointer;
+      text-decoration: none; color: inherit;
       display: block;
-      object-fit: contain;
-      max-width: 100%;
-      max-height: 100%;
-      transition: transform 0.4s;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid var(--border);
+      padding: 0;
     }
-    .blog-card:hover .blog-card-img img { transform: scale(1.04); }
+    .blog-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--rose);
+    }
     .blog-card-body {
       padding: 20px 22px 22px;
-      flex: 1; display: flex; flex-direction: column;
+      display: flex; flex-direction: column;
     }
     .blog-card-tag {
       font-size: 0.68rem; text-transform: uppercase;
@@ -374,11 +374,7 @@
     }
     .modal-body p { margin-bottom: 14px; }
     .modal-body p:last-child { margin-bottom: 0; }
-    .modal-image {
-      width: 100%; border-radius: var(--radius-sm);
-      margin-bottom: 16px;
-    }
-    .modal-image img { width: 100%; display: block; border-radius: var(--radius-sm); }
+    
     .modal-back {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 0.78rem; font-weight: 600;
@@ -770,9 +766,6 @@
     function renderBlogCards() {
       blogGrid.innerHTML = blogPosts.map(post => `
         <a href="#" class="blog-card" data-blog-id="${post.id}">
-          <div class="blog-card-img">
-            <img src="${post.img}" alt="${post.title}" loading="lazy">
-          </div>
           <div class="blog-card-body">
             <span class="blog-card-tag">${post.tag}</span>
             <h3 class="blog-card-title">${post.title}</h3>
@@ -869,9 +862,6 @@
           <span>${post.date}</span>
           <span style="width:4px;height:4px;border-radius:50%;background:var(--border);display:inline-block;margin:0 8px;"></span>
           <span>${post.readTime}</span>
-        </div>
-        <div class="modal-image">
-          <img src="${post.img}" alt="${post.title}">
         </div>
         <div class="modal-body">
           ${post.content}
