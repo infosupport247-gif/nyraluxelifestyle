@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    :root {
+:root {
       --ink: #111111;
       --ink-soft: #4a4a4a;
       --ink-mute: #8a8a8a;
@@ -291,78 +291,7 @@
       border-color:var(--rose);
       transform:translateY(-2px);
     }
-
-    
-    .subscribe-modal.open { display:flex; }
-    .subscribe-modal .modal-box {
-      background:var(--cream);
-      border-radius:16px;
-      max-width:440px; width:100%;
-      padding:2.5rem 2rem 2rem;
-      position:relative;
-      box-shadow:0 20px 60px rgba(0,0,0,0.4);
-      animation:modalIn 0.3s ease;
-    }
-    @keyframes modalIn {
-      from { opacity:0; transform:scale(0.95) translateY(10px); }
-      to { opacity:1; transform:scale(1) translateY(0); }
-    }
-    
-    .modal-close:hover { background:var(--rose-pale); color:var(--ink); }
-    .modal-box h3 {
-      font-size:1.4rem; margin-bottom:0.4rem;
-      color:var(--ink);
-    }
-    .modal-box 
-    
-    .modal-price-span {
-      font-size:0.9rem; color:var(--ink-soft);
-      font-family:'DM Sans',sans-serif; font-weight:400;
-    }
-    
-    .modal-features li {
-      display:flex; align-items:center; gap:0.6rem;
-      font-size:0.85rem; color:var(--ink-soft);
-    }
-    .modal-features li i {
-      color:var(--rose-dark); font-size:0.75rem;
-      width:16px;
-    }
-    
-    .payment-card {
-      display:flex; align-items:center; gap:12px;
-      padding:12px;
-      background:rgba(255,255,255,0.05);
-      border-radius:var(--radius-sm);
-      margin-bottom:12px;
-    }
-    .payment-card i { font-size:1.5rem; color:var(--rose); }
-    .payment-name {
-      display:block;
-      font-family:'Bodoni Moda',serif;
-      font-size:1rem; font-weight:600;
-      color:var(--cream);
-    }
-    .payment-detail {
-      display:block;
-      font-size:0.75rem;
-      color:var(--ink-soft);
-      margin-top:2px;
-    }
-    .modal-subscribe {
-      width:100%;
-      padding:1rem;
-      background:var(--ink); color:var(--white);
-      border:none; border-radius:50px;
-      font-weight:600; font-size:0.9rem;
-      cursor:pointer;
-      transition:background 0.3s;
-      display:flex; align-items:center; justify-content:center; gap:0.6rem;
-    }
-    .modal-subscribe:hover { background:var(--rose-dark); }
-    .modal-subscribe i { font-size:0.85rem; }
-    
-  </style>
+</style>
 </head>
 <body>
   <nav class="navbar" id="navbar">
