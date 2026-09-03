@@ -1,2 +1,4 @@
 # Local Netlify folder
 .netlify
+# Remove old stale files
+resume.html
