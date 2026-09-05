@@ -148,7 +148,64 @@
       .nav-container { padding:0 1rem; }
       .hero-inner { max-width:100%; }
     }
-  </style>
+  
+    .nav-social { display:inline-flex; gap:0.5rem; align-items:center; padding-left:0.5rem; border-left:1px solid rgba(17,17,17,0.08); }
+    .nav-social-link { display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:transparent; color:var(--ink-soft); text-decoration:none; font-size:0.9rem; transition:all 0.25s ease; }
+    .nav-social-link:hover { background:var(--rose); color:#fff; transform:translateY(-2px); }
+    .nav-social + .nav-social { border-left-color:rgba(17,17,17,0.04); }
+    @media (max-width:768px) {
+      .nav-social { display:none; }
+    }
+
+
+    .social-connect { padding:1.5rem 2rem; border-top:1px solid rgba(201,168,76,0.10); border-bottom:1px solid rgba(201,168,76,0.10); background:rgba(250,247,242,0.5); }
+    .social-connect-inner { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+    .social-connect-label { font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--ink-mute); }
+    .social-connect-links { display:flex; gap:0.6rem; flex-wrap:wrap; }
+    .sc-link { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:100px; text-decoration:none; font-size:0.72rem; font-weight:500; color:var(--ink-soft); transition:all 0.25s ease; border:1px solid rgba(17,17,17,0.06); }
+    .sc-link:hover { color:var(--ink); border-color:var(--rose); transform:translateY(-1px); }
+    .sc-link i { font-size:0.85rem; }
+    .sc-instagram:hover { background:var(--rose); color:#fff; border-color:var(--rose); }
+    .sc-tiktok:hover { background:#010101; color:#fff; border-color:#010101; }
+    .sc-youtube:hover { background:var(--ink); color:#fff; border-color:var(--ink); }
+    .sc-pinterest:hover { background:#E60023; color:#fff; border-color:#E60023; }
+    .sc-telegram:hover { background:#24A1DE; color:#fff; border-color:#24A1DE; }
+    @media (max-width:768px) {
+      .social-connect { padding:1rem 1.5rem; }
+      .social-connect-inner { flex-direction:column; align-items:flex-start; gap:0.8rem; }
+      .social-connect-links { gap:0.4rem; }
+      .sc-link { padding:5px 10px; font-size:0.68rem; }
+    }
+
+    /* Top 4 Social Posts */
+    .top-posts-section { padding:3rem 2rem 1rem; }
+    .top-posts-header { text-align:center; margin-bottom:2rem; }
+    .top-posts-title { font-family:'Bodoni Moda',serif; font-size:clamp(1.6rem, 3vw, 2rem); font-weight:700; color:var(--ink); margin-bottom:0.3rem; }
+    .top-posts-sub { font-size:0.85rem; color:var(--ink-soft); }
+    .top-posts-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; }
+    .top-post-card { position:relative; border-radius:var(--radius); overflow:hidden; cursor:pointer; text-decoration:none; color:inherit; background:#fff; box-shadow:var(--shadow-sm); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease; will-change:transform; }
+    .top-post-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+    .top-post-card-img { width:100%; padding-top:100%; position:relative; overflow:hidden; background:var(--rose-pale); }
+    .top-post-card-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+    .top-post-card:hover .top-post-card-img img { transform: scale(1.05); }
+    .top-post-card-overlay { position:absolute; top:0; left:0; right:0; bottom:60%; background: linear-gradient(180deg, transparent, rgba(0,0,0,0.35)); pointer-events:none; }
+    .top-post-platform { position:absolute; top:10px; left:10px; padding:4px 10px; border-radius:100px; font-size:0.6rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:#fff; z-index:2; backdrop-filter:blur(4px); }
+    .top-post-platform.instagram { background: rgba(221,42,123,0.90); }
+    .top-post-platform.youtube { background: rgba(0,0,0,0.85); }
+    .top-post-platform.tiktok { background: rgba(1,1,1,0.90); }
+    .top-post-platform.pinterest { background: rgba(230,0,35,0.90); }
+    .top-post-card-body { position:absolute; bottom:0; left:0; right:0; padding:0.6rem 0.8rem 0.8rem; background: rgba(250,247,242,0.92); backdrop-filter:blur(8px); }
+    .top-post-title { font-size:0.78rem; font-weight:600; line-height:1.3; color:var(--ink); white-space:normal; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .top-post-meta { font-size:0.62rem; color:var(--ink-mute); margin-top:2px; display:flex; justify-content:space-between; }
+    @media (max-width:900px) {
+      .top-posts-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width:480px) {
+      .top-posts-grid { grid-template-columns: 1fr; }
+      .top-posts-section { padding:2rem 1.5rem 0.5rem; }
+    }
+
+</style>
 </head>
 <body>
 
@@ -168,7 +225,33 @@
       <li><a href="blog.html">Blog</a></li>
       <li><a href="portfolio.html" class="active">Portfolio</a></li>
       <li><a href="contact.html">Contact</a></li>
-    </ul>
+    
+      <li class="nav-social">
+        <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" aria-label="Instagram" title="Instagram" class="nav-social-link">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </li>
+      <li class="nav-social">
+        <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" aria-label="TikTok" title="TikTok" class="nav-social-link">
+          <i class="fab fa-tiktok"></i>
+        </a>
+      </li>
+      <li class="nav-social">
+        <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" aria-label="YouTube" title="YouTube" class="nav-social-link">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </li>
+      <li class="nav-social">
+        <a href="https://pin.it/6qtLMTBnw" target="_blank" aria-label="Pinterest" title="Pinterest" class="nav-social-link">
+          <i class="fab fa-pinterest-p"></i>
+        </a>
+      </li>
+      <li class="nav-social">
+        <a href="https://t.me/+y7lEEeXcLA4wZjhl" target="_blank" aria-label="Telegram" title="Telegram" class="nav-social-link">
+          <i class="fab fa-telegram-plane"></i>
+        </a>
+      </li>
+</ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -199,6 +282,31 @@
   </div>
 </section>
 
+
+<section class="social-connect">
+  <div class="social-connect-inner">
+    <span class="social-connect-label">Follow My World</span>
+    <div class="social-connect-links">
+      <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" class="sc-link sc-instagram" title="Instagram">
+        <i class="fab fa-instagram"></i><span>Instagram</span>
+      </a>
+      <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="sc-link sc-tiktok" title="TikTok">
+        <i class="fab fa-tiktok"></i><span>TikTok</span>
+      </a>
+      <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="sc-link sc-youtube" title="YouTube">
+        <i class="fab fa-youtube"></i><span>YouTube</span>
+      </a>
+      <a href="https://pin.it/6qtLMTBnw" target="_blank" class="sc-link sc-pinterest" title="Pinterest">
+        <i class="fab fa-pinterest-p"></i><span>Pinterest</span>
+      </a>
+      <a href="https://t.me/+y7lEEeXcLA4wZjhl" target="_blank" class="sc-link sc-telegram" title="Telegram">
+        <i class="fab fa-telegram-plane"></i><span>Telegram</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
 <section class="section" id="work">
   <div class="section-inner">
     <div class="section-header">
@@ -207,6 +315,15 @@
     </div>
     <div class="portfolio-grid" id="portfolioGrid"></div>
   </div>
+</section>
+
+<!-- Top 4 posts from all social handlers -->
+<section class="top-posts-section" id="topPosts">
+  <div class="top-posts-header slide-up">
+    <h2 class="top-posts-title">Top 4 Posts From My World</h2>
+    <p class="top-posts-sub">The most loved moments across Instagram, YouTube, TikTok & Pinterest.</p>
+  </div>
+  <div class="top-posts-grid slide-up" id="topPostsGrid"></div>
 </section>
 
 <!-- Real-Time Social Feed -->
@@ -557,6 +674,56 @@
     window.loadTikTok = renderTikTok;
     window.loadPinterest = renderPinterest;
     switchPlatform('instagram');
+  })();
+
+  /* ── Top 4 posts from all social handlers ── */
+  (function renderTopPosts() {
+    const grid = document.getElementById('topPostsGrid');
+    if (!grid) return;
+
+    // Mix: 2 Instagram, 1 Pinterest, 1 YouTube (best from each)
+    const top = [
+      { platform: 'instagram', img: 'images/ig_post_1.jpg', title: 'Golden hour moments', meta: '1.2K likes', url: PROFILES.instagram },
+      { platform: 'pinterest', img: 'images/pinterest_board_1.jpg', title: 'Style inspo board', meta: '48 pins', url: PROFILES.pinterest },
+      { platform: 'instagram', img: 'images/ig_post_3.jpg', title: 'Weekend vibes', meta: '2.1K likes', url: PROFILES.instagram },
+      { platform: 'youtube', img: '', title: 'Nyra Lifestyle Channel', meta: 'Latest video', url: PROFILES.youtube },
+    ];
+
+    top.forEach((item, i) => {
+      const card = document.createElement('a');
+      card.href = item.url;
+      card.target = '_blank';
+      card.className = 'top-post-card tilt-3d';
+      card.setAttribute('data-tilt', '');
+      card.style.animationDelay = (i * 0.1) + 's';
+
+      let imgHtml = '';
+      if (item.img) {
+        imgHtml = `<img src="${item.img}" alt="${item.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='var(--rose-pale)'">`;
+      } else {
+        imgHtml = `<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--ink-mute);font-size:2rem;background:var(--rose-pale)"><i class="fab fa-youtube"></i></div>`;
+      }
+
+      card.innerHTML = `
+        <div class="top-post-card-img">
+          ${imgHtml}
+          <div class="top-post-card-overlay"></div>
+          <div class="top-post-platform ${item.platform}">${item.platform}</div>
+        </div>
+        <div class="top-post-card-body">
+          <div class="top-post-title">${item.title}</div>
+          <div class="top-post-meta">
+            <span>${item.meta}</span>
+            <span>→</span>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    setTimeout(() => {
+      grid.querySelectorAll('.top-post-card[data-tilt]').forEach(el => _3D.tiltCard(el, 10));
+    }, 200);
   })();
 
   /* ── Nav ── */
