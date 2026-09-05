@@ -75,20 +75,30 @@
     .nav-links a:hover, .nav-links a.active { color:var(--rose); }
 
     .hero {
-      min-height:80vh;
+      min-height:100vh;
       display:flex; align-items:center; justify-content:center;
       text-align:center;
       padding:100px 2rem 60px;
-      position:relative;
-      overflow:hidden;
+      position:relative; overflow:hidden;
+      background:#FAF7F2;
     }
-    .hero::before {
-      content:'';
+    .hero-bg {
+      position:absolute; top:0; left:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      opacity:0.15;
+      z-index:0; pointer-events:none;
+    }
+    .hero-overlay {
       position:absolute; top:0; left:0; right:0; bottom:0;
-      background: linear-gradient(180deg, rgba(250,246,240,0) 0%, rgba(250,246,240,0.97) 30%);
+      background: linear-gradient(180deg, rgba(250,246,240,0.93) 0%, rgba(250,246,240,0.75) 40%, rgba(250,246,240,0.93) 100%);
       z-index:1;
     }
-    .hero-inner { position:relative; z-index:2; max-width:720px; }
+    .hero-inner {
+      position:relative; z-index:2;
+      max-width:760px;
+      display:flex; flex-direction:column; align-items:center;
+    }
     .section-label {
       display:inline-block;
       font-size:0.7rem; font-weight:600;
@@ -202,6 +212,71 @@
     }
     .blog-card:hover .blog-card-read { gap:10px; }
 
+    /* ── Social Handles ── */
+    .social-handles {
+      text-align:center;
+      padding:50px 2rem;
+      background:var(--cream);
+    }
+    .social-handles .section-label {
+      margin-bottom:0.5rem;
+    }
+    .social-handles .section-title {
+      font-size:1.5rem;
+      margin-bottom:0.5rem;
+    }
+    .social-handles .section-desc {
+      font-size:0.85rem;
+      margin-bottom:2rem;
+    }
+    .handles-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
+      gap:12px;
+      max-width:720px;
+      margin:0 auto;
+    }
+    .handle-card {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      padding:1.25rem 0.75rem;
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+      text-decoration:none;
+      color:var(--ink);
+      transition:transform 0.25s, box-shadow 0.25s;
+      border:1px solid var(--border);
+    }
+    .handle-card:hover {
+      transform:translateY(-3px);
+      box-shadow:var(--shadow-md);
+      border-color:var(--rose);
+    }
+    .handle-icon {
+      width:44px; height:44px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.2rem;
+      color:#fff;
+    }
+    .handle-icon.instagram { background:linear-gradient(135deg, #F58529, #DD2A7B, #8134AF); }
+    .handle-icon.youtube { background:var(--ink); }
+    .handle-icon.tiktok { background:#010101; }
+    .handle-icon.pinterest { background:#E60023; }
+    .handle-icon.telegram { background:#24A1DE; }
+    .handle-name {
+      font-size:0.72rem;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      color:var(--ink-soft);
+    }
+
     /* ── Footer ── */
     .footer {
       background:var(--ink);
@@ -298,6 +373,12 @@
       .section-title { font-size:1.8rem; }
       .blog-grid { grid-template-columns:1fr; }
       .hero::before { background: linear-gradient(180deg, rgba(250,246,240,0) 0%, rgba(250,246,240,0.98) 20%); }
+      .hero-bg { width:120%; height:120%; top:-10%; left:-10%; right:-10%; }
+      .handles-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width: 480px) {
+      .handles-grid { grid-template-columns:1fr; }
+      .section-title { font-size:1.5rem; }
     }
   </style>
 </head>
@@ -322,6 +403,7 @@
   <!-- ═════════════ HERO ═════════════ -->
   <section class="hero">
     <img src="images/content-1.jpg" alt="" class="hero-bg">
+    <div class="hero-overlay"></div>
     <div class="hero-inner">
       <span class="section-label">My Blog</span>
       <h1 class="section-title">Stories That Connect</h1>
@@ -330,11 +412,45 @@
   </section>
 
   <!-- ═════════════ BLOG POSTS ═════════════ -->
-  <section class="section">
+  <section class="section" style="padding-top:50px; padding-bottom:50px;">
     <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Browse Posts</span>
+      </div>
       <div class="blog-grid" id="blogGrid">
         <!-- Blog posts are rendered here by JavaScript.
              Add your blog posts in the blogPosts array below. -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ FOLLOW MY HANDLES ═════════════ -->
+  <section class="social-handles">
+    <div class="section-inner">
+      <span class="section-label">Connect With Me</span>
+      <h2 class="section-title">Follow My Handles</h2>
+      <p class="section-desc">Join me on social media for daily inspiration, behind-the-scenes moments, and new content every week.</p>
+      <div class="handles-grid">
+        <a href="https://www.instagram.com/nyra.luxe.lifestyle/" target="_blank" class="handle-card">
+          <div class="handle-icon instagram"><i class="fab fa-instagram"></i></div>
+          <span class="handle-name">Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="handle-card">
+          <div class="handle-icon tiktok"><i class="fab fa-tiktok"></i></div>
+          <span class="handle-name">TikTok</span>
+        </a>
+        <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="handle-card">
+          <div class="handle-icon youtube"><i class="fab fa-youtube"></i></div>
+          <span class="handle-name">YouTube</span>
+        </a>
+        <a href="https://pin.it/6qtLMTBnw" target="_blank" class="handle-card">
+          <div class="handle-icon pinterest"><i class="fab fa-pinterest"></i></div>
+          <span class="handle-name">Pinterest</span>
+        </a>
+        <a href="https://t.me/+y7lEEeXcLA4wZjhl" target="_blank" class="handle-card">
+          <div class="handle-icon telegram"><i class="fab fa-telegram-plane"></i></div>
+          <span class="handle-name">Telegram</span>
+        </a>
       </div>
     </div>
   </section>
