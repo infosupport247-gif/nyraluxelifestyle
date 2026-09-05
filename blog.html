@@ -6,7 +6,6 @@
   <title>Content — Nyra | Lifestyle</title>
   <link rel="canonical" href="https://www.nyraluxelifestyle.com/blog.html">
   <meta property="og:url" content="https://www.nyraluxelifestyle.com/blog.html">
-  <meta name="twitter:url" content="https://www.nyraluxelifestyle.com/blog.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -353,6 +352,86 @@
         `
       }
     ];
+
+    /* ═══════════════════════════════════════════════
+       RENDER: Blog Cards
+       ═══════════════════════════════════════════════ */
+    function renderBlogCards() {
+      const grid = document.getElementById('blogGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      blogPosts.forEach(function(post) {
+        var card = document.createElement('a');
+        card.href = '#';
+        card.className = 'blog-card';
+        card.setAttribute('data-post-id', post.id);
+        card.innerHTML =
+          '<div class="blog-card-body">' +
+            '<span class="blog-card-tag">' + (post.tag || '') + '</span>' +
+            '<h3 class="blog-card-title">' + (post.title || '') + '</h3>' +
+            '<p class="blog-card-excerpt">' + (post.excerpt || '') + '</p>' +
+            '<div class="blog-card-meta">' +
+              '<span>' + (post.date || '') + '</span>' +
+              '<span class="blog-card-read">' +
+                (post.readTime || '') + ' <span class="read-arrow">→</span>' +
+              '</span>' +
+            '</div>' +
+          '</div>';
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          openBlogModal(post.id);
+        });
+        grid.appendChild(card);
+      });
+    }
+
+    /* ═══════════════════════════════════════════════
+       MODAL: Open Blog Detail
+       ═══════════════════════════════════════════════ */
+    function openBlogModal(postId) {
+      var post = blogPosts.filter(function(p) { return p.id === postId; })[0];
+      if (!post) return;
+      var content = document.getElementById('modalContent');
+      content.innerHTML =
+        '<div class="modal-header">' +
+          '<span class="blog-card-tag">' + (post.tag || '') + '</span>' +
+          '<h2 class="modal-title">' + (post.title || '') + '</h2>' +
+          '<div class="modal-meta">' +
+            '<span>' + (post.date || '') + '</span>' +
+            '<span>' + (post.readTime || '') + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="modal-body">' + (post.content || '') + '</div>' +
+        '<button class="modal-back" id="modalBackBtn">← Back to Stories</button>';
+      var modal = document.getElementById('blogModal');
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('blogModalClose').addEventListener('click', closeBlogModal);
+      document.getElementById('modalBackBtn').addEventListener('click', closeBlogModal);
+    }
+
+    function closeBlogModal() {
+      var modal = document.getElementById('blogModal');
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      document.getElementById('modalContent').innerHTML = '<!-- Rendered dynamically -->';
+    }
+
+    document.getElementById('blogModalClose').addEventListener('click', closeBlogModal);
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeBlogModal();
+    });
+    document.addEventListener('click', function(e) {
+      var modal = document.getElementById('blogModal');
+      if (e.target === modal) closeBlogModal();
+    });
+
+    /* ═══════════════════════════════════════════════
+       INIT
+       ═══════════════════════════════════════════════ */
+    renderBlogCards();
+
+
 
     </script>
 </body>
