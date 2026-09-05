@@ -204,12 +204,22 @@
 
     /* ── Social Handles ── */
     .social-handles {
+      display:flex; flex-wrap:wrap; justify-content:center; gap:16px;
+      max-width:720px; margin:0 auto;
+    }
+    .handle-card {
       display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:16px;
-      max-width:720px;
-      margin:0 auto;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      padding:1.25rem 0.75rem;
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+      text-decoration:none;
+      color:var(--ink);
+      transition:transform 0.25s, box-shadow 0.25s;
+      border:1px solid var(--border);
     }
     .handle-card:hover {
       transform:translateY(-3px);
