@@ -102,6 +102,47 @@
     .story-card-link { margin-top:0.6rem; font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; color: var(--rose); display:inline-flex; align-items:center; gap:5px; transition: gap 0.25s; }
     .story-card:hover .story-card-link { gap:9px; }
 
+    /* ── About Gallery ── */
+    .about-gallery { margin-top: 3.5rem; }
+    .gallery-header { text-align:center; margin-bottom:1.8rem; }
+    .gallery-header .section-title { font-size:1.4rem; margin-bottom:0.3rem; }
+    .gallery-header .section-desc { margin:0 auto; }
+    .gallery-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap:20px;
+    }
+    .gallery-item {
+      background:#fff;
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow-sm);
+      cursor:pointer;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease;
+      position:relative;
+      will-change: transform;
+    }
+    .gallery-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .gallery-item img {
+      width:100%; height:220px; object-fit:cover;
+      display:block;
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-caption {
+      padding:0.9rem 1.1rem 1.1rem;
+      display:flex; flex-direction:column; gap:0.2rem;
+    }
+    .gallery-caption-label {
+      font-size:0.65rem; font-weight:600;
+      text-transform:uppercase; letter-spacing:1.5px;
+      color: var(--rose);
+    }
+    .gallery-caption-text {
+      font-size:0.84rem; color: var(--ink-soft);
+      line-height:1.5;
+    }
+
     .bottom-tagline { text-align:center; padding:0 2rem 2rem; font-family:'Dancing Script',cursive; font-size:1.1rem; color: var(--ink-mute); opacity:0.7; }
     .bottom-tagline .bullet { color: var(--rose); margin:0 6px; }
 
@@ -131,7 +172,36 @@
       .hero-inner { max-width:100%; }
       .story-cards-grid { grid-template-columns: 1fr; }
     }
-  </style>
+  
+    .nav-social { display:inline-flex; gap:0.5rem; align-items:center; padding-left:0.5rem; border-left:1px solid rgba(17,17,17,0.08); }
+    .nav-social-link { display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:transparent; color:var(--ink-soft); text-decoration:none; font-size:0.9rem; transition:all 0.25s ease; }
+    .nav-social-link:hover { background:var(--rose); color:#fff; transform:translateY(-2px); }
+    .nav-social + .nav-social { border-left-color:rgba(17,17,17,0.04); }
+    @media (max-width:768px) {
+      .nav-social { display:none; }
+    }
+
+
+    .social-connect { padding:1.5rem 2rem; border-top:1px solid rgba(201,168,76,0.10); border-bottom:1px solid rgba(201,168,76,0.10); background:rgba(250,247,242,0.5); }
+    .social-connect-inner { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+    .social-connect-label { font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--ink-mute); }
+    .social-connect-links { display:flex; gap:0.6rem; flex-wrap:wrap; }
+    .sc-link { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:100px; text-decoration:none; font-size:0.72rem; font-weight:500; color:var(--ink-soft); transition:all 0.25s ease; border:1px solid rgba(17,17,17,0.06); }
+    .sc-link:hover { color:var(--ink); border-color:var(--rose); transform:translateY(-1px); }
+    .sc-link i { font-size:0.85rem; }
+    .sc-instagram:hover { background:var(--rose); color:#fff; border-color:var(--rose); }
+    .sc-tiktok:hover { background:#010101; color:#fff; border-color:#010101; }
+    .sc-youtube:hover { background:var(--ink); color:#fff; border-color:var(--ink); }
+    .sc-pinterest:hover { background:#E60023; color:#fff; border-color:#E60023; }
+    .sc-telegram:hover { background:#24A1DE; color:#fff; border-color:#24A1DE; }
+    @media (max-width:768px) {
+      .social-connect { padding:1rem 1.5rem; }
+      .social-connect-inner { flex-direction:column; align-items:flex-start; gap:0.8rem; }
+      .social-connect-links { gap:0.4rem; }
+      .sc-link { padding:5px 10px; font-size:0.68rem; }
+    }
+
+</style>
 </head>
 <body>
 
@@ -151,7 +221,33 @@
       <li><a href="blog.html">Blog</a></li>
       <li><a href="portfolio.html">Portfolio</a></li>
       <li><a href="contact.html">Contact</a></li>
-    </ul>
+    
+      <li class="nav-social">
+        <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" aria-label="Instagram" title="Instagram" class="nav-social-link">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </li>
+      <li class="nav-social">
+        <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" aria-label="TikTok" title="TikTok" class="nav-social-link">
+          <i class="fab fa-tiktok"></i>
+        </a>
+      </li>
+      <li class="nav-social">
+        <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" aria-label="YouTube" title="YouTube" class="nav-social-link">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </li>
+      <li class="nav-social">
+        <a href="https://pin.it/6qtLMTBnw" target="_blank" aria-label="Pinterest" title="Pinterest" class="nav-social-link">
+          <i class="fab fa-pinterest-p"></i>
+        </a>
+      </li>
+      <li class="nav-social">
+        <a href="https://t.me/+y7lEEeXcLA4wZjhl" target="_blank" aria-label="Telegram" title="Telegram" class="nav-social-link">
+          <i class="fab fa-telegram-plane"></i>
+        </a>
+      </li>
+</ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -182,6 +278,31 @@
   </div>
 </section>
 
+
+<section class="social-connect">
+  <div class="social-connect-inner">
+    <span class="social-connect-label">Follow My World</span>
+    <div class="social-connect-links">
+      <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" class="sc-link sc-instagram" title="Instagram">
+        <i class="fab fa-instagram"></i><span>Instagram</span>
+      </a>
+      <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="sc-link sc-tiktok" title="TikTok">
+        <i class="fab fa-tiktok"></i><span>TikTok</span>
+      </a>
+      <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="sc-link sc-youtube" title="YouTube">
+        <i class="fab fa-youtube"></i><span>YouTube</span>
+      </a>
+      <a href="https://pin.it/6qtLMTBnw" target="_blank" class="sc-link sc-pinterest" title="Pinterest">
+        <i class="fab fa-pinterest-p"></i><span>Pinterest</span>
+      </a>
+      <a href="https://t.me/+y7lEEeXcLA4wZjhl" target="_blank" class="sc-link sc-telegram" title="Telegram">
+        <i class="fab fa-telegram-plane"></i><span>Telegram</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
 <section class="section" id="story">
   <div class="section-inner">
     <div class="split-grid">
@@ -189,15 +310,44 @@
         <img src="images/dubai-portrait.jpg" alt="Nyra portrait" loading="lazy">
       </div>
       <div class="split-text">
-        <span class="eyebrow slide-up">My Journey</span>
-        <h3 class="slide-up" style="transition-delay:0.08s">A lifelong love for style, travel, and the art of living well.</h3>
-        <p class="slide-up" style="transition-delay:0.16s">I'm Nyra — a lifestyle creator, storyteller, and forever collector of beautiful moments. My world is built on curiosity: trying new places, finding style in the everyday, and sharing what I learn along the way. What started as a personal diary of outfit notes and café visits grew into something much bigger — a community of people who believe that the little things matter.</p>
-        <p class="slide-up" style="transition-delay:0.24s">I've called Mumbai home for as long as I can remember. The chaos and charm of this city shaped the way I see the world — everything is a story waiting to be told, if you're willing to look slowly enough.</p>
-        <p class="slide-up" style="transition-delay:0.32s">This space is my little corner of the internet — part journal, part inspiration, part honest reflection. Every post, every photo, every video is a piece of that story. I'm glad you're here for it.</p>
-        <div class="slide-up" style="transition-delay:0.4s; display:flex; flex-direction:column; gap:0.8rem; margin-top:0.3rem">
+        <span class="eyebrow slide-up">About Me</span>
+        <h3 class="slide-up" style="transition-delay:0.08s">Hi, I'm Nyra ✨</h3>
+        <p class="slide-up" style="transition-delay:0.16s">I love fashion, travelling, discovering new places, and simply enjoying the little things in life. I started this space to share the things I genuinely love — from outfits and beautiful hotels to travel experiences, useful finds, and everyday moments. I'm not here to make everything look perfect; I just want to share what I enjoy, what I discover, and the experiences that make me smile. 🤍</p>
+        <div class="slide-up" style="transition-delay:0.24s; display:flex; flex-direction:column; gap:0.8rem; margin-top:0.5rem">
           <button class="btn-ghost btn-3d stories-expand-btn" data-magnetic aria-expanded="false">
             Read My Stories <span>→</span>
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo Gallery with captions -->
+    <div class="about-gallery" style="margin-top: 3.5rem">
+      <div class="gallery-header slide-up" style="text-align:center; margin-bottom:1.8rem">
+        <h3 class="section-title" style="font-size:1.4rem; margin-bottom:0.3rem">Moments I Love</h3>
+        <p class="section-desc" style="margin:0 auto">A handful of snapshots — each one from a day I'll remember.</p>
+      </div>
+      <div class="gallery-grid slide-up">
+        <div class="gallery-item tilt-3d" data-tilt style="animation-delay:0.1s">
+          <img src="images/content-1.jpg" alt="Travel moment" loading="lazy">
+          <div class="gallery-caption">
+            <div class="gallery-caption-label">Travel</div>
+            <div class="gallery-caption-text">Lost in the right direction — finding beauty in places I didn't plan to love.</div>
+          </div>
+        </div>
+        <div class="gallery-item tilt-3d" data-tilt style="animation-delay:0.2s">
+          <img src="images/content-3.jpg" alt="Everyday luxury" loading="lazy">
+          <div class="gallery-caption">
+            <div class="gallery-caption-label">Lifestyle</div>
+            <div class="gallery-caption-text">The little things — a slow morning, good light, and the kind of peace you can't buy.</div>
+          </div>
+        </div>
+        <div class="gallery-item tilt-3d" data-tilt style="animation-delay:0.3s">
+          <img src="images/content-5.jpg" alt="Style moment" loading="lazy">
+          <div class="gallery-caption">
+            <div class="gallery-caption-label">Style</div>
+            <div class="gallery-caption-text">Dressed for the day I wanted — not the day I had. Style is how you feel, not just what you wear.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -365,6 +515,7 @@
     });
     setTimeout(() => {
       grid.querySelectorAll('.story-card[data-tilt]').forEach(el => _3D.tiltCard(el, 10));
+      document.querySelectorAll('.gallery-item[data-tilt]').forEach(el => _3D.tiltCard(el, 10));
     }, 150);
   }
 
