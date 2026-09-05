@@ -75,10 +75,8 @@
     .nav-links a:hover, .nav-links a.active { color:var(--rose); }
 
     .hero {
-      min-height:70vh;
-      display:flex; align-items:center; justify-content:center;
-      text-align:center;
-      padding:80px 2rem 20px;
+      min-height:55vh;
+      padding:70px 2rem 5px;
       position:relative; overflow:hidden;
       background:#FAF7F2;
     }
@@ -104,54 +102,20 @@
       font-size:0.7rem; font-weight:600;
       text-transform:uppercase; letter-spacing:2px;
       color:var(--rose);
-      margin-bottom:1rem;
+      margin-bottom:0.5rem;
     }
     .section-title {
-      font-size:2.8rem; font-weight:700;
+      font-size:2.4rem; font-weight:700;
       line-height:1.1;
-      margin-bottom:1rem;
+      margin-bottom:0.5rem;
       color:var(--ink);
     }
     .section-desc {
-      font-size:1.05rem; color:var(--ink-soft);
-      max-width:520px; margin:0 auto;
-    }
-    .hero-bg {
-      position:absolute; top:0; left:0;
-      width:100%; height:100%;
-      object-fit:cover;
-      opacity:0.15;
-      z-index:0; pointer-events:none;
-    }
-    .hero-overlay {
-      position:absolute; top:0; left:0; right:0; bottom:0;
-      background: linear-gradient(180deg, rgba(250,246,240,0.93) 0%, rgba(250,246,240,0.75) 40%, rgba(250,246,240,0.93) 100%);
-      z-index:1;
-    }
-    .hero-inner {
-      position:relative; z-index:2;
-      max-width:760px;
-      display:flex; flex-direction:column; align-items:center;
-    }
-    .section-label {
-      display:inline-block;
-      font-size:0.7rem; font-weight:600;
-      text-transform:uppercase; letter-spacing:2px;
-      color:var(--rose);
-      margin-bottom:1rem;
-    }
-    .section-title {
-      font-size:2.8rem; font-weight:700;
-      line-height:1.1;
-      margin-bottom:1rem;
-      color:var(--ink);
-    }
-    .section-desc {
-      font-size:1.05rem; color:var(--ink-soft);
-      max-width:520px; margin:0 auto;
+      font-size:1rem; color:var(--ink-soft);
+      max-width:520px; margin:0 auto 1rem;
     }
 
-    .section { padding:25px 2rem; }
+    .section { padding:20px 2rem; }
     .section-inner {
       max-width:1280px; margin:0 auto;
     }
@@ -159,10 +123,10 @@
       text-align:center;
       margin-bottom:16px;
     }
-    .section-header .section-title { font-size:2.2rem; }
-    .section-desc {
+    .section-header .section-title { font-size:2rem; }
+    .section-header .section-desc {
       font-size:1rem; color:var(--ink-soft);
-      max-width:540px; margin:8px auto 0;
+      max-width:540px; margin:6px auto 0;
     }
 
     /* ── Blog Grid ── */
@@ -239,26 +203,6 @@
     .blog-card:hover .blog-card-read { gap:10px; }
 
     /* ── Social Handles ── */
-    .social-handles {
-      text-align:center;
-      padding:50px 2rem;
-      background:var(--cream);
-    }
-    .social-handles .section-label {
-      margin-bottom:0.5rem;
-    }
-    .social-handles .section-title {
-      font-size:1.5rem;
-      margin-bottom:0.5rem;
-    }
-    .social-handles .section-desc {
-      font-size:0.85rem;
-      margin-bottom:2rem;
-    }
-    .handles-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
-      gap:12px;
       max-width:720px;
       margin:0 auto;
     }
