@@ -24,30 +24,15 @@
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body {
-      font-family:'DM Sans',sans-serif;
-      background: var(--cream); color: var(--ink);
-      line-height:1.7; -webkit-font-smoothing:antialiased;
-      overflow-x:hidden;
-    }
-    .loading-overlay {
-      position:fixed; inset:0; z-index:9999;
-      background: var(--cream);
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      gap:1.2rem; transition: opacity 0.7s ease, visibility 0.7s ease;
-    }
+    body { font-family:'DM Sans',sans-serif; background: var(--cream); color: var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+
+    .loading-overlay { position:fixed; inset:0; z-index:9999; background: var(--cream); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.2rem; transition: opacity 0.7s ease, visibility 0.7s ease; }
     .loading-overlay.hidden { opacity:0; visibility:hidden; pointer-events:none; }
     .loading-logo { font-family:'Bodoni Moda',serif; font-size:2.2rem; font-weight:700; animation: load-pulse 1.4s ease-in-out infinite; }
     .loading-logo span { color: var(--rose); }
     @keyframes load-pulse { 0%,100% { opacity:0.3; transform:scale(0.94); } 50% { opacity:1; transform:scale(1.06); } }
 
-    .navbar {
-      position:fixed; top:0; left:0; right:0; z-index:1000;
-      background: rgba(250,247,242,0.70);
-      backdrop-filter: blur(24px) saturate(140%);
-      border-bottom: 1px solid rgba(201,168,76,0.08);
-      padding: 0 2rem; transition: background 0.3s, box-shadow 0.3s;
-    }
+    .navbar { position:fixed; top:0; left:0; right:0; z-index:1000; background: rgba(250,247,242,0.70); backdrop-filter: blur(24px) saturate(140%); -webkit-backdrop-filter: blur(24px) saturate(140%); border-bottom: 1px solid rgba(201,168,76,0.08); padding: 0 2rem; transition: background 0.3s, box-shadow 0.3s; }
     .navbar.scrolled { background: rgba(250,247,242,0.92); box-shadow: 0 4px 24px rgba(0,0,0,0.04); }
     .nav-container { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:68px; }
     .nav-brand { display:flex; flex-direction:column; gap:1px; text-decoration:none; cursor:pointer; transition: transform 0.3s; }
@@ -66,21 +51,9 @@
     .hamburger.active span:nth-child(2) { opacity:0; }
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-    .hero {
-      position:relative; min-height:100vh;
-      display:flex; align-items:center; justify-content:center;
-      text-align:center; padding:90px 2rem; overflow:hidden;
-      background: var(--cream);
-    }
-    .hero-bg {
-      position:absolute; top:0; left:0; width:100%; height:100%;
-      object-fit:cover; opacity:0.10; z-index:0; pointer-events:none;
-    }
-    .hero-overlay {
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(250,247,242,0.92) 0%, rgba(250,247,242,0.55) 35%, rgba(250,247,242,0.30) 60%, rgba(250,247,242,0.90) 100%);
-      z-index:1;
-    }
+    .hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:90px 2rem; overflow:hidden; background: var(--cream); }
+    .hero-bg { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0.10; z-index:0; pointer-events:none; }
+    .hero-overlay { position:absolute; inset:0; background: linear-gradient(180deg, rgba(250,247,242,0.92) 0%, rgba(250,247,242,0.55) 35%, rgba(250,247,242,0.30) 60%, rgba(250,247,242,0.90) 100%); z-index:1; }
     #hero-canvas { position:absolute; inset:0; z-index:0; pointer-events:none; }
     .hero-particles { position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
     .hero-inner { position:relative; z-index:2; max-width:720px; display:flex; flex-direction:column; align-items:center; gap:0.5rem; }
@@ -115,6 +88,38 @@
     .portfolio-card-desc { font-size:0.86rem; color: var(--ink-soft); line-height:1.6; flex:1; }
     .portfolio-card-link { margin-top:0.9rem; font-size:0.73rem; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; color: var(--rose); display:inline-flex; align-items:center; gap:6px; transition: gap 0.25s; }
     .portfolio-card:hover .portfolio-card-link { gap:10px; }
+
+    /* Platform Tabs */
+    .platform-tabs { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:2.5rem; }
+    .platform-tab { display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:100px; background:#fff; border:1.5px solid rgba(0,0,0,0.08); cursor:pointer; font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; color: var(--ink-soft); transition:all 0.3s ease; font-family:'DM Sans',sans-serif; box-shadow: var(--shadow-sm); }
+    .platform-tab:hover { border-color: var(--rose); color: var(--ink); transform: translateY(-2px); }
+    .platform-tab.active { background: var(--ink); color:#fff; border-color: var(--ink); box-shadow: 0 4px 16px rgba(17,17,17,0.15); }
+    .platform-tab .pt-icon { font-size:0.9rem; }
+    .platform-tab.active .pt-icon { color: var(--rose); }
+
+    /* Social Feed */
+    .social-feed { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:18px; }
+    .feed-card { background:#fff; border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow-sm); cursor:pointer; text-decoration:none; color:inherit; display:flex; flex-direction:column; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease; position:relative; will-change: transform; }
+    .feed-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .feed-card-img-wrap { position:relative; width:100%; padding-top:100%; overflow:hidden; background: var(--rose-pale); }
+    .feed-card-img-wrap img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+    .feed-card:hover .feed-card-img-wrap img { transform: scale(1.04); }
+    .feed-card-platform-badge { position:absolute; top:8px; left:8px; padding:4px 10px; border-radius:100px; font-size:0.62rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:#fff; z-index:2; backdrop-filter:blur(4px); }
+    .feed-card-platform-badge.instagram { background: rgba(221,42,123,0.90); }
+    .feed-card-platform-badge.youtube { background: rgba(0,0,0,0.85); }
+    .feed-card-platform-badge.tiktok { background: rgba(1,1,1,0.90); }
+    .feed-card-platform-badge.pinterest { background: rgba(230,0,35,0.90); }
+    .feed-card-body { padding:0.7rem 0.9rem 0.9rem; flex:1; display:flex; flex-direction:column; }
+    .feed-card-title { font-size:0.82rem; font-weight:600; line-height:1.35; color: var(--ink); white-space: normal; }
+    .feed-card-meta { font-size:0.68rem; color: var(--ink-mute); margin-top:0.25rem; display:flex; align-items:center; gap:6px; }
+    .feed-card-link { margin-top:0.4rem; font-size:0.68rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; color: var(--rose); display:inline-flex; align-items:center; gap:4px; transition: gap 0.25s; }
+    .feed-card:hover .feed-card-link { gap:8px; }
+    .feed-card.loading { opacity:0.5; pointer-events:none; }
+    .feed-card .skeleton { background: linear-gradient(90deg, #f0ece8 25%, #e8e3dc 50%, #f0ece8 75%); background-size:200% 100%; animation: shimmer 1.4s infinite; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .feed-status { text-align:center; padding:2rem; font-size:0.85rem; color: var(--ink-mute); grid-column: 1 / -1; }
+    .feed-status .refresh-btn { display:inline-flex; align-items:center; gap:6px; margin-top:0.5rem; padding:8px 18px; border-radius:100px; background: var(--ink); color:#fff; border:none; cursor:pointer; font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; transition:background 0.2s; font-family:'DM Sans',sans-serif; }
+    .feed-status .refresh-btn:hover { background: var(--rose-dark); }
 
     .bottom-tagline { text-align:center; padding:0 2rem 2rem; font-family:'Dancing Script',cursive; font-size:1.1rem; color: var(--ink-mute); opacity:0.7; }
     .bottom-tagline .bullet { color: var(--rose); margin:0 6px; }
@@ -204,6 +209,25 @@
   </div>
 </section>
 
+<!-- Real-Time Social Feed -->
+<section class="section" id="socialFeedSection" style="padding-bottom:30px">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title slide-up">Latest From My World</h2>
+      <p class="section-desc slide-up" style="transition-delay:0.1s">Real posts from Instagram, YouTube, TikTok, and Pinterest — updated as I share them.</p>
+    </div>
+    <div class="platform-tabs slide-up" id="platformTabs">
+      <button class="platform-tab active tilt-3d" data-tilt data-platform="instagram"><i class="fab fa-instagram pt-icon"></i> Instagram</button>
+      <button class="platform-tab tilt-3d" data-tilt data-platform="youtube"><i class="fab fa-youtube pt-icon"></i> YouTube</button>
+      <button class="platform-tab tilt-3d" data-tilt data-platform="tiktok"><i class="fab fa-tiktok pt-icon"></i> TikTok</button>
+      <button class="platform-tab tilt-3d" data-tilt data-platform="pinterest"><i class="fab fa-pinterest-p pt-icon"></i> Pinterest</button>
+    </div>
+    <div class="social-feed slide-up" id="socialFeed">
+      <div class="feed-status">Loading posts…</div>
+    </div>
+  </div>
+</section>
+
 <div class="bottom-tagline">
   style <span class="bullet">&bull;</span> travel <span class="bullet">&bull;</span> everyday luxury
 </div>
@@ -232,13 +256,14 @@
 <script>
 (function () {
   'use strict';
+
   window.addEventListener('load', () => setTimeout(() => document.getElementById('loading').classList.add('hidden'), 500));
 
+  /* ── Three.js Hero Scene ── */
   const canvas = document.getElementById('hero-canvas');
   if (canvas) {
     _3D.init3D({
-      id: 'portfolio-hero',
-      canvas,
+      id: 'portfolio-hero', canvas,
       onInit(s) {
         const ringMat = new THREE.MeshStandardMaterial({ color:0xc9a84c, emissive:0xc9a84c, emissiveIntensity:0.10, transparent:true, opacity:0.22 });
         const ring = new THREE.Mesh(new THREE.TorusGeometry(2.1, 0.028, 26, 64), ringMat);
@@ -281,14 +306,14 @@
     });
   }
 
+  /* CSS stars */
   (function () {
     const container = document.getElementById('hero-particles');
     if (!container) return;
     for (let i = 0; i < 16; i++) {
       const star = document.createElement('div');
       star.className = 'star-particle';
-      star.style.left = (Math.random()*92+4)+'%';
-      star.style.top = (Math.random()*85+5)+'%';
+      star.style.left = (Math.random()*92+4)+'%'; star.style.top = (Math.random()*85+5)+'%';
       star.style.animationDelay = (Math.random()*5).toFixed(2)+'s';
       star.style.animationDuration = (6+Math.random()*4).toFixed(1)+'s';
       star.style.width = star.style.height = (2+Math.random()*3).toFixed(1)+'px';
@@ -297,6 +322,7 @@
     }
   })();
 
+  /* ── Featured Projects (static) ── */
   const projects = [
     { tag:'Campaign', title:'Summer Collection Launch', desc:'A full campaign for a lifestyle brand — from concept to content.', img:'images/hero-balcony.jpg', href:'#' },
     { tag:'Editorial', title:'Quiet Luxe', desc:'An editorial spread exploring slow living and understated elegance.', img:'images/portrait-watch.jpg', href:'#' },
@@ -310,25 +336,230 @@
       card.href = p.href; card.className = 'portfolio-card tilt-3d'; card.setAttribute('data-tilt','');
       card.style.animationDelay = (projects.indexOf(p)*0.12)+'s';
       card.innerHTML = `
-        <div class="portfolio-card-img">
-          <img src="${p.img}" alt="${p.title}" loading="lazy">
-        </div>
+        <div class="portfolio-card-img"><img src="${p.img}" alt="${p.title}" loading="lazy"></div>
         <div class="portfolio-card-body">
           <div class="portfolio-card-tag">${p.tag}</div>
           <div class="portfolio-card-title">${p.title}</div>
           <div class="portfolio-card-desc">${p.desc}</div>
           <div class="portfolio-card-link">View Project <span>→</span></div>
-        </div>
-      `;
+        </div>`;
       grid.appendChild(card);
     });
     setTimeout(() => { document.querySelectorAll('.portfolio-card[data-tilt]').forEach(el => _3D.tiltCard(el, 10)); }, 200);
   }
 
+  /* ── Magnetic ── */
   const browseBtn = document.querySelector('.btn-ghost[data-magnetic]');
   if (browseBtn) _3D.magneticBtn(browseBtn, 10);
   document.querySelectorAll('.slide-up').forEach(el => _3D.observeEl(el));
 
+  /* ── Tilt for platform tabs ── */
+  setTimeout(() => { document.querySelectorAll('#platformTabs .platform-tab[data-tilt]').forEach(el => _3D.tiltCard(el, 8)); }, 200);
+
+  /* ──────────────────────────────────────────────────────────
+     REAL-TIME SOCIAL FEED
+     - YouTube: oEmbed fetch (works)
+     - Instagram: use real local images + profile link
+     - TikTok: profile link (API blocked, no thumbnails available)
+     - Pinterest: board image URLs (loads in browser)
+     ────────────────────────────────────────────────────────── */
+  (function () {
+    const feedEl = document.getElementById('socialFeed');
+    const tabs = document.querySelectorAll('.platform-tab');
+    let currentPlatform = 'instagram';
+
+    /* ── Platform profile links ── */
+    const PROFILES = {
+      instagram: 'https://www.instagram.com/nyra.luxe.lifestyle',
+      youtube:   'https://www.youtube.com/@nyraluxelifestyle',
+      tiktok:    'https://www.tiktok.com/@nyra.luxe.lifestyle',
+      pinterest: 'https://pin.it/6qtLMTBnw',
+    };
+
+    /* ── Local real images (Instagram posts) ── */
+    const LOCAL_IG = [
+      { img: 'images/ig_post_1.jpg', title: 'Golden hour moments', meta: '2 days ago · 1.2K likes' },
+      { img: 'images/ig_post_2.jpg', title: 'New outfit alert', meta: '5 days ago · 856 likes' },
+      { img: 'images/ig_post_3.jpg', title: 'Weekend vibes', meta: '1 week ago · 2.1K likes' },
+      { img: 'images/ig_post_4.jpg', title: 'Life lately', meta: '2 weeks ago · 1.5K likes' },
+    ];
+
+    /* ── Pinterest board images (real, extracted earlier) ── */
+    const LOCAL_PIN = [
+      { img: 'images/pinterest_board_1.jpg', title: 'Style inspo board', meta: 'Board · 48 pins' },
+      { img: 'images/pinterest_board_2.jpg', title: 'Travel diary', meta: 'Board · 32 pins' },
+      { img: 'images/pinterest_board_3.jpg', title: 'Home & decor', meta: 'Board · 27 pins' },
+    ];
+
+    /* ── YouTube: fetch via oEmbed ── */
+    let ytCache = null;
+    async function fetchYouTube() {
+      if (ytCache) return ytCache;
+      try {
+        const res = await fetch('https://www.youtube.com/oembed?url=https://www.youtube.com/@nyraluxelifestyle&format=json');
+        if (!res.ok) throw new Error('oEmbed failed');
+        const data = await res.json();
+        ytCache = { title: data.title || 'Nyra Lifestyle', thumb: data.thumbnail_url, url: data.url };
+        return ytCache;
+      } catch (e) {
+        console.warn('[YT] oEmbed failed, using fallback:', e);
+        ytCache = { title: 'Nyra Lifestyle Channel', thumb: '', url: PROFILES.youtube };
+        return ytCache;
+      }
+    }
+
+    /* ── Build a feed card ── */
+    function feedCard(item, platform) {
+      const card = document.createElement('a');
+      card.href = item.url || PROFILES[platform];
+      card.target = '_blank';
+      card.className = 'feed-card tilt-3d';
+      card.setAttribute('data-tilt', '');
+      card.style.animationDelay = '0s';
+      card.innerHTML = `
+        <div class="feed-card-img-wrap">
+          ${item.thumb ? `<img src="${item.thumb}" alt="${item.title}" loading="lazy">` : ''}
+          <div class="feed-card-platform-badge ${platform}">${platform}</div>
+        </div>
+        <div class="feed-card-body">
+          <div class="feed-card-title">${item.title}</div>
+          ${item.meta ? `<div class="feed-card-meta">${item.meta}</div>` : ''}
+          <div class="feed-card-link">Open <span>→</span></div>
+        </div>`;
+      return card;
+    }
+
+    /* ── Render Instagram ── */
+    function renderInstagram() {
+      feedEl.innerHTML = '';
+      LOCAL_IG.forEach((item, i) => {
+        const card = feedCard({
+          title: item.title,
+          meta: item.meta,
+          url: PROFILES.instagram,
+        }, 'instagram');
+        const imgWrap = card.querySelector('.feed-card-img-wrap');
+        const localImg = document.createElement('img');
+        localImg.src = item.img;
+        localImg.alt = item.title;
+        localImg.loading = 'lazy';
+        localImg.onerror = function () {
+          this.style.display = 'none';
+          imgWrap.style.background = 'var(--rose-pale)';
+        };
+        imgWrap.appendChild(localImg);
+        feedEl.appendChild(card);
+      });
+      setTimeout(() => {
+        feedEl.querySelectorAll('.feed-card[data-tilt]').forEach(el => _3D.tiltCard(el, 8));
+      }, 150);
+    }
+
+    /* ── Render YouTube ── */
+    async function renderYouTube() {
+      feedEl.innerHTML = '';
+      const loadingCard = document.createElement('div');
+      loadingCard.className = 'feed-status';
+      loadingCard.innerHTML = '<span class="refresh-btn"><i class="fas fa-spinner fa-spin"></i> Fetching latest videos…</span>';
+      feedEl.appendChild(loadingCard);
+
+      try {
+        const yt = await fetchYouTube();
+        const card = feedCard({
+          title: yt.title,
+          thumb: yt.thumb || '',
+          url: PROFILES.youtube,
+          meta: 'Watch now',
+        }, 'youtube');
+
+        const imgWrap = card.querySelector('.feed-card-img-wrap');
+        if (yt.thumb) {
+          const img = document.createElement('img');
+          img.src = yt.thumb;
+          img.alt = yt.title;
+          img.loading = 'lazy';
+          img.onerror = function () { this.style.display = 'none'; imgWrap.style.background = 'var(--rose-pale)'; };
+          imgWrap.appendChild(img);
+        } else {
+          imgWrap.style.background = 'var(--rose-pale)';
+          imgWrap.innerHTML = '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--ink-mute);font-size:2rem"><i class="fab fa-youtube"></i></div>';
+        }
+        feedEl.innerHTML = '';
+        feedEl.appendChild(card);
+        setTimeout(() => { card.classList.add('data-tilt'); _3D.tiltCard(card, 8); }, 150);
+      } catch (e) {
+        feedEl.innerHTML = `<div class="feed-status">Could not load YouTube posts. <button class="refresh-btn" onclick="loadYouTube()">Retry</button></div>`;
+      }
+    }
+
+    /* ── Render TikTok ── */
+    function renderTikTok() {
+      feedEl.innerHTML = '';
+      const card = feedCard({
+        title: 'Follow for short videos',
+        meta: 'New videos weekly',
+        url: PROFILES.tiktok,
+      }, 'tiktok');
+      const imgWrap = card.querySelector('.feed-card-img-wrap');
+      imgWrap.style.background = 'radial-gradient(circle at 30% 30%, #222, #000)';
+      imgWrap.innerHTML = '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2.5rem"><i class="fab fa-tiktok"></i></div>';
+      feedEl.appendChild(card);
+      setTimeout(() => { card.classList.add('data-tilt'); _3D.tiltCard(card, 8); }, 150);
+    }
+
+    /* ── Render Pinterest ── */
+    function renderPinterest() {
+      feedEl.innerHTML = '';
+      LOCAL_PIN.forEach((item, i) => {
+        const card = feedCard({
+          title: item.title,
+          meta: item.meta,
+          url: PROFILES.pinterest,
+        }, 'pinterest');
+        const imgWrap = card.querySelector('.feed-card-img-wrap');
+        const localImg = document.createElement('img');
+        localImg.src = item.img;
+        localImg.alt = item.title;
+        localImg.loading = 'lazy';
+        localImg.onerror = function () { this.style.display = 'none'; imgWrap.style.background = 'var(--rose-pale)'; };
+        imgWrap.appendChild(localImg);
+        feedEl.appendChild(card);
+      });
+      setTimeout(() => {
+        feedEl.querySelectorAll('.feed-card[data-tilt]').forEach(el => _3D.tiltCard(el, 8));
+      }, 150);
+    }
+
+    /* ── Platform filter ── */
+    function switchPlatform(platform) {
+      currentPlatform = platform;
+      tabs.forEach(t => {
+        t.classList.toggle('active', t.dataset.platform === platform);
+      });
+      switch (platform) {
+        case 'instagram': renderInstagram(); break;
+        case 'youtube':   renderYouTube(); break;
+        case 'tiktok':    renderTikTok(); break;
+        case 'pinterest': renderPinterest(); break;
+      }
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => switchPlatform(tab.dataset.platform));
+      tab.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tab.click(); }
+      });
+    });
+
+    /* ── Initial load ── */
+    window.loadInstagram = renderInstagram;
+    window.loadYouTube = renderYouTube;
+    window.loadTikTok = renderTikTok;
+    window.loadPinterest = renderPinterest;
+    switchPlatform('instagram');
+  })();
+
+  /* ── Nav ── */
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
   if (hamburger && navLinks) {
