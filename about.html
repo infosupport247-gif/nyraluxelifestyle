@@ -102,15 +102,6 @@
     .story-card-link { margin-top:0.6rem; font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; color: var(--rose); display:inline-flex; align-items:center; gap:5px; transition: gap 0.25s; }
     .story-card:hover .story-card-link { gap:9px; }
 
-    .timeline { position:relative; max-width:700px; margin:3rem auto 0; padding-left:2rem; }
-    .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background: linear-gradient(180deg, var(--rose), var(--gold)); opacity:0.4; }
-    .tl-item { position:relative; padding:0 0 2.5rem 0; }
-    .tl-item:last-child { padding-bottom:0; }
-    .tl-year { font-family:'Bodoni Moda',serif; font-size:1.4rem; font-weight:700; color: var(--ink); }
-    .tl-heading { font-size:1rem; font-weight:600; color: var(--ink); margin-top:0.2rem; }
-    .tl-desc { font-size:0.88rem; color: var(--ink-soft); margin-top:0.3rem; line-height:1.6; }
-    .tl-dot { position:absolute; left:-2.5rem; top:0.2rem; width:12px; height:12px; border-radius:50%; background: var(--rose); box-shadow: 0 0 0 4px var(--cream), 0 0 0 6px rgba(212,160,160,0.3); }
-
     .bottom-tagline { text-align:center; padding:0 2rem 2rem; font-family:'Dancing Script',cursive; font-size:1.1rem; color: var(--ink-mute); opacity:0.7; }
     .bottom-tagline .bullet { color: var(--rose); margin:0 6px; }
 
@@ -133,8 +124,6 @@
       .hero { padding:90px 1.5rem; }
       .section { padding:40px 1.5rem; }
       .split-grid { grid-template-columns:1fr; gap:2rem; }
-      .timeline { padding-left:1.5rem; }
-      .tl-dot { left:-2rem; }
       .story-cards-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width:480px) {
@@ -171,7 +160,7 @@
 
 <section class="hero">
   <canvas id="hero-canvas" data-3d-id="about-hero"></canvas>
-  <img class="hero-bg" src="images/portrait-watch.jpg" alt="" aria-hidden="true">
+  <img class="hero-bg" src="images/dubai-portrait.jpg" alt="" aria-hidden="true">
   <div class="hero-overlay"></div>
   <div class="hero-particles" id="hero-particles"></div>
   <div class="hero-inner">
@@ -180,7 +169,7 @@
       Nyra
       <span class="script-word">Lifestyle</span>
     </h1>
-    <p class="hero-sub">Fashion, travel, and the art of living beautifully — one story at a time.</p>
+    <p class="hero-sub">Fashion, travel, and the art of living beautifully — one story at a time. From Mumbai to Dubai and beyond, capturing moments that matter.</p>
     <div class="hero-cta">
       <a href="contact.html" class="btn-primary btn-3d" data-magnetic>
         Work With Me <span class="arrow">→</span>
@@ -197,7 +186,7 @@
   <div class="section-inner">
     <div class="split-grid">
       <div class="split-image tilt-3d floating-3d" data-tilt data-magnetic>
-        <img src="images/portrait-watch.jpg" alt="Nyra portrait" loading="lazy">
+        <img src="images/dubai-portrait.jpg" alt="Nyra portrait" loading="lazy">
       </div>
       <div class="split-text">
         <span class="eyebrow slide-up">My Journey</span>
@@ -223,41 +212,6 @@
       <p class="section-desc slide-up" style="transition-delay:0.1s">A few of my favourite stories — each one born from a moment I didn't want to forget.</p>
     </div>
     <div class="story-cards-grid" id="storyCardsGrid"></div>
-  </div>
-</section>
-
-<section class="section" id="timeline">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2 class="section-title slide-up">Milestones</h2>
-      <p class="section-desc slide-up" style="transition-delay:0.1s">Chapters from the journey — each one a step toward where I am today.</p>
-    </div>
-    <div class="timeline">
-      <div class="tl-item slide-up">
-        <div class="tl-dot"></div>
-        <div class="tl-year">2019</div>
-        <div class="tl-heading">Started My Journey</div>
-        <div class="tl-desc">Took the first step into content creation — sharing style and lifestyle moments that felt true.</div>
-      </div>
-      <div class="tl-item slide-up" style="transition-delay:0.1s">
-        <div class="tl-dot"></div>
-        <div class="tl-year">2020</div>
-        <div class="tl-heading">Expanded to TikTok</div>
-        <div class="tl-desc">Short-form video became a new way to connect — quick, honest, and full of personality.</div>
-      </div>
-      <div class="tl-item slide-up" style="transition-delay:0.2s">
-        <div class="tl-dot"></div>
-        <div class="tl-year">2026</div>
-        <div class="tl-heading">YouTube Channel Launch</div>
-        <div class="tl-desc">Longer stories, deeper dives — a home for the content that deserves more than 60 seconds.</div>
-      </div>
-      <div class="tl-item slide-up" style="transition-delay:0.3s">
-        <div class="tl-dot"></div>
-        <div class="tl-year">2026</div>
-        <div class="tl-heading">Brand Partnership Leader</div>
-        <div class="tl-desc">Leading partnerships with 5+ beloved brands — creating campaigns that feel authentic and drive real results.</div>
-      </div>
-    </div>
   </div>
 </section>
 
