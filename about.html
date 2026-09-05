@@ -24,31 +24,15 @@
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body {
-      font-family:'DM Sans',sans-serif;
-      background: var(--cream); color: var(--ink);
-      line-height:1.7; -webkit-font-smoothing:antialiased;
-      overflow-x:hidden;
-    }
-    .loading-overlay {
-      position:fixed; inset:0; z-index:9999;
-      background: var(--cream);
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      gap:1.2rem; transition: opacity 0.7s ease, visibility 0.7s ease;
-    }
+    body { font-family:'DM Sans',sans-serif; background: var(--cream); color: var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+
+    .loading-overlay { position:fixed; inset:0; z-index:9999; background: var(--cream); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.2rem; transition: opacity 0.7s ease, visibility 0.7s ease; }
     .loading-overlay.hidden { opacity:0; visibility:hidden; pointer-events:none; }
     .loading-logo { font-family:'Bodoni Moda',serif; font-size:2.2rem; font-weight:700; animation: load-pulse 1.4s ease-in-out infinite; }
     .loading-logo span { color: var(--rose); }
     @keyframes load-pulse { 0%,100% { opacity:0.3; transform:scale(0.94); } 50% { opacity:1; transform:scale(1.06); } }
 
-    .navbar {
-      position:fixed; top:0; left:0; right:0; z-index:1000;
-      background: rgba(250,247,242,0.70);
-      backdrop-filter: blur(24px) saturate(140%);
-      -webkit-backdrop-filter: blur(24px) saturate(140%);
-      border-bottom: 1px solid rgba(201,168,76,0.08);
-      padding: 0 2rem; transition: background 0.3s, box-shadow 0.3s;
-    }
+    .navbar { position:fixed; top:0; left:0; right:0; z-index:1000; background: rgba(250,247,242,0.70); backdrop-filter: blur(24px) saturate(140%); -webkit-backdrop-filter: blur(24px) saturate(140%); border-bottom: 1px solid rgba(201,168,76,0.08); padding: 0 2rem; transition: background 0.3s, box-shadow 0.3s; }
     .navbar.scrolled { background: rgba(250,247,242,0.92); box-shadow: 0 4px 24px rgba(0,0,0,0.04); }
     .nav-container { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:68px; }
     .nav-brand { display:flex; flex-direction:column; gap:1px; text-decoration:none; cursor:pointer; transition: transform 0.3s; }
@@ -67,21 +51,9 @@
     .hamburger.active span:nth-child(2) { opacity:0; }
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-    .hero {
-      position:relative; min-height:100vh;
-      display:flex; align-items:center; justify-content:center;
-      text-align:center; padding:90px 2rem; overflow:hidden;
-      background: var(--cream);
-    }
-    .hero-bg {
-      position:absolute; top:0; left:0; width:100%; height:100%;
-      object-fit:cover; opacity:0.10; z-index:0; pointer-events:none;
-    }
-    .hero-overlay {
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(250,247,242,0.92) 0%, rgba(250,247,242,0.55) 35%, rgba(250,247,242,0.30) 60%, rgba(250,247,242,0.90) 100%);
-      z-index:1;
-    }
+    .hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:90px 2rem; overflow:hidden; background: var(--cream); }
+    .hero-bg { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0.10; z-index:0; pointer-events:none; }
+    .hero-overlay { position:absolute; inset:0; background: linear-gradient(180deg, rgba(250,247,242,0.92) 0%, rgba(250,247,242,0.55) 35%, rgba(250,247,242,0.30) 60%, rgba(250,247,242,0.90) 100%); z-index:1; }
     #hero-canvas { position:absolute; inset:0; z-index:0; pointer-events:none; }
     .hero-particles { position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
     .hero-inner { position:relative; z-index:2; max-width:720px; display:flex; flex-direction:column; align-items:center; gap:0.5rem; }
@@ -93,8 +65,9 @@
     .btn-primary { background: var(--rose); color:#fff; padding:14px 32px; border-radius:100px; text-decoration:none; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:1.8px; transition: all 0.3s cubic-bezier(0.22,1,0.36,1); box-shadow: 0 8px 28px rgba(212,160,160,0.35); display:inline-flex; align-items:center; gap:10px; border:none; cursor:pointer; }
     .btn-primary:hover { transform: translateY(-3px); background: var(--rose-dark); box-shadow: 0 14px 40px rgba(212,160,160,0.45); }
     .btn-primary .arrow { transition: transform 0.25s; } .btn-primary:hover .arrow { transform: translateX(4px); }
-    .btn-ghost { background:transparent; color: var(--ink); padding:13px 28px; border-radius:100px; text-decoration:none; font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:1.8px; border:1.5px solid rgba(17,17,17,0.15); transition: all 0.3s ease; display:inline-flex; align-items:center; gap:10px; cursor:pointer; }
+    .btn-ghost { background:transparent; color: var(--ink); padding:13px 28px; border-radius:100px; text-decoration:none; font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:1.8px; border:1.5px solid rgba(17,17,17,0.15); transition: all 0.3s ease; display:inline-flex; align-items:center; gap:10px; cursor:pointer; font-family:'DM Sans',sans-serif; }
     .btn-ghost:hover { border-color: var(--ink); background: rgba(17,17,17,0.03); transform: translateY(-2px); }
+    .btn-ghost[aria-expanded="true"] { background: var(--ink); color:#fff; border-color: var(--ink); }
     .hero-scroll-hint { position:absolute; bottom:28px; left:50%; transform: translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; color: var(--ink-mute); font-size:0.62rem; letter-spacing:2px; text-transform:uppercase; animation: fadeInUp 0.8s ease 0.8s both; z-index:2; }
     .scroll-mouse { width:20px; height:30px; border:2px solid var(--ink-mute); border-radius:10px; position:relative; }
     .scroll-mouse::after { content:''; position:absolute; top:5px; left:50%; transform: translateX(-50%); width:2.5px; height:7px; background: var(--rose); border-radius:2px; animation: scroll-bounce 2s ease-in-out infinite; }
@@ -114,6 +87,20 @@
     .split-text .eyebrow { font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color: var(--rose); }
     .split-text h3 { font-family:'Bodoni Moda',serif; font-size:1.6rem; font-weight:700; line-height:1.25; }
     .split-text p { font-size:0.95rem; color: var(--ink-soft); line-height:1.8; }
+
+    /* ── Expandable Stories Panel ── */
+    .story-cards-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:24px; }
+    .story-card { background:#fff; border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow-sm); text-decoration:none; color:inherit; display:flex; flex-direction:column; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease; cursor:pointer; position:relative; will-change: transform; }
+    .story-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .story-card-img { width:100%; height:160px; overflow:hidden; background: var(--rose-pale); position:relative; }
+    .story-card-img img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+    .story-card:hover .story-card-img img { transform: scale(1.05); }
+    .story-card-body { padding:1.2rem 1.3rem 1.3rem; flex:1; display:flex; flex-direction:column; }
+    .story-card-tag { font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; color: var(--rose); margin-bottom:0.3rem; }
+    .story-card-title { font-family:'Bodoni Moda',serif; font-size:1.15rem; font-weight:700; line-height:1.25; margin-bottom:0.35rem; }
+    .story-card-excerpt { font-size:0.84rem; color: var(--ink-soft); line-height:1.6; flex:1; }
+    .story-card-link { margin-top:0.6rem; font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; color: var(--rose); display:inline-flex; align-items:center; gap:5px; transition: gap 0.25s; }
+    .story-card:hover .story-card-link { gap:9px; }
 
     .timeline { position:relative; max-width:700px; margin:3rem auto 0; padding-left:2rem; }
     .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background: linear-gradient(180deg, var(--rose), var(--gold)); opacity:0.4; }
@@ -148,10 +135,12 @@
       .split-grid { grid-template-columns:1fr; gap:2rem; }
       .timeline { padding-left:1.5rem; }
       .tl-dot { left:-2rem; }
+      .story-cards-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width:480px) {
       .nav-container { padding:0 1rem; }
       .hero-inner { max-width:100%; }
+      .story-cards-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -213,13 +202,27 @@
       <div class="split-text">
         <span class="eyebrow slide-up">My Journey</span>
         <h3 class="slide-up" style="transition-delay:0.08s">A lifelong love for style, travel, and the art of living well.</h3>
-        <p class="slide-up" style="transition-delay:0.16s">I'm Nyra — a lifestyle creator, storyteller, and forever collector of beautiful moments. My world is built on curiosity: trying new places, finding style in the everyday, and sharing what I learn along the way.</p>
-        <p class="slide-up" style="transition-delay:0.24s">This space is my little corner of the internet — part journal, part inspiration, part honest reflection. Welcome to it.</p>
-        <a href="blog.html" class="btn-ghost btn-3d" data-magnetic style="align-self:flex-start; margin-top:0.5rem">
-          Read My Stories <span>→</span>
-        </a>
+        <p class="slide-up" style="transition-delay:0.16s">I'm Nyra — a lifestyle creator, storyteller, and forever collector of beautiful moments. My world is built on curiosity: trying new places, finding style in the everyday, and sharing what I learn along the way. What started as a personal diary of outfit notes and café visits grew into something much bigger — a community of people who believe that the little things matter.</p>
+        <p class="slide-up" style="transition-delay:0.24s">I've called Mumbai home for as long as I can remember. The chaos and charm of this city shaped the way I see the world — everything is a story waiting to be told, if you're willing to look slowly enough.</p>
+        <p class="slide-up" style="transition-delay:0.32s">This space is my little corner of the internet — part journal, part inspiration, part honest reflection. Every post, every photo, every video is a piece of that story. I'm glad you're here for it.</p>
+        <div class="slide-up" style="transition-delay:0.4s; display:flex; flex-direction:column; gap:0.8rem; margin-top:0.3rem">
+          <button class="btn-ghost btn-3d stories-expand-btn" data-magnetic aria-expanded="false">
+            Read My Stories <span>→</span>
+          </button>
+        </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Expandable Stories Panel (3D animated) -->
+<section class="section" id="stories-panel" style="padding-top:0; display:none">
+  <div class="section-inner">
+    <div class="section-header" style="margin-bottom:2rem">
+      <h2 class="section-title slide-up">From the Journal</h2>
+      <p class="section-desc slide-up" style="transition-delay:0.1s">A few of my favourite stories — each one born from a moment I didn't want to forget.</p>
+    </div>
+    <div class="story-cards-grid" id="storyCardsGrid"></div>
   </div>
 </section>
 
@@ -286,13 +289,13 @@
 <script>
 (function () {
   'use strict';
+
   window.addEventListener('load', () => setTimeout(() => document.getElementById('loading').classList.add('hidden'), 500));
 
   const canvas = document.getElementById('hero-canvas');
   if (canvas) {
     _3D.init3D({
-      id: 'about-hero',
-      canvas,
+      id: 'about-hero', canvas,
       onInit(s) {
         const ringMat = new THREE.MeshStandardMaterial({ color:0xd4a0a0, emissive:0xd4a0a0, emissiveIntensity:0.10, transparent:true, opacity:0.22 });
         const ring = new THREE.Mesh(new THREE.TorusGeometry(2.0, 0.025, 24, 60), ringMat);
@@ -351,6 +354,107 @@
     }
   })();
 
+  /* ── Stories data ── */
+  const stories = [
+    {
+      tag: 'Travel',
+      title: 'Finding Magic in the Ordinary',
+      excerpt: 'Sometimes the most beautiful moments are the ones you don\'t plan — a quiet street corner, a perfect cup of chai, the light at golden hour.',
+      img: 'images/blog-little-things.jpg',
+      href: 'blog.html'
+    },
+    {
+      tag: 'Style',
+      title: 'The Art of Dressing for Yourself',
+      excerpt: 'A reflection on finding your own voice through what you wear — and why the best outfits are the ones that feel like you.',
+      img: 'images/blog-enjoy-company.jpg',
+      href: 'blog.html'
+    },
+    {
+      tag: 'Life',
+      title: 'Lessons I\'m Glad I Learned Early',
+      excerpt: 'Looking back on the twenties — the mistakes that taught me, the friendships that stayed, and the quiet realisations that changed everything.',
+      img: 'images/blog-20s-lessons.jpg',
+      href: 'blog.html'
+    },
+    {
+      tag: 'Behind the Scenes',
+      title: 'What the Photos Don\'t Show',
+      excerpt: 'Every perfect picture has a story behind it — the failed shots, the awkward moments, the laughter that made the final frame possible.',
+      img: 'images/blog-behind-picture.jpg',
+      href: 'blog.html'
+    },
+  ];
+
+  /* ── Render stories grid ── */
+  function renderStories() {
+    const grid = document.getElementById('storyCardsGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    stories.forEach((s, i) => {
+      const card = document.createElement('a');
+      card.href = s.href;
+      card.className = 'story-card tilt-3d';
+      card.setAttribute('data-tilt', '');
+      card.style.animationDelay = (i * 0.1) + 's';
+      card.innerHTML = `
+        <div class="story-card-img">
+          <img src="${s.img}" alt="${s.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='var(--rose-pale)'">
+        </div>
+        <div class="story-card-body">
+          <div class="story-card-tag">${s.tag}</div>
+          <div class="story-card-title">${s.title}</div>
+          <div class="story-card-excerpt">${s.excerpt}</div>
+          <div class="story-card-link">Read <span>→</span></div>
+        </div>`;
+      grid.appendChild(card);
+    });
+    setTimeout(() => {
+      grid.querySelectorAll('.story-card[data-tilt]').forEach(el => _3D.tiltCard(el, 10));
+    }, 150);
+  }
+
+  /* ── Stories panel toggle ── */
+  const expandBtn = document.querySelector('.stories-expand-btn');
+  const panel = document.getElementById('stories-panel');
+  const storySection = document.getElementById('story');
+
+  if (expandBtn && panel && storySection) {
+    expandBtn.addEventListener('click', () => {
+      const expanded = expandBtn.getAttribute('aria-expanded') === 'true';
+      if (expanded) {
+        /* collapse with 3D flip-out */
+        panel.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1)';
+        panel.style.opacity = '0';
+        panel.style.transform = 'translateY(20px) perspective(600px) rotateX(6deg)';
+        setTimeout(() => { panel.style.display = 'none'; }, 420);
+        expandBtn.setAttribute('aria-expanded', 'false');
+        expandBtn.innerHTML = 'Read My Stories <span>→</span>';
+        window.scrollTo({ top: storySection.offsetTop - 100, behavior: 'smooth' });
+      } else {
+        /* expand: render stories + fade in */
+        if (panel.style.display === 'none' || !panel.innerHTML.trim()) {
+          renderStories();
+        }
+        panel.style.display = 'block';
+        panel.style.opacity = '0';
+        panel.style.transform = 'translateY(30px) perspective(600px) rotateX(8deg)';
+        requestAnimationFrame(() => {
+          panel.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1)';
+          panel.style.opacity = '1';
+          panel.style.transform = 'translateY(0) perspective(600px) rotateX(0deg)';
+        });
+        expandBtn.setAttribute('aria-expanded', 'true');
+        expandBtn.innerHTML = 'Show Less <span>↑</span>';
+        window.scrollTo({ top: panel.offsetTop - 120, behavior: 'smooth' });
+        setTimeout(() => {
+          document.querySelectorAll('#stories-panel .slide-up').forEach(el => _3D.observeEl(el));
+        }, 50);
+      }
+    });
+  }
+
+  /* ── Tilt + magnetic + scroll ── */
   setTimeout(() => {
     document.querySelectorAll('.tilt-3d[data-tilt]').forEach(el => _3D.tiltCard(el, 10));
   }, 200);
