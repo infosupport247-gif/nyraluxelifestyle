@@ -6,7 +6,6 @@
   <title>Exclusive | Nyra Lifestyle</title>
   <link rel="canonical" href="https://www.nyraluxelifestyle.com/exclusive.html">
   <meta property="og:url" content="https://www.nyraluxelifestyle.com/exclusive.html">
-  <meta name="twitter:url" content="https://www.nyraluxelifestyle.com/exclusive.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -316,6 +315,7 @@
   </nav>
 
   <section class="hero">
+    <img src="images/content-7.jpg" alt="" class="hero-bg">
     <span class="label">Exclusive Access</span>
     <h1>The Inner Circle</h1>
     <p>Take your connection to the next level with content and experiences you won't find anywhere else.</p>
@@ -345,8 +345,7 @@
         <p>Go behind the camera with raw, unfiltered access to my creative process</p>
       </div>
       <div class="ex-card">
-        <div class="ex-icon">
-</div>
+        <div class="ex-icon"><i class="fas fa-lock"></i></div>
         <h3>Private Posts</h3>
         <p>Personal updates, thoughts, and stories shared directly with insiders</p>
       </div>
@@ -415,59 +414,6 @@ Join the Exclusive Community
     });
     window.addEventListener('scroll', () => {
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Navigate to Instagram when Join is clicked
-    const joinBtn = document.getElementById('joinCommunityBtn');
-    joinBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.location.href = 'https://www.instagram.com/nyra.luxe.lifestyle';
-    });
-    const modal = document.getElementById('subscribeModal');
-    const modalClose = document.getElementById('modalClose');
-    const modalSubscribe = document.getElementById('modalSubscribe');
-
-    joinBtn.addEventListener('click', () => {
-      modal.classList.add('open');
-    });
-
-    modalClose.addEventListener('click', () => {
-      modal.classList.remove('open');
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('open');
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('open')) {
-        modal.classList.remove('open');
-      }
-    });
-
-    modalSubscribe.addEventListener('click', () => {
-      modal.classList.remove('open');
-      // --- PAYMENT SETUP REQUIRED ---
-      // The test URL below does not work (returns AccessDenied).
-      // Create your own Stripe Payment Link:
-      //   1. Go to stripe.com/dashboard and log in
-      //   2. Products → Add product → Name: "Nyra Exclusive Membership"
-      //      Price: $9.99, Recurring: Monthly
-      //   3. Click "Create Payment Link" → copy the URL it gives you
-      //   4. Replace the URL below with your real one
-      // Your Payment Link will look like: https://buy.stripe.com/XXXXXXXXX
-      alert(
-        'Payment setup needed before subscriptions can work.\n\n' +
-        'Step 1: Go to stripe.com/dashboard and sign in\n' +
-        'Step 2: Products → Add product\n' +
-        '        Name: "Nyra Exclusive — $9.99/month"\n' +
-        '        Price: $9.99, Billing: Monthly\n' +
-        'Step 3: Click "Create Payment Link" and copy the URL\n' +
-        'Step 4: Open exclusive.html and replace the URL in the\n' +
-        '        modalSubscribe click handler (around line 586)\n\n' +
-        'Then the "Subscribe Now" button will take members to Stripe\n' +
-        'to complete their $9.99/month payment.'
-      );
     });
   </script>
 </body>

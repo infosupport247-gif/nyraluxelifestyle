@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Content — Nyra | Lifestyle</title>
+  <title>Content | Nyra Lifestyle</title>
   <link rel="canonical" href="https://www.nyraluxelifestyle.com/blog.html">
   <meta property="og:url" content="https://www.nyraluxelifestyle.com/blog.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,200 +12,292 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     :root {
-      --ink: #1a1a2e;
-      --ink-soft: #4a4a5a;
-      --cream: #faf6f0;
+      --ink: #111111;
+      --ink-soft: #4a4a4a;
+      --ink-mute: #8a8a8a;
       --rose: #d4a0a0;
+      --rose-dark: #c48a8a;
       --gold: #c9a84c;
-      --border: #e5e0d8;
-      --bg: #f8f5f0;
-      --radius: 16px;
-      --radius-sm: 10px;
+      --white: #ffffff;
+      --cream: #faf6f0;
       --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --border: rgba(0,0,0,0.06);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.6;
+      font-family:'DM Sans',sans-serif;
+      color:var(--ink);
+      background:var(--cream);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    h1,h2,h3,h4 {
+      font-family:'Bodoni Moda',serif;
+      font-weight:600;
+      color:var(--ink);
+      line-height:1.15;
     }
 
-    /* ── Navbar ── */
     .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(250,246,240,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
-      transition: box-shadow 0.3s;
+      position:fixed; top:0; left:0; right:0;
+      z-index:1000;
+      background:rgba(250,246,240,0.92);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(0,0,0,0.04);
+      padding:0 2rem;
+      transition:all 0.3s ease;
     }
-    .navbar.scrolled { box-shadow: var(--shadow-md); }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
+    .navbar.scrolled { box-shadow:var(--shadow-sm); }
+    .nav-container {
+      max-width:1280px; margin:0 auto;
+      display:flex; justify-content:space-between; align-items:center;
+      height:68px;
     }
-    .brand {
-      display: flex; align-items: center; gap: 8px;
-      text-decoration: none; color: var(--ink);
+    .nav-logo {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.4rem; font-weight:700;
+      text-decoration:none; color:var(--ink);
     }
-    .brand-main {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1.5rem; font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-    .brand-tagline {
-      font-family: 'Dancing Script', cursive;
-      font-size: 0.9rem; color: var(--rose);
-      font-weight: 700;
-    }
-    .nav-links { display: flex; gap: 28px; }
+    .nav-logo span { color:var(--rose); }
+    .nav-links { display:flex; list-style:none; gap:0.25rem; }
     .nav-links a {
-      text-decoration: none; color: var(--ink);
-      font-size: 0.82rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 1.5px;
-      transition: color 0.3s;
+      color:var(--ink-soft); text-decoration:none;
+      font-size:0.72rem; font-weight:600;
+      text-transform:uppercase; letter-spacing:1px;
+      padding:0.4rem 0.65rem; border-radius:2px;
+      transition:color 0.2s;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--rose); }
-    .nav-email {
-      color: var(--ink); font-size: 1.1rem;
-      transition: color 0.3s;
-    }
-    .nav-email:hover { color: var(--rose); }
-    .hamburger {
-      display: none; background: none; border: none;
-      font-size: 1.3rem; color: var(--ink); cursor: pointer;
-    }
+    .nav-links a:hover, .nav-links a.active { color:var(--rose); }
 
-    /* ── Hero ── */
     .hero {
-      min-height: 85vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 100px 24px 60px;
-      position: relative;
-      background:
-        linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
+      min-height:80vh;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center;
+      padding:100px 2rem 60px;
+      position:relative;
+      overflow:hidden;
     }
-    .hero h1 {
-      font-family: 'Bodoni Moda', serif;
-      font-size: clamp(2.8rem, 6vw, 4.2rem);
-      font-weight: 700; letter-spacing: -1px;
-      margin-bottom: 16px;
+    .hero::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0; bottom:0;
+      background: linear-gradient(180deg, rgba(250,246,240,0) 0%, rgba(250,246,240,0.97) 30%);
+      z-index:1;
     }
-    .hero h1 span { color: var(--rose); }
-    .hero p {
-      font-size: 1.05rem; color: var(--ink-soft);
-      max-width: 520px; margin: 0 auto;
-      font-weight: 400;
-    }
-
-    /* ── Section Shell ── */
-    section { padding: 60px 24px; }
-    .container { max-width: 1200px; margin: 0 auto; }
-
-    /* ── Section Label ── */
+    .hero-inner { position:relative; z-index:2; max-width:720px; }
     .section-label {
-      font-size: 0.7rem; text-transform: uppercase;
-      letter-spacing: 2.5px; color: var(--rose);
-      font-weight: 600;
-      display: block; margin-bottom: 6px;
+      display:inline-block;
+      font-size:0.7rem; font-weight:600;
+      text-transform:uppercase; letter-spacing:2px;
+      color:var(--rose);
+      margin-bottom:1rem;
     }
     .section-title {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 2rem; font-weight: 700;
-      margin-bottom: 8px;
+      font-size:2.8rem; font-weight:700;
+      line-height:1.1;
+      margin-bottom:1rem;
+      color:var(--ink);
     }
     .section-desc {
-      color: var(--ink-soft); font-size: 0.95rem;
-      max-width: 540px; margin: 0 auto 40px;
+      font-size:1.05rem; color:var(--ink-soft);
+      max-width:520px; margin:0 auto;
     }
-    .section-header-center {
-      text-align: center; margin-bottom: 40px;
+    .hero-bg {
+      position:absolute; top:-10%; right:-10%;
+      width:60%; height:80%;
+      object-fit:cover;
+      opacity:0.08;
+      z-index:0;
+      pointer-events:none;
     }
 
-    /* ── Blog Cards (Stories That Connect) ── */
+    .section { padding:70px 2rem; }
+    .section-inner {
+      max-width:1280px; margin:0 auto;
+    }
+    .section-header {
+      text-align:center;
+      margin-bottom:48px;
+    }
+    .section-header .section-title { font-size:2.2rem; }
+    .section-desc {
+      font-size:1rem; color:var(--ink-soft);
+      max-width:540px; margin:8px auto 0;
+    }
+
+    /* ── Blog Grid ── */
     .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 28px;
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+      gap:28px;
     }
     .blog-card {
-      background: #fff;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-decoration: none; color: inherit;
-      display: flex; flex-direction: column;
+      background:#fff;
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow-sm);
+      cursor:pointer;
+      transition:transform 0.3s, box-shadow 0.3s;
+      text-decoration:none; color:inherit;
+      display:flex; flex-direction:column;
     }
     .blog-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
+      transform:translateY(-4px);
+      box-shadow:var(--shadow-md);
     }
-    .blog-card {
-      background: #fff;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      cursor: pointer;
-      text-decoration: none; color: inherit;
-      display: block;
-      transition: transform 0.3s, box-shadow 0.3s;
-      border: 1px solid var(--border);
-      padding: 0;
+    .blog-card-img {
+      width:100%;
+      height:200px;
+      overflow:hidden;
+      background:var(--rose-pale);
     }
-    .blog-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--rose);
+    .blog-card-img img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform 0.4s ease;
     }
+    .blog-card:hover .blog-card-img img { transform:scale(1.05); }
     .blog-card-body {
-      padding: 20px 22px 22px;
-      display: flex; flex-direction: column;
+      padding:18px 20px 20px;
+      display:flex; flex-direction:column;
     }
     .blog-card-tag {
-      font-size: 0.68rem; text-transform: uppercase;
-      letter-spacing: 1.5px; font-weight: 600;
-      color: var(--rose);
-      margin-bottom: 6px;
+      font-size:0.68rem; text-transform:uppercase;
+      letter-spacing:1.5px; font-weight:600;
+      color:var(--rose);
+      margin-bottom:6px;
     }
     .blog-card-title {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1.25rem; font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 8px;
-      color: var(--ink);
+      font-size:1.15rem; font-weight:700;
+      line-height:1.3;
+      margin-bottom:8px;
+      color:var(--ink);
     }
     .blog-card-excerpt {
-      font-size: 0.88rem; color: var(--ink-soft);
-      line-height: 1.5;
-      flex: 1;
-      margin-bottom: 14px;
+      font-size:0.86rem; color:var(--ink-soft);
+      line-height:1.5;
+      flex:1;
+      margin-bottom:12px;
     }
     .blog-card-meta {
-      font-size: 0.75rem; color: var(--ink-soft);
-      display: flex; align-items: center; gap: 8px;
-      border-top: 1px solid var(--border);
-      padding-top: 12px;
-      margin-top: auto;
+      font-size:0.72rem; color:var(--ink-soft);
+      display:flex; align-items:center; gap:8px;
+      border-top:1px solid var(--border);
+      padding-top:10px;
+      margin-top:auto;
     }
-    .blog-card-meta span { font-weight: 500; }
+    .blog-card-meta span { font-weight:500; }
     .blog-card-read {
-      margin-top: 14px;
-      font-size: 0.78rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 1.5px;
-      color: var(--rose);
-      display: inline-flex; align-items: center; gap: 6px;
-      transition: gap 0.3s;
+      margin-top:12px;
+      font-size:0.75rem; font-weight:600;
+      text-transform:uppercase; letter-spacing:1.5px;
+      color:var(--rose);
+      display:inline-flex; align-items:center; gap:6px;
+      transition:gap 0.3s;
     }
-    .blog-card:hover .blog-card-read { gap: 10px; }
+    .blog-card:hover .blog-card-read { gap:10px; }
 
-    /* ── Platform Tabs ── */
-    .blog-grid { grid-template-columns: 1fr; }
-        .section-title { font-size: 1.5rem; }
+    /* ── Footer ── */
+    .footer {
+      background:var(--ink);
+      color:rgba(250,246,240,0.7);
+      padding:3rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width:1280px; margin:0 auto;
+      display:flex; justify-content:space-between; align-items:center;
+      flex-wrap:wrap; gap:1rem;
+    }
+    .footer-logo {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.4rem; font-weight:700;
+      color:#fff;
+    }
+    .footer-logo span { color:var(--rose); }
+    .footer-tagline {
+      font-family:'Dancing Script',cursive;
+      font-size:0.9rem;
+      color:rgba(250,246,240,0.5);
+    }
+    .footer-bottom { width:100%; text-align:center; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.08); margin-top:1rem; }
+    .footer-bottom p { font-size:0.8rem; }
+
+    /* ── Blog Detail Modal ── */
+    .modal-overlay {
+      position:fixed; top:0; left:0; right:0; bottom:0;
+      background:rgba(0,0,0,0.55);
+      z-index:2000;
+      display:none;
+      align-items:center; justify-content:center;
+      padding:2rem;
+      animation:fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    .modal-overlay.open { display:flex; }
+    .modal-box {
+      background:var(--cream);
+      border-radius:var(--radius);
+      max-width:680px; width:100%;
+      max-height:85vh; overflow-y:auto;
+      padding:2rem 2.5rem;
+      position:relative;
+      box-shadow:var(--shadow-md);
+      animation:slideUp 0.3s ease;
+    }
+    @keyframes slideUp { from { transform:translateY(30px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+    .modal-close {
+      position:absolute; top:1rem; right:1rem;
+      width:32px; height:32px; border-radius:50%;
+      background:var(--rose-pale);
+      border:none; cursor:pointer;
+      font-size:1.2rem; color:var(--ink);
+      display:flex; align-items:center; justify-content:center;
+      transition:background 0.2s;
+    }
+    .modal-close:hover { background:var(--rose); color:#fff; }
+    .modal-header { margin-bottom:1.5rem; }
+    .modal-tag {
+      font-size:0.68rem; text-transform:uppercase;
+      letter-spacing:1.5px; font-weight:600;
+      color:var(--rose);
+    }
+    .modal-title {
+      font-size:1.6rem; font-weight:700;
+      line-height:1.2; margin:6px 0 10px;
+    }
+    .modal-meta {
+      font-size:0.8rem; color:var(--ink-soft);
+      display:flex; gap:1rem;
+    }
+    .modal-body {
+      font-size:1rem; line-height:1.8; color:var(--ink-soft);
+    }
+    .modal-body p { margin-bottom:1rem; }
+    .modal-body p:last-child { margin-bottom:0; }
+    .modal-body p[style] { margin-top:1.5rem; font-size:0.95rem; font-style:italic; }
+    .modal-back {
+      margin-top:2rem; padding:0.7rem 2rem;
+      background:var(--rose); color:#fff;
+      border:none; border-radius:2px;
+      font-size:0.78rem; font-weight:600;
+      text-transform:uppercase; letter-spacing:1.5px;
+      cursor:pointer; transition:background 0.2s;
+      display:inline-block;
+    }
+    .modal-back:hover { background:var(--rose-dark); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .nav-links { display:none; position:absolute; top:68px; left:0; right:0; background:rgba(250,246,240,0.98); flex-direction:column; padding:1rem; box-shadow:var(--shadow-md); border-top:1px solid rgba(0,0,0,0.04); }
+      .nav-links.active { display:flex; }
+      .section-title { font-size:1.8rem; }
+      .blog-grid { grid-template-columns:1fr; }
+      .hero::before { background: linear-gradient(180deg, rgba(250,246,240,0) 0%, rgba(250,246,240,0.98) 20%); }
     }
   </style>
 </head>
@@ -213,11 +305,8 @@
 
   <!-- ═════════════ NAVBAR ═════════════ -->
   <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <a href="index.html" class="brand">
-        <span class="brand-main">Nyra</span>
-        <span class="brand-tagline">Lifestyle</span>
-      </a>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Nyra<span>.</span></a>
       <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -227,20 +316,22 @@
         <a href="portfolio.html">Portfolio</a>
         <a href="contact.html">Contact</a>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <i class="fas fa-bars"></i>
-      </button>
     </div>
   </nav>
 
-  <!-- ═════════════ SECTION 1: STORIES THAT CONNECT ═════════════ -->
-  <section id="stories-that-connect" style="padding-top:80px;">
-    <div class="container">
-      <div class="section-header-center">
-        <h2 class="section-title">Stories That Connect</h2>
-        <p class="section-desc">Thoughts, stories, and ideas I want to share with you — my personal blog posts.</p>
-      </div>
+  <!-- ═════════════ HERO ═════════════ -->
+  <section class="hero">
+    <img src="images/content-1.jpg" alt="" class="hero-bg">
+    <div class="hero-inner">
+      <span class="section-label">My Blog</span>
+      <h1 class="section-title">Stories That Connect</h1>
+      <p class="section-desc">Thoughts, stories, and ideas I want to share with you — my personal blog posts.</p>
+    </div>
+  </section>
 
+  <!-- ═════════════ BLOG POSTS ═════════════ -->
+  <section class="section">
+    <div class="section-inner">
       <div class="blog-grid" id="blogGrid">
         <!-- Blog posts are rendered here by JavaScript.
              Add your blog posts in the blogPosts array below. -->
@@ -248,13 +339,14 @@
     </div>
   </section>
 
-  <!-- ═════════════ SECTION 2: LATEST FROM MY WORLD ═════════════ -->
-<!-- ═════════════ FOOTER ═════════════ -->
+  <!-- ═════════════ FOOTER ═════════════ -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-logo">Nyra<span>.</span></div>
-      <div class="footer-tagline" style="font-family:'Dancing Script',cursive;font-size:0.9rem;color:rgba(250,246,240,0.6);">Fashion, travel, lifestyle</div>
-<div class="footer-bottom">
+      <div>
+        <div class="footer-logo">Nyra<span>.</span></div>
+        <div class="footer-tagline">Fashion, travel, lifestyle</div>
+      </div>
+      <div class="footer-bottom">
         <p>&copy; 2026 Nyra. All rights reserved. &middot; Mumbai, India</p>
       </div>
     </div>
@@ -274,9 +366,9 @@
     /* ═══════════════════════════════════════════════
        DATA: Blog Posts (Section 1)
        Add/remove/edit blog posts here.
-       Click a blog card → opens the detail modal.
+       Click a blog card -> opens the detail modal.
        ═══════════════════════════════════════════════ */
-        const blogPosts = [
+    const blogPosts = [
       {
         id: 1,
         title: 'The Little Things That Make an Ordinary Day Special',
@@ -366,6 +458,7 @@
         card.className = 'blog-card';
         card.setAttribute('data-post-id', post.id);
         card.innerHTML =
+          '<div class="blog-card-img"><img src="' + (post.img || '') + '" alt="' + (post.title || '') + '" loading="lazy"></div>' +
           '<div class="blog-card-body">' +
             '<span class="blog-card-tag">' + (post.tag || '') + '</span>' +
             '<h3 class="blog-card-title">' + (post.title || '') + '</h3>' +
@@ -394,7 +487,7 @@
       var content = document.getElementById('modalContent');
       content.innerHTML =
         '<div class="modal-header">' +
-          '<span class="blog-card-tag">' + (post.tag || '') + '</span>' +
+          '<span class="modal-tag">' + (post.tag || '') + '</span>' +
           '<h2 class="modal-title">' + (post.title || '') + '</h2>' +
           '<div class="modal-meta">' +
             '<span>' + (post.date || '') + '</span>' +
@@ -430,10 +523,7 @@
        INIT
        ═══════════════════════════════════════════════ */
     renderBlogCards();
+  </script>
 
-
-
-    </script>
 </body>
 </html>
-
