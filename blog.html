@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Content | Nyra Lifestyle</title>
+  <title>Stories | Nyra Lifestyle</title>
   <link rel="canonical" href="https://www.nyraluxelifestyle.com/blog.html">
   <meta property="og:url" content="https://www.nyraluxelifestyle.com/blog.html">
+  <meta name="description" content="Thoughts, stories and moments — shared honestly. Welcome to my blog.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="3d.css">
   <style>
     :root {
       --ink: #111111;
@@ -17,241 +19,457 @@
       --ink-mute: #8a8a8a;
       --rose: #d4a0a0;
       --rose-dark: #c48a8a;
+      --rose-pale: #f0d8d0;
       --gold: #c9a84c;
       --white: #ffffff;
-      --cream: #faf6f0;
-      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-      --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
-      --radius: 12px;
-      --radius-sm: 8px;
-      --border: rgba(0,0,0,0.06);
+      --cream: #faf7f2;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+      --radius: 14px;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body {
       font-family:'DM Sans',sans-serif;
-      color:var(--ink);
-      background:var(--cream);
-      line-height:1.6;
+      background: var(--cream);
+      color: var(--ink);
+      line-height:1.7;
       -webkit-font-smoothing:antialiased;
-    }
-    h1,h2,h3,h4 {
-      font-family:'Bodoni Moda',serif;
-      font-weight:600;
-      color:var(--ink);
-      line-height:1.15;
+      overflow-x:hidden;
     }
 
-    .navbar {
-      position:fixed; top:0; left:0; right:0;
-      z-index:1000;
-      background:rgba(250,246,240,0.92);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
-      border-bottom:1px solid rgba(0,0,0,0.04);
-      padding:0 2rem;
-      transition:all 0.3s ease;
+    /* ── Loading ── */
+    .loading-overlay {
+      position:fixed; inset:0; z-index:9999;
+      background: var(--cream);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:1.2rem;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
     }
-    .navbar.scrolled { box-shadow:var(--shadow-sm); }
+    .loading-overlay.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+    .loading-logo {
+      font-family:'Bodoni Moda',serif;
+      font-size:2.2rem; font-weight:700;
+      animation: load-pulse 1.4s ease-in-out infinite;
+    }
+    .loading-logo span { color: var(--rose); }
+    @keyframes load-pulse {
+      0%,100% { opacity:0.3; transform:scale(0.94); }
+      50% { opacity:1; transform:scale(1.06); }
+    }
+
+    /* ── Navbar ── */
+    .navbar {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      background: rgba(250,247,242,0.70);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+      padding: 0 2rem;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .navbar.scrolled {
+      background: rgba(250,247,242,0.92);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    }
     .nav-container {
       max-width:1280px; margin:0 auto;
-      display:flex; justify-content:space-between; align-items:center;
+      display:flex; align-items:center; justify-content:space-between;
       height:68px;
     }
-    .nav-logo {
+    .nav-brand {
+      display:flex; flex-direction:column; gap:1px;
+      text-decoration:none; cursor:pointer;
+      transition: transform 0.3s ease;
+    }
+    .nav-brand:hover { transform: translateY(-1px); }
+    .nav-brand .name {
       font-family:'Bodoni Moda',serif;
-      font-size:1.4rem; font-weight:700;
-      text-decoration:none; color:var(--ink);
+      font-size:1.2rem; font-weight:700; color:var(--ink);
     }
-    .nav-logo span { color:var(--rose); }
-    .nav-links { display:flex; list-style:none; gap:0.25rem; }
+    .nav-brand .name span { color: var(--rose); }
+    .nav-brand .script {
+      font-family:'Dancing Script',cursive;
+      font-size:0.7rem; color:var(--ink-mute);
+      letter-spacing:1px;
+    }
+    .nav-links {
+      display:flex; align-items:center; gap:1.8rem;
+      list-style:none;
+    }
     .nav-links a {
-      color:var(--ink-soft); text-decoration:none;
-      font-size:0.72rem; font-weight:600;
-      text-transform:uppercase; letter-spacing:1px;
-      padding:0.4rem 0.65rem; border-radius:2px;
-      transition:color 0.2s;
+      text-decoration:none; color:var(--ink-soft);
+      font-size:0.8rem; font-weight:600;
+      text-transform:uppercase; letter-spacing:1.5px;
+      position:relative; padding:4px 0;
+      transition: color 0.25s;
     }
-    .nav-links a:hover, .nav-links a.active { color:var(--rose); }
+    .nav-links a::after {
+      content:''; position:absolute; bottom:0; left:0;
+      width:0; height:1.5px;
+      background: var(--rose);
+      transition: width 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--ink); }
+    .nav-links a.active::after { width: 100%; }
+    .hamburger {
+      display:none;
+      flex-direction:column; gap:5px;
+      cursor:pointer; padding:4px;
+      background:none; border:none;
+    }
+    .hamburger span {
+      width:22px; height:2px; background:var(--ink);
+      transition: transform 0.3s, opacity 0.3s;
+      border-radius:2px;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.active span:nth-child(2) { opacity:0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
+    /* ── Hero ── */
     .hero {
-      min-height:55vh;
-      padding:70px 2rem 5px;
-      position:relative; overflow:hidden;
-      background:#FAF7F2;
+      position:relative;
+      min-height:90vh;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center;
+      padding:90px 2rem 50px;
+      overflow:hidden;
+      background: var(--cream);
     }
     .hero-bg {
       position:absolute; top:0; left:0;
       width:100%; height:100%;
       object-fit:cover;
-      opacity:0.15;
+      opacity:0.10;
       z-index:0; pointer-events:none;
     }
     .hero-overlay {
-      position:absolute; top:0; left:0; right:0; bottom:0;
-      background: linear-gradient(180deg, rgba(250,246,240,0.93) 0%, rgba(250,246,240,0.75) 40%, rgba(250,246,240,0.93) 100%);
+      position:absolute; inset:0;
+      background: linear-gradient(180deg,
+        rgba(250,247,242,0.92) 0%,
+        rgba(250,247,242,0.55) 35%,
+        rgba(250,247,242,0.30) 60%,
+        rgba(250,247,242,0.90) 100%);
       z-index:1;
+    }
+    #hero-canvas {
+      position:absolute; inset:0;
+      z-index:0; pointer-events:none;
+    }
+    .hero-particles {
+      position:absolute; inset:0; z-index:1;
+      pointer-events:none; overflow:hidden;
     }
     .hero-inner {
       position:relative; z-index:2;
-      max-width:760px;
+      max-width:720px;
       display:flex; flex-direction:column; align-items:center;
+      gap:0.5rem;
     }
     .section-label {
       display:inline-block;
       font-size:0.7rem; font-weight:600;
-      text-transform:uppercase; letter-spacing:2px;
-      color:var(--rose);
-      margin-bottom:0.5rem;
+      text-transform:uppercase; letter-spacing:3px;
+      color: var(--rose);
+      animation: fadeInUp 0.8s ease 0.15s both;
     }
-    .section-title {
-      font-size:2.4rem; font-weight:700;
-      line-height:1.1;
-      margin-bottom:0.5rem;
-      color:var(--ink);
+    .hero-title {
+      font-family:'Bodoni Moda',serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight:800;
+      line-height:1.05;
+      letter-spacing:-1px;
+      color: var(--ink);
+      animation: fadeInUp 0.8s ease 0.3s both;
     }
-    .section-desc {
-      font-size:1rem; color:var(--ink-soft);
-      max-width:520px; margin:0 auto 1rem;
+    .hero-sub {
+      font-size:1.05rem;
+      color: var(--ink-soft);
+      max-width:480px;
+      margin:0 auto 1.5rem;
+      line-height:1.7;
+      font-weight:300;
+      animation: fadeInUp 0.8s ease 0.45s both;
+    }
+    .hero-cta {
+      animation: fadeInUp 0.8s ease 0.6s both;
+    }
+    .btn-ghost {
+      background:transparent;
+      color: var(--ink);
+      padding:13px 28px;
+      border-radius:100px;
+      text-decoration:none;
+      font-size:0.8rem; font-weight:600;
+      text-transform:uppercase; letter-spacing:1.8px;
+      border:1.5px solid rgba(17,17,17,0.15);
+      transition: all 0.3s ease;
+      display:inline-flex; align-items:center; gap:10px;
+      cursor:pointer;
+    }
+    .btn-ghost:hover {
+      border-color: var(--ink);
+      background: rgba(17,17,17,0.03);
+      transform: translateY(-2px);
+    }
+    .hero-scroll-hint {
+      position:absolute; bottom:28px; left:50%;
+      transform: translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+      color: var(--ink-mute);
+      font-size:0.62rem; letter-spacing:2px; text-transform:uppercase;
+      animation: fadeInUp 0.8s ease 0.8s both;
+      z-index:2;
+    }
+    .scroll-mouse {
+      width:20px; height:30px;
+      border:2px solid var(--ink-mute);
+      border-radius:10px;
+      position:relative;
+    }
+    .scroll-mouse::after {
+      content:''; position:absolute;
+      top:5px; left:50%; transform: translateX(-50%);
+      width:2.5px; height:7px;
+      background: var(--rose);
+      border-radius:2px;
+      animation: scroll-bounce 2s ease-in-out infinite;
+    }
+    @keyframes scroll-bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); opacity:1; }
+      50% { transform: translateX(-50%) translateY(7px); opacity:0.3; }
+    }
+    @keyframes fadeInUp {
+      from { opacity:0; transform: translateY(20px); }
+      to { opacity:1; transform: translateY(0); }
     }
 
-    .section { padding:20px 2rem; }
+    /* ── Section ── */
+    .section {
+      padding:50px 2rem;
+    }
     .section-inner {
       max-width:1280px; margin:0 auto;
     }
     .section-header {
       text-align:center;
-      margin-bottom:16px;
+      margin-bottom:2.5rem;
     }
-    .section-header .section-title { font-size:2rem; }
-    .section-header .section-desc {
-      font-size:1rem; color:var(--ink-soft);
-      max-width:540px; margin:6px auto 0;
+    .section-title {
+      font-family:'Bodoni Moda',serif;
+      font-size:clamp(1.8rem, 4vw, 2.4rem);
+      font-weight:700;
+      line-height:1.15;
+      color: var(--ink);
+    }
+    .section-desc {
+      font-size:0.95rem; color:var(--ink-soft);
+      max-width:480px; margin:0.4rem auto 0;
     }
 
     /* ── Blog Grid ── */
     .blog-grid {
       display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap:28px;
     }
     .blog-card {
-      background:#fff;
-      border-radius:var(--radius);
+      background: #fff;
+      border-radius: var(--radius);
       overflow:hidden;
-      box-shadow:var(--shadow-sm);
+      box-shadow: var(--shadow-sm);
       cursor:pointer;
-      transition:transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.4s ease;
       text-decoration:none; color:inherit;
       display:flex; flex-direction:column;
+      position:relative;
+      will-change: transform;
     }
     .blog-card:hover {
-      transform:translateY(-4px);
-      box-shadow:var(--shadow-md);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
     }
     .blog-card-img {
-      width:100%;
-      height:200px;
+      width:100%; height:200px;
       overflow:hidden;
-      background:var(--rose-pale);
+      background: var(--rose-pale);
+      position:relative;
     }
     .blog-card-img img {
-      width:100%;
-      height:100%;
+      width:100%; height:100%;
       object-fit:cover;
-      transition:transform 0.4s ease;
+      transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
     }
-    .blog-card:hover .blog-card-img img { transform:scale(1.05); }
+    .blog-card:hover .blog-card-img img { transform: scale(1.06); }
+    .blog-card-img .img-overlay {
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.3) 100%);
+      opacity:0; transition: opacity 0.3s;
+    }
+    .blog-card:hover .blog-card-img .img-overlay { opacity:1; }
     .blog-card-body {
-      padding:18px 20px 20px;
+      padding:1.2rem 1.4rem 1.4rem; flex:1;
       display:flex; flex-direction:column;
     }
     .blog-card-tag {
-      font-size:0.68rem; text-transform:uppercase;
-      letter-spacing:1.5px; font-weight:600;
-      color:var(--rose);
-      margin-bottom:6px;
+      font-size:0.68rem; font-weight:600;
+      text-transform:uppercase; letter-spacing:1.5px;
+      color: var(--rose);
+      margin-bottom:0.35rem;
     }
     .blog-card-title {
-      font-size:1.15rem; font-weight:700;
-      line-height:1.3;
-      margin-bottom:8px;
-      color:var(--ink);
+      font-family:'Bodoni Moda',serif;
+      font-size:1.25rem; font-weight:700;
+      line-height:1.25; margin-bottom:0.35rem;
     }
     .blog-card-excerpt {
       font-size:0.86rem; color:var(--ink-soft);
-      line-height:1.5;
-      flex:1;
-      margin-bottom:12px;
+      line-height:1.6; flex:1;
     }
     .blog-card-meta {
-      font-size:0.72rem; color:var(--ink-soft);
+      font-size:0.72rem; color:var(--ink-mute);
       display:flex; align-items:center; gap:8px;
       border-top:1px solid var(--border);
-      padding-top:10px;
+      padding-top:0.8rem;
       margin-top:auto;
     }
-    .blog-card-meta span { font-weight:500; }
+    .blog-card-meta .date { font-weight:500; }
+    .blog-card-meta .dot { width:3px; height:3px; border-radius:50%; background: var(--ink-mute); opacity:0.4; }
+    .blog-card-meta .readtime { font-weight:500; }
     .blog-card-read {
-      margin-top:12px;
-      font-size:0.75rem; font-weight:600;
+      margin-top:0.8rem;
+      font-size:0.73rem; font-weight:600;
       text-transform:uppercase; letter-spacing:1.5px;
-      color:var(--rose);
+      color: var(--rose);
       display:inline-flex; align-items:center; gap:6px;
-      transition:gap 0.3s;
+      transition: gap 0.25s;
     }
     .blog-card:hover .blog-card-read { gap:10px; }
 
+    /* ── Modal ── */
+    .modal-overlay {
+      position:fixed; inset:0; z-index:2000;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(8px);
+      display:flex; align-items:flex-end; justify-content:center;
+      opacity:0; visibility:hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .modal-overlay.open {
+      opacity:1; visibility:visible;
+    }
+    .modal-box {
+      background: #fff;
+      width:100%; max-width:680px;
+      max-height:85vh; overflow-y:auto;
+      padding:2rem 2.5rem;
+      position:relative;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(40px);
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+      border-radius: 20px 20px 0 0;
+    }
+    .modal-overlay.open .modal-box { transform: translateY(0); }
+    .modal-close {
+      position:absolute; top:1rem; right:1rem;
+      width:34px; height:34px; border-radius:50%;
+      background: var(--rose-pale);
+      border:none; cursor:pointer;
+      font-size:1.1rem; color: var(--ink);
+      display:flex; align-items:center; justify-content:center;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: var(--rose); color: #fff; }
+    .modal-header { margin-bottom:1.5rem; }
+    .modal-tag {
+      font-size:0.68rem; text-transform:uppercase;
+      letter-spacing:1.5px; font-weight:600;
+      color: var(--rose);
+      margin-bottom:0.5rem;
+    }
+    .modal-title {
+      font-family:'Bodoni Moda',serif;
+      font-size:1.6rem; font-weight:700;
+      line-height:1.2; margin:6px 0 10px;
+    }
+    .modal-meta {
+      font-size:0.72rem; color:var(--ink-mute);
+      display:flex; align-items:center; gap:8px;
+    }
+    .modal-body p {
+      font-size:0.95rem; color:var(--ink-soft);
+      line-height:1.8; margin-bottom:1rem;
+    }
+    .modal-body p:last-child { margin-bottom:0; }
+    .modal-back {
+      position:absolute; bottom:1.2rem; left:50%;
+      transform: translateX(-50%);
+      background: none; border:none;
+      font-size:0.75rem; font-weight:600;
+      text-transform:uppercase; letter-spacing:1.5px;
+      color: var(--ink-soft);
+      cursor:pointer;
+      padding:8px 16px;
+      transition: color 0.2s;
+    }
+    .modal-back:hover { color: var(--ink); }
+
     /* ── Social Handles ── */
     .social-handles {
+      text-align:center;
+      padding:60px 2rem 30px;
+    }
+    .social-handles .section-title {
+      margin-bottom:0.5rem;
+    }
+    .social-handles .section-desc {
+      margin:0 auto 2rem;
+    }
+    .handles-grid {
       display:flex; flex-wrap:wrap; justify-content:center; gap:16px;
       max-width:720px; margin:0 auto;
     }
     .handle-card {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:10px;
-      padding:1.25rem 0.75rem;
-      background:#fff;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow-sm);
-      text-decoration:none;
-      color:var(--ink);
-      transition:transform 0.25s, box-shadow 0.25s;
+      display:flex; flex-direction:column; align-items:center; gap:10px;
+      padding:1.1rem 0.7rem;
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      text-decoration:none; color: var(--ink);
+      transition: transform 0.3s, box-shadow 0.3s;
       border:1px solid var(--border);
+      min-width:90px;
+      cursor:pointer;
     }
     .handle-card:hover {
-      transform:translateY(-3px);
-      box-shadow:var(--shadow-md);
-      border-color:var(--rose);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--rose);
     }
     .handle-icon {
-      width:44px; height:44px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:1.2rem;
-      color:#fff;
+      width:42px; height:42px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem; color: #fff;
     }
-    .handle-icon.instagram { background:linear-gradient(135deg, #F58529, #DD2A7B, #8134AF); }
-    .handle-icon.youtube { background:var(--ink); }
-    .handle-icon.tiktok { background:#010101; }
-    .handle-icon.pinterest { background:#E60023; }
-    .handle-icon.telegram { background:#24A1DE; }
+    .handle-icon.instagram { background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF); }
+    .handle-icon.youtube { background: var(--ink); }
+    .handle-icon.tiktok { background: #010101; }
+    .handle-icon.pinterest { background: #E60023; }
+    .handle-icon.telegram { background: #24A1DE; }
     .handle-name {
-      font-size:0.72rem;
-      font-weight:600;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      color:var(--ink-soft);
+      font-size:0.72rem; font-weight:600;
+      text-transform:uppercase; letter-spacing:1px;
+      color: var(--ink-soft);
     }
 
     /* ── Footer ── */
     .footer {
-      background:var(--ink);
-      color:rgba(250,246,240,0.7);
+      background: var(--ink); color: rgba(250,246,240,0.7);
       padding:3rem 2rem 2rem;
     }
     .footer-inner {
@@ -261,356 +479,494 @@
     }
     .footer-logo {
       font-family:'Bodoni Moda',serif;
-      font-size:1.4rem; font-weight:700;
-      color:#fff;
+      font-size:1.4rem; font-weight:700; color: #fff;
     }
-    .footer-logo span { color:var(--rose); }
+    .footer-logo span { color: var(--rose); }
     .footer-tagline {
       font-family:'Dancing Script',cursive;
-      font-size:0.9rem;
-      color:rgba(250,246,240,0.5);
+      font-size:0.9rem; color: rgba(250,246,240,0.45);
     }
-    .footer-bottom { width:100%; text-align:center; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.08); margin-top:1rem; }
-    .footer-bottom p { font-size:0.8rem; }
-
-    /* ── Blog Detail Modal ── */
-    .modal-overlay {
-      position:fixed; top:0; left:0; right:0; bottom:0;
-      background:rgba(0,0,0,0.55);
-      z-index:2000;
-      display:none;
-      align-items:center; justify-content:center;
-      padding:2rem;
-      animation:fadeIn 0.2s ease;
+    .footer-social {
+      display:flex; gap:0.7rem; align-items:center;
     }
-    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-    .modal-overlay.open { display:flex; }
-    .modal-box {
-      background:var(--cream);
-      border-radius:var(--radius);
-      max-width:680px; width:100%;
-      max-height:85vh; overflow-y:auto;
-      padding:2rem 2.5rem;
-      position:relative;
-      box-shadow:var(--shadow-md);
-      animation:slideUp 0.3s ease;
-    }
-    @keyframes slideUp { from { transform:translateY(30px); opacity:0; } to { transform:translateY(0); opacity:1; } }
-    .modal-close {
-      position:absolute; top:1rem; right:1rem;
-      width:32px; height:32px; border-radius:50%;
-      background:var(--rose-pale);
-      border:none; cursor:pointer;
-      font-size:1.2rem; color:var(--ink);
+    .footer-social a {
       display:flex; align-items:center; justify-content:center;
-      transition:background 0.2s;
+      width:40px; height:40px; border-radius:50%;
+      background: rgba(255,255,255,0.06);
+      color: rgba(250,246,240,0.6);
+      text-decoration:none; font-size:1rem;
+      transition: all 0.3s ease;
     }
-    .modal-close:hover { background:var(--rose); color:#fff; }
-    .modal-header { margin-bottom:1.5rem; }
-    .modal-tag {
-      font-size:0.68rem; text-transform:uppercase;
-      letter-spacing:1.5px; font-weight:600;
-      color:var(--rose);
+    .footer-social a:hover {
+      background: var(--rose); color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(212,160,160,0.30);
     }
-    .modal-title {
-      font-size:1.6rem; font-weight:700;
-      line-height:1.2; margin:6px 0 10px;
+    .footer-bottom {
+      width:100%; text-align:center;
+      padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.06); margin-top:1rem;
     }
-    .modal-meta {
-      font-size:0.8rem; color:var(--ink-soft);
-      display:flex; gap:1rem;
-    }
-    .modal-body {
-      font-size:1rem; line-height:1.8; color:var(--ink-soft);
-    }
-    .modal-body p { margin-bottom:1rem; }
-    .modal-body p:last-child { margin-bottom:0; }
-    .modal-body p[style] { margin-top:1.5rem; font-size:0.95rem; font-style:italic; }
-    .modal-back {
-      margin-top:2rem; padding:0.7rem 2rem;
-      background:var(--rose); color:#fff;
-      border:none; border-radius:2px;
-      font-size:0.78rem; font-weight:600;
-      text-transform:uppercase; letter-spacing:1.5px;
-      cursor:pointer; transition:background 0.2s;
-      display:inline-block;
-    }
-    .modal-back:hover { background:var(--rose-dark); }
+    .footer-bottom p { font-size:0.78rem; }
 
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .nav-links { display:none; position:absolute; top:68px; left:0; right:0; background:rgba(250,246,240,0.98); flex-direction:column; padding:1rem; box-shadow:var(--shadow-md); border-top:1px solid rgba(0,0,0,0.04); }
-      .nav-links.active { display:flex; }
-      .section-title { font-size:1.8rem; }
+    @media (max-width:768px) {
+      .nav-links {
+        position:fixed; top:68px; left:0; right:0;
+        background: rgba(250,247,242,0.97);
+        flex-direction:column; align-items:stretch;
+        padding:1.5rem 2rem; gap:0.3rem;
+        transform: translateY(-120%);
+        transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.10);
+      }
+      .nav-links.open { transform: translateY(0); }
+      .nav-links a { padding:12px 0; font-size:0.85rem; border-bottom:1px solid rgba(0,0,0,0.04); }
+      .hamburger { display:flex; }
+      .hero { padding:90px 1.5rem 50px; }
+      .section { padding:40px 1.5rem; }
       .blog-grid { grid-template-columns:1fr; }
-      .hero::before { background: linear-gradient(180deg, rgba(250,246,240,0) 0%, rgba(250,246,240,0.98) 20%); }
-      .hero-bg { width:120%; height:120%; top:-10%; left:-10%; right:-10%; }
-      .handles-grid { grid-template-columns:repeat(2,1fr); }
+      .modal-box { padding:1.5rem 1.5rem 2rem; border-radius:16px; }
+      .modal-overlay { align-items:stretch; }
     }
-    @media (max-width: 480px) {
-      .handles-grid { grid-template-columns:1fr; }
-      .section-title { font-size:1.5rem; }
+    @media (max-width:480px) {
+      .nav-container { padding:0 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ═════════════ NAVBAR ═════════════ -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">Nyra<span>.</span></a>
-      <div class="nav-links" id="navLinks">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="blog.html" class="active">Content</a>
-        <a href="exclusive.html">Exclusive</a>
-        <a href="work-with-me.html">Work With Me</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </div>
-  </nav>
+<!-- Loading -->
+<div class="loading-overlay" id="loading">
+  <div class="loading-logo">Nyra<span>.</span></div>
+</div>
 
-  <!-- ═════════════ HERO ═════════════ -->
-  <section class="hero">
-    <img src="images/content-1.jpg" alt="" class="hero-bg">
-    <div class="hero-overlay"></div>
-    <div class="hero-inner">
-      <span class="section-label">My Blog</span>
-      <h1 class="section-title">Stories That Connect</h1>
-      <p class="section-desc">Thoughts, stories, and ideas I want to share with you — my personal blog posts.</p>
-    </div>
-  </section>
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-brand tilt-3d" data-tilt>
+      <span class="name">Nyra<span>.</span></span>
+      <span class="script">Lifestyle</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <!-- ═════════════ BLOG POSTS ═════════════ -->
-  <section class="section" style="padding-top:50px; padding-bottom:50px;">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-label">Browse Posts</span>
-      </div>
-      <div class="blog-grid" id="blogGrid">
-        <!-- Blog posts are rendered here by JavaScript.
-             Add your blog posts in the blogPosts array below. -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════ FOLLOW MY HANDLES ═════════════ -->
-  <section class="social-handles">
-    <div class="section-inner">
-      <span class="section-label">Connect With Me</span>
-      <h2 class="section-title">Follow My Handles</h2>
-      <p class="section-desc">Join me on social media for daily inspiration, behind-the-scenes moments, and new content every week.</p>
-      <div class="handles-grid">
-        <a href="https://www.instagram.com/nyra.luxe.lifestyle/" target="_blank" class="handle-card">
-          <div class="handle-icon instagram"><i class="fab fa-instagram"></i></div>
-          <span class="handle-name">Instagram</span>
-        </a>
-        <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" class="handle-card">
-          <div class="handle-icon tiktok"><i class="fab fa-tiktok"></i></div>
-          <span class="handle-name">TikTok</span>
-        </a>
-        <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" class="handle-card">
-          <div class="handle-icon youtube"><i class="fab fa-youtube"></i></div>
-          <span class="handle-name">YouTube</span>
-        </a>
-        <a href="https://pin.it/6qtLMTBnw" target="_blank" class="handle-card">
-          <div class="handle-icon pinterest"><i class="fab fa-pinterest"></i></div>
-          <span class="handle-name">Pinterest</span>
-        </a>
-        <a href="https://t.me/+y7lEEeXcLA4wZjhl" target="_blank" class="handle-card">
-          <div class="handle-icon telegram"><i class="fab fa-telegram-plane"></i></div>
-          <span class="handle-name">Telegram</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════ FOOTER ═════════════ -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">Nyra<span>.</span></div>
-        <div class="footer-tagline">Fashion, travel, lifestyle</div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Nyra. All rights reserved. &middot; Mumbai, India</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ═════════════ BLOG DETAIL MODAL ═════════════ -->
-  <div class="modal-overlay" id="blogModal">
-    <div class="modal-box">
-      <button class="modal-close" id="blogModalClose" aria-label="Close">&times;</button>
-      <div id="modalContent">
-        <!-- Rendered dynamically -->
-      </div>
+<!-- Hero -->
+<section class="hero">
+  <canvas id="hero-canvas" data-3d-id="blog-hero"></canvas>
+  <img class="hero-bg" src="images/content-1.jpg" alt="" aria-hidden="true">
+  <div class="hero-overlay"></div>
+  <div class="hero-particles" id="hero-particles"></div>
+  <div class="hero-inner">
+    <span class="section-label">Stories That Connect</span>
+    <h1 class="hero-title">Thoughts & Moments</h1>
+    <p class="hero-sub">Life, style, travel and the little things that make it all beautiful — written honestly, shared warmly.</p>
+    <div class="hero-cta">
+      <a href="#stories" class="btn-ghost btn-3d" data-magnetic>
+        Browse Posts <span style="transition:transform 0.25s">→</span>
+      </a>
     </div>
   </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-mouse"></div>
+    <span>Scroll</span>
+  </div>
+</section>
 
-  <script>
-    /* ═══════════════════════════════════════════════
-       DATA: Blog Posts (Section 1)
-       Add/remove/edit blog posts here.
-       Click a blog card -> opens the detail modal.
-       ═══════════════════════════════════════════════ */
-    const blogPosts = [
-      {
-        id: 1,
-        title: 'The Little Things That Make an Ordinary Day Special',
-        excerpt: 'Because happiness is often hiding in the smallest moments.',
-        tag: 'Everyday Joy',
-        date: 'September 2, 2026',
-        readTime: '5 min read',
-        img: 'images/blog-little-things.jpg',
-        content: `
-          <p>There's a difference between rushing through your day and actually living it. I used to think the good parts of life were the big ones — the trips, the celebrations, the milestones. But somewhere along the way I started noticing the small things. The little things. And I realised they were carrying more of my happiness than I'd ever given them credit for.</p>
-          <p>It's the morning chai, steaming in a steel cup, made slightly too sweet just the way I like it. It's getting ready in front of the mirror without rushing, choosing an outfit that feels like me rather than what I think I should be wearing. It's the favourite song that comes on while I'm doing absolutely nothing else, and how it somehow makes the whole afternoon feel lighter.</p>
-          <p>It's sunset walks — not as exercise, just as a way to end the day — when the sky turns that soft pink that makes you pause without even meaning to. It's conversations with family that start with nothing and end up somewhere you didn't expect. It's a café moment when the place is quiet enough to actually hear yourself think. And sometimes, it's just having a quiet moment to yourself — no agenda, no distraction, just a few breaths where nothing needs to happen.</p>
-          <p>I used to chase extraordinary days. Now I know the truth: you don't need an extraordinary life to create extraordinary memories. You just need to pay attention to the ordinary ones, because that's where most of life actually happens.</p>
-          <p>The little things. That's what I'm learning to hold onto.</p>
-          <p style="font-family:'Bodoni Moda',serif;font-style:italic;color:var(--ink-soft);margin-top:20px;">— Nyra</p>
-        `
-      },
-      {
-        id: 2,
-        title: 'Learning to Enjoy My Own Company',
-        excerpt: 'Being alone doesn\'t always mean being lonely.',
-        tag: 'Self-Discovery',
-        date: 'August 28, 2026',
-        readTime: '4 min read',
-        img: 'images/blog-enjoy-company.jpg',
-        content: `
-          <p>There's a difference between being alone and being lonely — and I didn't always understand that. For a long time, I thought being by myself meant something was missing. That if I wasn't surrounded by people, I was behind. That solo meant sad.</p>
-          <p>Then one day I went to a café by myself. No phone, no book, no excuse. Just me and a cup of coffee and the hum of the place around me. And instead of feeling awkward or out of place, I felt... free. Free to sit however I wanted. Free to stay as long as I wanted. Free to just be there, with no performance and no expectation.</p>
-          <p>That was the beginning of something I didn't know I needed.</p>
-          <p>Since then, I've taken myself shopping — and discovered how differently I shop when I'm not trying to keep up with someone else's pace. I've watched movies alone and cried when I wanted to without anyone asking if I'm okay. I've journaled in the middle of the day, just because my head was full and I needed to empty it somewhere. I've sat on my balcony with no plan at all, watching the world move and realising I don't need to move with it.</p>
-          <p>There's something deeply comforting about learning to enjoy your own company. When you're alone and happy, you stop needing other people to fill a gap that isn't really there. You become someone you actually like spending time with. And that changes everything — the way you show up in friendships, in relationships, in life.</p>
-          <p>Being alone doesn't always mean being lonely. Sometimes it just means you've finally arrived somewhere you can be completely yourself.</p>
-          <p style="font-family:'Bodoni Moda',serif;font-style:italic;color:var(--ink-soft);margin-top:20px;">— Nyra</p>
-        `
-      },
-      {
-        id: 3,
-        title: 'Things I Wish Someone Had Told Me in My 20s',
-        excerpt: 'A few lessons I\'m learning, one day at a time.',
-        tag: 'Life Lessons',
-        date: 'August 15, 2026',
-        readTime: '6 min read',
-        img: 'images/blog-20s-lessons.jpg',
-        content: `
-          <p>If I could sit down with the woman I was in my early 20s, I wouldn't tell her to have it all figured out — because nobody does, and pretending otherwise is exhausting. I'd tell her some of the things I'm only learning now, one day at a time.</p>
-          <p><strong>You don't need to have everything figured out.</strong> At 22, I thought everyone else had a plan I was missing. They didn't. Most people are improvising, just like you. The difference is they've made peace with not knowing.</p>
-          <p><strong>Not every friendship is meant to last.</strong> Some people are in your life for a season, not forever. And that's okay. Letting go of a friendship doesn't mean it wasn't real — it just means it had a timeline, and you've reached the end of it.</p>
-          <p><strong>Comparison steals more than you realise.</strong> Every time you compare your behind-the-scenes to someone else's highlight reel, you lose a little piece of your own story. The only person you need to be better than is the version of yourself from yesterday.</p>
-          <p><strong>Rest is not laziness.</strong> Some of the most productive things I've done came after I stopped trying so hard. Burnout doesn't make you impressive — it makes you tired. Giving yourself permission to rest is a skill, and it's one worth learning early.</p>
-          <p><strong>You are allowed to change your mind.</strong> The things you believed at 20 don't have to be the things you believe at 25 or 30. Growth isn't inconsistency — it's evolution. And it's far better to change your mind than to stay stuck in an opinion you've outgrown.</p>
-          <p><strong>Your timeline doesn't have to look like anyone else's.</strong> Someone else getting married, getting promoted, getting everything together — that's their path, not yours. Your life doesn't need to follow a script written by people who don't know you.</p>
-          <p>Growing up isn't about having all the answers. It's about becoming more comfortable with the questions. It's about looking at your life — messy, uncertain, unfinished as it is — and realising that maybe it's exactly where it needs to be.</p>
-          <p style="font-family:'Bodoni Moda',serif;font-style:italic;color:var(--ink-soft);margin-top:20px;">— Nyra</p>
-        `
-      },
-      {
-        id: 4,
-        title: 'Behind the Perfect Picture',
-        excerpt: 'What you don\'t see behind the Instagram post.',
-        tag: 'Behind the Scenes',
-        date: 'August 1, 2026',
-        readTime: '5 min read',
-        img: 'images/blog-behind-picture.jpg',
-        content: `
-          <p>A beautiful feed can tell a story. But it can never tell the whole story.</p>
-          <p>The photo that looks effortless? Probably the tenth take. The outfit that looks effortlessly chic? Probably tried on five others first. The smiling selfie that looks like I'm living my best life? Taken on a day when I felt anything but.</p>
-          <p>I've spent hours styling a single shot — moving a plant two feet to the left, adjusting the light by degrees, changing my outfit three times — all to create the illusion of ease. And there's nothing wrong with that. I love creating beautiful things. But I think it matters to be honest about what's behind them.</p>
-          <p>Because the truth is, behind every "perfect" post there are retakes. Bad days. Plans that got cancelled. Moments of self-doubt where I wondered if I should even post at all. Days when I felt like I was pretending, and days when I genuinely didn't know what to say.</p>
-          <p>And you know what? Those moments are part of the story too. They're not glamorous, and they don't make great thumbnails — but they're real. And real things matter, even when they don't photograph well.</p>
-          <p>I used to think beauty was about perfection. Now I think it's about truth. The truth that a good day can sit right next to a hard one. The truth that you can look confident in a photo and feel uncertain five minutes before. The truth that someone else's life, no matter how curated it looks, has its own behind-the-scenes that you'll never see.</p>
-          <p>A beautiful feed can tell a story. But it can never tell the whole one. And that's okay — as long as we remember that the whole story is always richer than what fits in a frame.</p>
-          <p style="font-family:'Bodoni Moda',serif;font-style:italic;color:var(--ink-soft);margin-top:20px;">— Nyra</p>
-        `
-      }
-    ];
+<!-- Blog Posts -->
+<section class="section" id="stories">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title slide-up">Latest from the journal</h2>
+      <p class="section-desc slide-up" style="transition-delay:0.1s">A collection of stories — some short, some deep, all heartfelt.</p>
+    </div>
+    <div class="blog-grid" id="blogGrid"></div>
+  </div>
+</section>
 
-    /* ═══════════════════════════════════════════════
-       RENDER: Blog Cards
-       ═══════════════════════════════════════════════ */
-    function renderBlogCards() {
-      const grid = document.getElementById('blogGrid');
-      if (!grid) return;
-      grid.innerHTML = '';
-      blogPosts.forEach(function(post) {
-        var card = document.createElement('a');
-        card.href = '#';
-        card.className = 'blog-card';
-        card.setAttribute('data-post-id', post.id);
-        card.innerHTML =
-          '<div class="blog-card-img"><img src="' + (post.img || '') + '" alt="' + (post.title || '') + '" loading="lazy"></div>' +
-          '<div class="blog-card-body">' +
-            '<span class="blog-card-tag">' + (post.tag || '') + '</span>' +
-            '<h3 class="blog-card-title">' + (post.title || '') + '</h3>' +
-            '<p class="blog-card-excerpt">' + (post.excerpt || '') + '</p>' +
-            '<div class="blog-card-meta">' +
-              '<span>' + (post.date || '') + '</span>' +
-              '<span class="blog-card-read">' +
-                (post.readTime || '') + ' <span class="read-arrow">→</span>' +
-              '</span>' +
-            '</div>' +
-          '</div>';
-        card.addEventListener('click', function(e) {
-          e.preventDefault();
-          openBlogModal(post.id);
+<!-- Social Handles -->
+<section class="social-handles" id="handles">
+  <div class="section-inner">
+    <h2 class="section-title slide-up">Follow My Handles</h2>
+    <p class="section-desc slide-up" style="transition-delay:0.1s">Find me across the platforms — real conversations, real moments.</p>
+    <div class="handles-grid" id="handlesGrid"></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Nyra<span>.</span></div>
+      <div class="footer-tagline">"Fashion, travel, lifestyle"</div>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" aria-label="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="https://pin.it/6qtLMTBnw" target="_blank" aria-label="Pinterest">
+        <i class="fab fa-pinterest-p"></i>
+      </a>
+      <a href="https://t.me/+y7lEEeXcLA4wZjhl" target="_blank" aria-label="Telegram">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Nyra. All rights reserved. &nbsp;&middot;&nbsp; Mumbai, India</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="3d-global.js"></script>
+<script>
+/* ================================================================
+   BLOG PAGE — 3D SCENE + CONTENT
+   ================================================================ */
+(function () {
+  'use strict';
+
+  /* ── Loading ── */
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('loading').classList.add('hidden'), 500);
+  });
+
+  /* ── Three.js Hero Scene ── */
+  const canvas = document.getElementById('hero-canvas');
+  if (canvas) {
+    _3D.init3D({
+      id: 'blog-hero',
+      canvas,
+      onInit(s) {
+        /* central ring */
+        const ringGeo = new THREE.TorusGeometry(2.2, 0.03, 28, 72);
+        const ringMat = new THREE.MeshStandardMaterial({
+          color: 0xd4a0a0, emissive: 0xd4a0a0, emissiveIntensity: 0.12,
+          transparent: true, opacity: 0.25, wireframe: false,
         });
-        grid.appendChild(card);
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.position.set(0, 0, -1.5);
+        ring.rotation.x = Math.PI * 0.4;
+        s.scene.add(ring);
+        s.userData.ring = ring;
+
+        /* inner ring */
+        const ring2Mat = ringMat.clone();
+        ring2Mat.color.setHex(0xc9a84c);
+        ring2Mat.emissive.setHex(0xc9a84c);
+        ring2Mat.opacity = 0.18;
+        const ring2 = new THREE.Mesh(
+          new THREE.TorusGeometry(1.6, 0.02, 20, 52),
+          ring2Mat
+        );
+        ring2.position.set(0.2, -0.15, -1.2);
+        ring2.rotation.x = Math.PI * 0.55;
+        ring2.rotation.y = Math.PI * 0.25;
+        s.scene.add(ring2);
+        s.userData.ring2 = ring2;
+
+        /* floating dots */
+        const dotMat = new THREE.PointsMaterial({
+          color: 0xd4a0a0, size: 0.045, transparent: true, opacity: 0.4,
+          blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true,
+        });
+        const dotGeo = new THREE.BufferGeometry();
+        const d = [];
+        for (let i = 0; i < 80; i++) {
+          d.push((Math.random()-0.5)*16);
+          d.push((Math.random()-0.5)*10);
+          d.push((Math.random()-0.5)*4 - 2);
+        }
+        dotGeo.setAttribute('position', new THREE.Float32BufferAttribute(d, 3));
+        const dots = new THREE.Points(dotGeo, dotMat);
+        s.scene.add(dots);
+        s.userData.dots = dots;
+
+        /* small spheres */
+        const sMat = new THREE.MeshStandardMaterial({
+          color: 0xc9a84c, emissive: 0xc9a84c, emissiveIntensity: 0.10,
+          roughness: 0.3, metalness: 0.1, transparent: true, opacity: 0.5,
+        });
+        for (let i = 0; i < 4; i++) {
+          const sp = new THREE.Mesh(new THREE.SphereGeometry(0.1 + Math.random()*0.08, 16, 16), sMat);
+          sp.position.set(
+            (Math.random()-0.5)*5,
+            (Math.random()-0.5)*3,
+            -1 - Math.random()*2
+          );
+          s.scene.add(sp);
+          s.userData['sphere'+i] = sp;
+        }
+      },
+
+      onAnimate(s, t) {
+        const u = s.userData;
+        if (u.ring) {
+          u.ring.rotation.z += 0.002;
+          u.ring.rotation.x = Math.PI*0.4 + Math.sin(t*0.0004)*0.05;
+        }
+        if (u.ring2) {
+          u.ring2.rotation.z -= 0.003;
+          u.ring2.rotation.y += 0.002;
+        }
+        if (u.dots) {
+          const pos = u.dots.geometry.attributes.position.array;
+          for (let i = 0; i < pos.length; i += 3) {
+            pos[i+1] += Math.sin(t*0.0008 + i)*0.0012;
+            pos[i]   += Math.cos(t*0.0006 + i*0.4)*0.0008;
+          }
+          u.dots.geometry.attributes.position.needsUpdate = true;
+        }
+        for (let i = 0; i < 4; i++) {
+          const sp = u['sphere'+i];
+          if (sp) {
+            sp.position.x += Math.sin(t*0.0005 + i)*0.0015;
+            sp.position.y += Math.cos(t*0.0006 + i*1.5)*0.0012;
+          }
+        }
+        s.camera.position.x = _3D.mouse.x * 0.25;
+        s.camera.position.y = _3D.mouse.y * 0.18;
+        s.camera.lookAt(0, 0, 0);
+      }
+    });
+  }
+
+  /* ── CSS stars ── */
+  (function () {
+    const container = document.getElementById('hero-particles');
+    if (!container) return;
+    for (let i = 0; i < 15; i++) {
+      const star = document.createElement('div');
+      star.className = 'star-particle';
+      star.style.left = (Math.random()*92+4)+'%';
+      star.style.top = (Math.random()*85+5)+'%';
+      star.style.animationDelay = (Math.random()*5).toFixed(2)+'s';
+      star.style.animationDuration = (6+Math.random()*4).toFixed(1)+'s';
+      star.style.width = star.style.height = (2+Math.random()*3).toFixed(1)+'px';
+      star.style.background = Math.random()>0.5 ? 'var(--rose)' : 'var(--gold)';
+      container.appendChild(star);
+    }
+  })();
+
+  /* ── Blog Posts Data ── */
+  const blogPosts = [
+    {
+      id: 1,
+      tag: 'Lifestyle',
+      title: 'The Little Things That Make Life Beautiful',
+      excerpt: 'A quiet morning with coffee, sunlight through the curtains, and the realisation that happiness lives in small moments.',
+      date: 'Sep 3, 2026',
+      readTime: '4 min read',
+      content: `
+        <p>There is a particular kind of silence that only exists in the early morning. Before the world wakes up, before the notifications start pouring in, there is just you and the light.</p>
+        <p>I used to chase big experiences — exotic destinations, perfect outfits, flawless moments. But somewhere along the way, I learned that the most beautiful parts of life are the quiet ones. A warm cup of tea held between both hands. The way sunlight filters through sheer curtains. A song that plays at exactly the right moment.</p>
+        <p>These little things don't ask for attention. They don't need to be photographed or shared. But they are the ones that stay with you, long after the big moments have faded from memory.</p>
+        <p>So here's my invitation to you: today, pause for just five minutes. Notice something small. The way the light hits a wall. The sound of rain on a window. The feeling of your favourite sweater. That is where life actually happens.</p>
+      `
+    },
+    {
+      id: 2,
+      tag: 'Style',
+      title: 'Finding Your Own Style Voice',
+      excerpt: 'Style isn\'t about following trends — it\'s about discovering what makes you feel most like yourself, and wearing that confidence everywhere.',
+      date: 'Aug 28, 2026',
+      readTime: '5 min read',
+      content: `
+        <p>For the longest time, I thought style meant keeping up. New trends, fresh drops, what everyone else was wearing. I filled my closet with pieces that looked good on other people but never quite felt right on me.</p>
+        <p>Then one day, I stopped. I looked at what I actually reached for — the pieces I wore on repeat, the outfits that made me feel effortless. And I noticed a pattern: comfort, simplicity, warm tones, pieces with a story.</p>
+        <p>That was my style voice. Not trendy, not loud, but honest. And once I found it, getting dressed became easy. It became a form of self-expression instead of self-editing.</p>
+        <p>My advice? Start with what you love wearing right now. Not what's trending, not what someone told you looks good. What makes you feel like the best version of you. Build from there. Your style voice is already inside you — you just have to listen.</p>
+      `
+    },
+    {
+      id: 3,
+      tag: 'Travel',
+      title: 'Lessons from My Twenties',
+      excerpt: 'The twenties are messy, beautiful, and full of firsts. Looking back, here are the things I wish I knew — and the things I\'m glad I didn\'t.',
+      date: 'Aug 20, 2026',
+      readTime: '6 min read',
+      content: `
+        <p>People say your twenties are for making mistakes. I think they're also for discovering who you are when no one is watching — when there's no script, no template, no approval to chase.</p>
+        <p>I moved cities twice. Changed careers once. Fell in and out of love. Learned to cook, to travel alone, to sit with myself in silence. Some of these things I planned. Most of them just happened, and I figured it out as I went.</p>
+        <p>What I'd tell my younger self? Stop waiting for the perfect moment. Stop trying to have it all figured out. The messy middle is where the growth happens. And the friendships that survive distance and time? Those are the ones worth holding onto.</p>
+        <p>But also — don't rush. Your twenties are not a race to thirty. They're a chapter. Read it slowly.</p>
+      `
+    },
+    {
+      id: 4,
+      tag: 'Life',
+      title: 'Behind the Picture',
+      excerpt: 'Every perfect photo has a story behind it — the failed shots, the awkward moments, the moments that didn\'t make the frame but made the memory.',
+      date: 'Aug 12, 2026',
+      readTime: '3 min read',
+      content: `
+        <p>I took maybe thirty photos that day. Two were any good. The one that ended up on my feed? It was the third attempt — I had stopped trying to look perfect and just started being present.</p>
+        <p>That's the thing about curated content: we see the final frame, but never the ten minutes of adjusting, the wind that ruined the hair, the laugh that cracked the perfect expression. And honestly? The behind-the-picture moments are better than the picture itself.</p>
+        <p>The real memory isn't the photo — it's the conversation that happened right after, the way the light felt on my face, the fact that someone I love was standing just outside the frame, laughing.</p>
+        <p>So here's a behind-the-picture truth: the best moments are the ones you forget to capture.</p>
+      `
+    }
+  ];
+
+  /* ── Social Handles Data ── */
+  const handles = [
+    { name: 'Instagram', icon: 'instagram', color: '#DD2A7B', url: 'https://www.instagram.com/nyra.luxe.lifestyle' },
+    { name: 'TikTok', icon: 'tiktok', color: '#010101', url: 'https://www.tiktok.com/@nyra.luxe.lifestyle' },
+    { name: 'YouTube', icon: 'youtube', color: '#000000', url: 'https://www.youtube.com/@nyraluxelifestyle' },
+    { name: 'Pinterest', icon: 'pinterest', color: '#E60023', url: 'https://pin.it/6qtLMTBnw' },
+    { name: 'Telegram', icon: 'telegram', color: '#24A1DE', url: 'https://t.me/+y7lEEeXcLA4wZjhl' },
+  ];
+
+  /* ── Render Blog Cards ── */
+  const grid = document.getElementById('blogGrid');
+  if (grid) {
+    blogPosts.forEach(post => {
+      const card = document.createElement('div');
+      card.className = 'blog-card tilt-3d';
+      card.setAttribute('data-tilt', '');
+      card.setAttribute('data-post-id', post.id);
+      card.style.animationDelay = (blogPosts.indexOf(post) * 0.12) + 's';
+      card.innerHTML = `
+        <div class="blog-card-img">
+          <img src="images/blog-${post.id === 1 ? 'little-things' : post.id === 2 ? 'enjoy-company' : post.id === 3 ? '20s-lessons' : 'behind-picture'}.jpg" alt="${post.title}" loading="lazy">
+          <div class="img-overlay"></div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">${post.tag}</div>
+          <div class="blog-card-title">${post.title}</div>
+          <div class="blog-card-excerpt">${post.excerpt}</div>
+          <div class="blog-card-meta">
+            <span class="date">${post.date}</span><span class="dot"></span><span class="readtime">${post.readTime}</span>
+          </div>
+          <div class="blog-card-read">Read More <span>→</span></div>
+        </div>
+      `;
+      card.addEventListener('click', () => openBlogModal(post.id));
+      grid.appendChild(card);
+    });
+
+    /* init tilt after layout */
+    setTimeout(() => {
+      document.querySelectorAll('.blog-card[data-tilt]').forEach(el => {
+        _3D.tiltCard(el, 10);
       });
-    }
+    }, 200);
+  }
 
-    /* ═══════════════════════════════════════════════
-       MODAL: Open Blog Detail
-       ═══════════════════════════════════════════════ */
-    function openBlogModal(postId) {
-      var post = blogPosts.filter(function(p) { return p.id === postId; })[0];
-      if (!post) return;
-      var content = document.getElementById('modalContent');
-      content.innerHTML =
-        '<div class="modal-header">' +
-          '<span class="modal-tag">' + (post.tag || '') + '</span>' +
-          '<h2 class="modal-title">' + (post.title || '') + '</h2>' +
-          '<div class="modal-meta">' +
-            '<span>' + (post.date || '') + '</span>' +
-            '<span>' + (post.readTime || '') + '</span>' +
-          '</div>' +
-        '</div>' +
-        '<div class="modal-body">' + (post.content || '') + '</div>' +
-        '<button class="modal-back" id="modalBackBtn">← Back to Stories</button>';
-      var modal = document.getElementById('blogModal');
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      document.getElementById('blogModalClose').addEventListener('click', closeBlogModal);
-      document.getElementById('modalBackBtn').addEventListener('click', closeBlogModal);
-    }
-
-    function closeBlogModal() {
-      var modal = document.getElementById('blogModal');
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
-      document.getElementById('modalContent').innerHTML = '<!-- Rendered dynamically -->';
-    }
-
-    document.getElementById('blogModalClose').addEventListener('click', closeBlogModal);
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeBlogModal();
-    });
-    document.addEventListener('click', function(e) {
-      var modal = document.getElementById('blogModal');
-      if (e.target === modal) closeBlogModal();
+  /* ── Render Social Handles ── */
+  const handlesGrid = document.getElementById('handlesGrid');
+  if (handlesGrid) {
+    handles.forEach(h => {
+      const card = document.createElement('a');
+      card.href = h.url;
+      card.target = '_blank';
+      card.className = 'handle-card tilt-3d';
+      card.setAttribute('data-tilt', '');
+      card.setAttribute('aria-label', h.name);
+      card.innerHTML = `
+        <div class="handle-icon ${h.icon}">
+          <i class="fab fa-${h.icon === 'youtube' ? 'youtube' : h.icon === 'tiktok' ? 'tiktok' : h.icon === 'pinterest' ? 'pinterest-p' : h.icon === 'telegram' ? 'telegram-plane' : 'instagram'}"></i>
+        </div>
+        <span class="handle-name">${h.name}</span>
+      `;
+      handlesGrid.appendChild(card);
     });
 
-    /* ═══════════════════════════════════════════════
-       INIT
-       ═══════════════════════════════════════════════ */
-    renderBlogCards();
-  </script>
+    setTimeout(() => {
+      document.querySelectorAll('#handlesGrid .handle-card[data-tilt]').forEach(el => {
+        _3D.tiltCard(el, 8);
+      });
+    }, 250);
+  }
 
+  /* ── Modal Logic ── */
+  const modalOverlay = document.createElement('div');
+  modalOverlay.className = 'modal-overlay';
+  modalOverlay.innerHTML = `
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <div class="modal-header">
+        <div class="modal-tag" id="modalTag"></div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-meta">
+          <span id="modalDate"></span><span>&middot;</span><span id="modalReadTime"></span>
+        </div>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+    <button class="modal-back" id="modalBack">Back to Stories</button>
+  `;
+  document.body.appendChild(modalOverlay);
+
+  function openBlogModal(id) {
+    const post = blogPosts.find(p => p.id === id);
+    if (!post) return;
+    document.getElementById('modalTag').textContent = post.tag;
+    document.getElementById('modalTitle').textContent = post.title;
+    document.getElementById('modalDate').textContent = post.date;
+    document.getElementById('modalReadTime').textContent = post.readTime;
+    document.getElementById('modalBody').innerHTML = post.content;
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBlogModal() {
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelector('.modal-close').addEventListener('click', closeBlogModal);
+  document.getElementById('modalBack').addEventListener('click', closeBlogModal);
+  modalOverlay.addEventListener('click', e => {
+    if (e.target === modalOverlay) closeBlogModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeBlogModal();
+  });
+
+  /* ── Magnetic button ── */
+  const browseBtn = document.querySelector('.btn-ghost[data-magnetic]');
+  if (browseBtn) _3D.magneticBtn(browseBtn, 10);
+
+  /* ── Scroll animations ── */
+  document.querySelectorAll('.slide-up').forEach(el => _3D.observeEl(el));
+
+  /* ── Nav ── */
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+  }
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+})();
+</script>
 </body>
 </html>

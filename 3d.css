@@ -1,0 +1,258 @@
+/* ============================================================
+   NYRA LIFESTYLE — 3D ANIMATED CSS FRAMEWORK
+   3D 卡片、滚动动画、粒子悬浮、视差、加载入场等
+   ============================================================ */
+
+/* ---------- 3D 卡片基础 ---------- */
+.tilt-3d {
+  transform-style: preserve-3d;
+  perspective: 800px;
+  will-change: transform;
+  transition: transform 0.08s ease-out;
+  backface-visibility: hidden;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+.tilt-3d > .tilt-inner {
+  transform: translateZ(12px);
+}
+.tilt-3d > .tilt-shadow {
+  position: absolute; inset: 0; border-radius: inherit;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.10) 0%, transparent 70%);
+  transform: translateZ(-20px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.tilt-3d:hover > .tilt-shadow { opacity: 1; }
+
+/* ---------- 粒子背景层 ---------- */
+.particles-bg {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  overflow: hidden;
+}
+.particles-bg canvas { position:absolute; inset:0; width:100%; height:100%; }
+
+/* ---------- 悬浮的 3D 星形粒子（CSS 版） ---------- */
+.star-particle {
+  position: absolute;
+  width: 4px; height: 4px;
+  background: var(--rose);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--rose), 0 0 12px rgba(212,160,160,0.4);
+  animation: float-star 8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes float-star {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.2; }
+  50% { transform: translateY(-20px) scale(1.6); opacity: 0.8; }
+}
+
+/* ---------- 3D 翻转入场 ---------- */
+.flip-in {
+  opacity: 0;
+  transform: perspective(600px) rotateX(18deg) translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.in-view.flip-in {
+  opacity: 1;
+  transform: perspective(600px) rotateX(0deg) translateY(0);
+}
+
+/* ---------- 滑入入场 ---------- */
+.slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.in-view.slide-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 缩放入场 ---------- */
+.scale-in {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.in-view.scale-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---------- 鼠标靠近浮起（悬浮卡片） ---------- */
+.floating-3d {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease;
+  will-change: transform;
+}
+.floating-3d:hover {
+  transform: perspective(600px) translateZ(8px) rotateX(2deg) rotateY(-1deg);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+/* ---------- 磁悬浮按钮 ---------- */
+.btn-3d {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s ease;
+  transform: translateY(0);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+.btn-3d:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(212,160,160,0.35); }
+.btn-3d:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+/* ---------- 3D 视差滚动层 ---------- */
+.parallax-layer {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+.parallax-slow { transform: translateY(0); }
+.parallax-medium { transform: translateY(0); }
+.parallax-fast { transform: translateY(0); }
+
+/* ---------- 玻璃面板（3D 卡片背景） ---------- */
+.glass-3d {
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+}
+
+/* ---------- 3D 堆叠卡片（deck 效果） ---------- */
+.card-deck { perspective: 1000px; }
+.card-stack-item {
+  transform-origin: center bottom;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.45s ease;
+  will-change: transform;
+}
+.card-stack-item:nth-child(1) { transform: rotateX(0deg) translateY(0); }
+.card-stack-item:nth-child(2) { transform: rotateX(2deg) translateY(6px); opacity: 0.92; }
+.card-stack-item:nth-child(3) { transform: rotateX(4deg) translateY(12px); opacity: 0.84; }
+.card-stack-item:nth-child(4) { transform: rotateX(6deg) translateY(18px); opacity: 0.76; }
+.card-deck:hover .card-stack-item:nth-child(1) { transform: rotateX(-2deg) translateY(-4px); }
+.card-deck:hover .card-stack-item:nth-child(2) { transform: rotateX(0deg) translateY(2px); opacity: 0.95; }
+.card-deck:hover .card-stack-item:nth-child(3) { transform: rotateX(2deg) translateY(8px); opacity: 0.88; }
+.card-deck:hover .card-stack-item:nth-child(4) { transform: rotateX(4deg) translateY(14px); opacity: 0.80; }
+
+/* ---------- 旋转环形装饰 ---------- */
+.globe-ring {
+  position: absolute;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212,160,160,0.25);
+  animation: ring-rotate 30s linear infinite;
+  pointer-events: none;
+}
+.globe-ring::before {
+  content: ''; position: absolute; inset: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.20);
+  animation: ring-rotate 20s linear infinite reverse;
+}
+.globe-ring::after {
+  content: ''; position: absolute; inset: 16px;
+  border-radius: 50%;
+  border: 1px dashed rgba(212,160,160,0.15);
+  animation: ring-rotate 15s linear infinite;
+}
+@keyframes ring-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- 光晕呼吸动画 ---------- */
+.glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(212,160,160,0.15); }
+  50% { box-shadow: 0 0 40px rgba(212,160,160,0.30), 0 0 60px rgba(201,168,76,0.15); }
+}
+
+/* ---------- 旋转装饰球体（CSS 球） ---------- */
+.deco-sphere {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.4), rgba(212,160,160,0.15) 50%, transparent 70%);
+  box-shadow: inset -10px -10px 30px rgba(0,0,0,0.08), 0 10px 40px rgba(212,160,160,0.15);
+  animation: sphere-float 6s ease-in-out infinite;
+}
+@keyframes sphere-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-12px) scale(1.04); }
+}
+
+/* ---------- 加载入场遮罩 ---------- */
+.loading-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--cream, #faf7f2);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.loading-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.loading-logo {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 2.4rem; font-weight: 700;
+  animation: load-pulse 1.2s ease-in-out infinite;
+}
+.loading-logo span { color: var(--rose, #d4a0a0); }
+@keyframes load-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+/* ---------- 3D 文字描边效果 ---------- */
+.text-3d {
+  font-family: 'Bodoni Moda', serif;
+  color: var(--ink, #111111);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 2px 4px rgba(0,0,0,0.04);
+  transform-style: preserve-3d;
+}
+
+/* ---------- 渐变文字（3D 光泽） ---------- */
+.text-gradient {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--rose-dark) 50%, var(--ink) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shimmer 6s ease-in-out infinite;
+}
+@keyframes text-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ---------- 平台标签徽章 3D ---------- */
+.tag-3d {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transform: perspective(200px) rotateX(2deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.tag-3d:hover {
+  transform: perspective(200px) rotateX(0deg) translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+}
+
+/* ---------- 滚动条美化 ---------- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
+
+/* ---------- 选中文本 ---------- */
+::selection { background: var(--rose); color: #fff; }
+
+/* ---------- 移动端触摸反馈 ---------- */
+* { -webkit-tap-highlight-color: transparent; }

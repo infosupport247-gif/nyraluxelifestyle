@@ -6,442 +6,400 @@
   <title>Contact | Nyra Lifestyle</title>
   <link rel="canonical" href="https://www.nyraluxelifestyle.com/contact.html">
   <meta property="og:url" content="https://www.nyraluxelifestyle.com/contact.html">
+  <meta name="description" content="Get in touch — collaborations, inquiries, and everything in between. I'd love to hear from you.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="3d.css">
   <style>
     :root {
-      --ink: #111111;
-      --ink-soft: #4a4a4a;
-      --ink-mute: #8a8a8a;
-      --rose: #d4a0a0;
-      --rose-dark: #c48a8a;
-      --rose-pale: #f0e4e4;
-      --gold: #c9a84c;
-      --white: #ffffff;
-      --cream: #faf6f0;
-      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-      --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
+      --ink: #111111; --ink-soft: #4a4a4a; --ink-mute: #8a8a8a;
+      --rose: #d4a0a0; --rose-dark: #c48a8a; --rose-pale: #f0d8d0;
+      --gold: #c9a84c; --white: #fff; --cream: #faf7f2;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+      --radius: 14px;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body {
       font-family:'DM Sans',sans-serif;
-      color:var(--ink);
-      background:var(--cream);
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
+      background: var(--cream); color: var(--ink);
+      line-height:1.7; -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
-    h1,h2,h3,h4 {
-      font-family:'Bodoni Moda',serif;
-      font-weight:600;
-      color:var(--ink);
-      line-height:1.15;
+    .loading-overlay {
+      position:fixed; inset:0; z-index:9999;
+      background: var(--cream);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:1.2rem; transition: opacity 0.7s ease, visibility 0.7s ease;
     }
+    .loading-overlay.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+    .loading-logo { font-family:'Bodoni Moda',serif; font-size:2.2rem; font-weight:700; animation: load-pulse 1.4s ease-in-out infinite; }
+    .loading-logo span { color: var(--rose); }
+    @keyframes load-pulse { 0%,100% { opacity:0.3; transform:scale(0.94); } 50% { opacity:1; transform:scale(1.06); } }
 
     .navbar {
-      position:fixed; top:0; left:0; right:0;
-      z-index:1000;
-      background:rgba(250,246,240,0.92);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
-      border-bottom:1px solid rgba(0,0,0,0.04);
-      padding:0 2rem;
-      transition:all 0.3s ease;
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      background: rgba(250,247,242,0.70);
+      backdrop-filter: blur(24px) saturate(140%);
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+      padding: 0 2rem; transition: background 0.3s, box-shadow 0.3s;
     }
-    .navbar.scrolled { box-shadow:var(--shadow-sm); }
-    .nav-container {
-      max-width:1280px; margin:0 auto;
-      display:flex; justify-content:space-between; align-items:center;
-      height:68px;
-    }
-    .nav-logo {
-      font-family:'Bodoni Moda',serif;
-      font-size:1.4rem; font-weight:700;
-      color:var(--ink);
-      text-decoration:none; letter-spacing:-0.5px;
-    }
-    .nav-logo span { color:var(--rose-dark); }
-    .nav-links {
-      display:flex; list-style:none; gap:0.15rem; align-items:center;
-    }
-    .nav-links a {
-      color:var(--ink-soft);
-      text-decoration:none;
-      font-size:0.8rem; font-weight:500;
-      padding:0.45rem 0.7rem;
-      border-radius:6px;
-      transition:all 0.25s ease;
-      letter-spacing:0.2px;
-    }
-    .nav-links a:hover { background:var(--rose-pale); color:var(--ink); }
-    .nav-links a.active { background:var(--rose); color:var(--white); }
-    .hamburger {
-      display:none; flex-direction:column; cursor:pointer;
-      gap:5px; padding:5px;
-    }
-    .hamburger span {
-      width:22px; height:2px;
-      background:var(--ink);
-      transition:all 0.3s ease; border-radius:2px;
-    }
-    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-    .hamburger.active span:nth-child(2){opacity:0}
-    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+    .navbar.scrolled { background: rgba(250,247,242,0.92); box-shadow: 0 4px 24px rgba(0,0,0,0.04); }
+    .nav-container { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:68px; }
+    .nav-brand { display:flex; flex-direction:column; gap:1px; text-decoration:none; cursor:pointer; transition: transform 0.3s; }
+    .nav-brand:hover { transform: translateY(-1px); }
+    .nav-brand .name { font-family:'Bodoni Moda',serif; font-size:1.2rem; font-weight:700; color:var(--ink); }
+    .nav-brand .name span { color: var(--rose); }
+    .nav-brand .script { font-family:'Dancing Script',cursive; font-size:0.7rem; color:var(--ink-mute); letter-spacing:1px; }
+    .nav-links { display:flex; align-items:center; gap:1.8rem; list-style:none; }
+    .nav-links a { text-decoration:none; color:var(--ink-soft); font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; position:relative; padding:4px 0; transition: color 0.25s; }
+    .nav-links a::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1.5px; background: var(--rose); transition: width 0.3s cubic-bezier(0.22,1,0.36,1); }
+    .nav-links a:hover { color: var(--ink); } .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--ink); } .nav-links a.active::after { width: 100%; }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+    .hamburger span { width:22px; height:2px; background:var(--ink); transition: transform 0.3s, opacity 0.3s; border-radius:2px; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.active span:nth-child(2) { opacity:0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
     .hero {
-      padding:6rem 2rem 4rem;
-      background:linear-gradient(135deg, var(--ink) 0%, #1a1a2e 100%);
-      color:var(--white);
-      text-align:center;
-    }
-    .hero .label {
-      display:inline-block;
-      font-size:0.7rem; text-transform:uppercase;
-      letter-spacing:2px; color:var(--gold);
-      font-weight:600; margin-bottom:0.75rem;
-    }
-    .hero h1 {
-      color:var(--white);
-      font-size:clamp(2rem,4vw,3rem);
-      margin-bottom:0.75rem;
-    }
-    .hero p {
-      color:rgba(255,255,255,0.6);
-      max-width:520px; margin:0 auto 2rem;
-      font-size:1.05rem;
-    }
-    .hero-cta { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-
-    .btn {
-      display:inline-flex; align-items:center; gap:0.5rem;
-      padding:0.85rem 1.8rem;
-      border-radius:50px;
-      font-weight:600; font-size:0.9rem;
-      text-decoration:none;
-      transition:all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
-      border:none; cursor:pointer;
-      letter-spacing:0.2px;
-    }
-    .btn-rose {
-      background:var(--rose); color:var(--white);
-      box-shadow:0 4px 14px rgba(212,160,160,0.25);
-    }
-    .btn-rose:hover {
-      background:var(--rose-dark);
-      transform:translateY(-2px);
-      box-shadow:0 8px 24px rgba(212,160,160,0.35);
-    }
-    .btn-ghost {
-      background:transparent; color:var(--white);
-      border:1.5px solid rgba(255,255,255,0.2);
-    }
-    .btn-ghost:hover {
-      border-color:var(--white);
-      background:rgba(255,255,255,0.05);
-      transform:translateY(-2px);
-    }
-
-    .section { padding:4.5rem 2rem; max-width:800px; margin:0 auto; }
-
-    .form-panel {
-      background:var(--white);
-      border-radius:14px;
-      padding:2rem;
-      box-shadow:var(--shadow-sm);
-    }
-    .form-panel h3 {
-      font-size:1.3rem;
-      margin-bottom:0.3rem;
-    }
-    .form-panel > p {
-      color:var(--ink-soft);
-      font-size:0.9rem;
-      margin-bottom:1.5rem;
-    }
-    .form-group {
-      margin-bottom:1rem;
-    }
-    .form-group label {
-      display:block;
-      font-size:0.8rem;
-      font-weight:600;
-      margin-bottom:0.3rem;
-      color:var(--ink);
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width:100%;
-      padding:0.7rem 0.9rem;
-      border:1px solid rgba(0,0,0,0.08);
-      border-radius:7px;
-      font-family:'DM Sans',sans-serif;
-      font-size:0.9rem;
-      transition:all 0.25s ease;
-      background:var(--cream);
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline:none;
-      border-color:var(--rose);
-      box-shadow:0 0 0 3px rgba(212,160,160,0.1);
-      background:var(--white);
-    }
-    .form-group textarea {
-      resize:vertical;
-      min-height:90px;
-    }
-    .form-row {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:0.75rem;
-    }
-    .btn-submit {
-      width:100%;
-      padding:0.85rem;
-      background:var(--rose);
-      color:var(--white);
-      border:none;
-      border-radius:7px;
-      font-family:'DM Sans',sans-serif;
-      font-size:0.95rem;
-      font-weight:600;
-      cursor:pointer;
-      transition:all 0.25s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:0.4rem;
-      margin-top:0.5rem;
-    }
-    .btn-submit:hover {
-      background:var(--rose-dark);
-      transform:translateY(-1px);
-    }
-    .quick-links {
-      margin-top:2.5rem;
-      display:flex;
-      gap:1rem;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-
-    .footer {
-      background:var(--ink);
-      color:rgba(255,255,255,0.55);
-      padding:2.5rem 2rem 1.5rem;
-      text-align:center;
-    }
-    .footer-logo {
-      font-family:'Bodoni Moda',serif;
-      font-size:1.8rem; font-weight:700;
-      color:var(--white); margin-bottom:0.25rem;
-    }
-    .footer-logo span { color:var(--rose); }
-    .footer-tagline {
-      font-family:'Dancing Script',cursive;
-      font-size:1.1rem; color:var(--gold);
-      margin-bottom:1.25rem;
-    }
-    .footer-social {
-      display:flex; justify-content:center;
-      gap:0.75rem; margin-bottom:1.25rem;
-    }
-    .footer-social a {
-      width:38px; height:38px;
-      border-radius:50%;
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.1);
+      position:relative; min-height:100vh;
       display:flex; align-items:center; justify-content:center;
-      color:var(--white);
-      text-decoration:none;
-      transition:all 0.25s ease;
+      text-align:center; padding:90px 2rem; overflow:hidden;
+      background: var(--cream);
     }
-    .footer-social a:hover {
-      background:var(--rose);
-      border-color:var(--rose);
-      transform:translateY(-2px);
+    .hero-bg {
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      object-fit:cover; opacity:0.10; z-index:0; pointer-events:none;
     }
-    .footer-bottom {
-      padding-top:1rem;
-      border-top:1px solid rgba(255,255,255,0.08);
+    .hero-overlay {
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(250,247,242,0.92) 0%, rgba(250,247,242,0.55) 35%, rgba(250,247,242,0.30) 60%, rgba(250,247,242,0.90) 100%);
+      z-index:1;
     }
-    .footer-bottom p { font-size:0.75rem; }
+    #hero-canvas { position:absolute; inset:0; z-index:0; pointer-events:none; }
+    .hero-particles { position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+    .hero-inner { position:relative; z-index:2; max-width:600px; display:flex; flex-direction:column; align-items:center; gap:0.5rem; }
+    .section-label { display:inline-block; font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:3px; color: var(--rose); animation: fadeInUp 0.8s ease 0.15s both; }
+    .hero-title { font-family:'Bodoni Moda',serif; font-size: clamp(2.8rem, 8vw, 5rem); font-weight:800; line-height:1.05; letter-spacing:-1px; color: var(--ink); animation: fadeInUp 0.8s ease 0.3s both; }
+    .hero-title .script-word { font-family:'Dancing Script',cursive; font-weight:700; font-size: clamp(2rem, 5vw, 3.2rem); color: var(--rose); display:block; font-style:italic; letter-spacing:0; margin-top:0.1em; }
+    .hero-sub { font-size:1rem; color: var(--ink-soft); max-width:420px; margin:0 auto 1.5rem; line-height:1.7; font-weight:300; animation: fadeInUp 0.8s ease 0.45s both; }
+    .hero-cta { animation: fadeInUp 0.8s ease 0.6s both; }
+    .btn-primary { background: var(--rose); color:#fff; padding:14px 32px; border-radius:100px; text-decoration:none; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:1.8px; transition: all 0.3s cubic-bezier(0.22,1,0.36,1); box-shadow: 0 8px 28px rgba(212,160,160,0.35); display:inline-flex; align-items:center; gap:10px; border:none; cursor:pointer; }
+    .btn-primary:hover { transform: translateY(-3px); background: var(--rose-dark); box-shadow: 0 14px 40px rgba(212,160,160,0.45); }
+    .btn-primary .arrow { transition: transform 0.25s; } .btn-primary:hover .arrow { transform: translateX(4px); }
+    .hero-scroll-hint { position:absolute; bottom:28px; left:50%; transform: translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; color: var(--ink-mute); font-size:0.62rem; letter-spacing:2px; text-transform:uppercase; animation: fadeInUp 0.8s ease 0.8s both; z-index:2; }
+    .scroll-mouse { width:20px; height:30px; border:2px solid var(--ink-mute); border-radius:10px; position:relative; }
+    .scroll-mouse::after { content:''; position:absolute; top:5px; left:50%; transform: translateX(-50%); width:2.5px; height:7px; background: var(--rose); border-radius:2px; animation: scroll-bounce 2s ease-in-out infinite; }
+    @keyframes scroll-bounce { 0%,100% { transform: translateX(-50%) translateY(0); opacity:1; } 50% { transform: translateX(-50%) translateY(7px); opacity:0.3; } }
+    @keyframes fadeInUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+
+    .section { padding:60px 2rem; }
+    .section-inner { max-width:1280px; margin:0 auto; }
+    .section-header { text-align:center; margin-bottom:3rem; }
+    .section-title { font-family:'Bodoni Moda',serif; font-size:clamp(1.8rem, 4vw, 2.4rem); font-weight:700; line-height:1.15; color: var(--ink); }
+    .section-desc { font-size:0.95rem; color: var(--ink-soft); max-width:480px; margin:0.5rem auto 0; }
+
+    .contact-grid { display:grid; grid-template-columns: 1fr 1fr; gap:3rem; align-items:start; }
+    .contact-info { display:flex; flex-direction:column; gap:1.5rem; }
+    .contact-item { display:flex; align-items:flex-start; gap:1rem; padding:1.2rem 1.4rem; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-sm); border:1px solid rgba(0,0,0,0.04); transition: transform 0.3s, box-shadow 0.3s; }
+    .contact-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--rose); }
+    .contact-icon { width:44px; height:44px; border-radius:50%; background: var(--rose-pale); display:flex; align-items:center; justify-content:center; font-size:1rem; color: var(--rose-dark); flex-shrink:0; transition: background 0.3s, transform 0.3s; }
+    .contact-item:hover .contact-icon { background: var(--rose); color: #fff; transform: scale(1.05); }
+    .contact-label { font-size:0.7rem; text-transform:uppercase; letter-spacing:1.5px; font-weight:600; color: var(--rose); margin-bottom:0.2rem; }
+    .contact-value { font-size:0.95rem; color: var(--ink); font-weight:500; line-height:1.4; }
+
+    .contact-form-wrap { background: #fff; border-radius: var(--radius); padding:2rem; box-shadow: var(--shadow-md); border:1px solid rgba(0,0,0,0.04); }
+    .form-group { margin-bottom:1.2rem; }
+    .form-group label { display:block; font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; color: var(--ink-soft); margin-bottom:0.4rem; }
+    .form-group input, .form-group textarea {
+      width:100%; padding:12px 14px; border:1.5px solid rgba(0,0,0,0.08);
+      border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.9rem;
+      background: var(--cream); color: var(--ink);
+      transition: border-color 0.25s, box-shadow 0.25s;
+      outline:none;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(212,160,160,0.15);
+    }
+    .form-group textarea { resize:vertical; min-height:100px; }
+    .form-row { display:grid; grid-template-columns: 1fr 1fr; gap:1rem; }
+    .btn-submit {
+      width:100%; background: var(--rose); color:#fff;
+      padding:14px; border:none; border-radius:10px;
+      font-family:'DM Sans',sans-serif; font-size:0.82rem; font-weight:600;
+      text-transform:uppercase; letter-spacing:1.8px;
+      cursor:pointer; transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(212,160,160,0.30);
+    }
+    .btn-submit:hover { background: var(--rose-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,160,160,0.40); }
+
+    .bottom-tagline { text-align:center; padding:0 2rem 2rem; font-family:'Dancing Script',cursive; font-size:1.1rem; color: var(--ink-mute); opacity:0.7; }
+    .bottom-tagline .bullet { color: var(--rose); margin:0 6px; }
+
+    .footer { background: var(--ink); color: rgba(250,246,240,0.7); padding:3rem 2rem 2rem; }
+    .footer-inner { max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .footer-logo { font-family:'Bodoni Moda',serif; font-size:1.5rem; font-weight:700; color:#fff; }
+    .footer-logo span { color: var(--rose); }
+    .footer-tagline { font-family:'Dancing Script',cursive; font-size:0.9rem; color: rgba(250,246,240,0.45); }
+    .footer-social { display:flex; gap:0.7rem; align-items:center; }
+    .footer-social a { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background: rgba(255,255,255,0.06); color: rgba(250,246,240,0.6); text-decoration:none; font-size:1rem; transition: all 0.3s ease; }
+    .footer-social a:hover { background: var(--rose); color:#fff; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(212,160,160,0.30); }
+    .footer-bottom { width:100%; text-align:center; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.06); margin-top:1rem; }
+    .footer-bottom p { font-size:0.78rem; }
 
     @media (max-width:768px) {
-      .nav-links {
-        display:none;
-        position:absolute;
-        top:68px; left:0; right:0;
-        background:rgba(250,246,240,0.98);
-        flex-direction:column;
-        padding:1rem;
-        box-shadow:var(--shadow-md);
-        border-top:1px solid rgba(0,0,0,0.04);
-      }
-      .nav-links.active { display:flex; }
-      .nav-links a { padding:0.65rem 0.9rem; width:100%; }
+      .nav-links { position:fixed; top:68px; left:0; right:0; background: rgba(250,247,242,0.97); flex-direction:column; align-items:stretch; padding:1.5rem 2rem; gap:0.3rem; transform: translateY(-120%); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); box-shadow: 0 20px 60px rgba(0,0,0,0.10); }
+      .nav-links.open { transform: translateY(0); }
+      .nav-links a { padding:12px 0; font-size:0.85rem; border-bottom:1px solid rgba(0,0,0,0.04); }
       .hamburger { display:flex; }
+      .hero { padding:90px 1.5rem; }
+      .section { padding:40px 1.5rem; }
+      .contact-grid { grid-template-columns:1fr; gap:2rem; }
       .form-row { grid-template-columns:1fr; }
-      .quick-links { flex-direction:column; align-items:center; }
+      .contact-form-wrap { padding:1.5rem; }
     }
-  .hero-bg {
-    position:absolute; top:-10%; right:-10%;
-    width:60%; height:80%;
-    object-fit:cover; opacity:0.08;
-    z-index:0; pointer-events:none;
-  }
-
+    @media (max-width:480px) {
+      .nav-container { padding:0 1rem; }
+      .hero-inner { max-width:100%; }
+    }
   </style>
 </head>
 <body>
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">Nyra<span>.</span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="blog.html">Content</a></li>
-        <li><a href="exclusive.html">Exclusive</a></li>
-        <li><a href="work-with-me.html">Work With Me</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
-      </ul>
-      <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
+
+<div class="loading-overlay" id="loading">
+  <div class="loading-logo">Nyra<span>.</span></div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-brand tilt-3d" data-tilt>
+      <span class="name">Nyra<span>.</span></span>
+      <span class="script">Lifestyle</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <canvas id="hero-canvas" data-3d-id="contact-hero"></canvas>
+  <img class="hero-bg" src="images/content-4.jpg" alt="" aria-hidden="true">
+  <div class="hero-overlay"></div>
+  <div class="hero-particles" id="hero-particles"></div>
+  <div class="hero-inner">
+    <span class="section-label">Get in Touch</span>
+    <h1 class="hero-title">
+      Let's Connect
+      <span class="script-word">Nyra Lifestyle</span>
+    </h1>
+    <p class="hero-sub">Collaborations, questions, or just a hello — I read every message.</p>
+    <div class="hero-cta">
+      <a href="#contactForm" class="btn-primary btn-3d" data-magnetic>
+        Send a Message <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-mouse"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<section class="section" id="contactForm">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title slide-up">Write to me</h2>
+      <p class="section-desc slide-up" style="transition-delay:0.1s">Whether it's a collaboration, a question, or just a note — I'll get back to you.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item tilt-3d" data-tilt>
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">Drop me a message using the form</div>
+          </div>
+        </div>
+        <div class="contact-item tilt-3d" data-tilt>
+          <div class="contact-icon"><i class="fas fa-map-pin"></i></div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Mumbai, India</div>
+          </div>
+        </div>
+        <div class="contact-item tilt-3d" data-tilt>
+          <div class="contact-icon"><i class="fas fa-clock"></i></div>
+          <div>
+            <div class="contact-label">Response Time</div>
+            <div class="contact-value">Usually within 24-48 hours</div>
+          </div>
+        </div>
+        <div class="contact-item tilt-3d" data-tilt>
+          <div class="contact-icon"><i class="fas fa-handshake"></i></div>
+          <div>
+            <div class="contact-label">Open for</div>
+            <div class="contact-value">Brand collaborations, partnerships, and creative projects</div>
+          </div>
+        </div>
       </div>
-    </div>
-  </nav>
 
-  <section class="hero">
-    <img src="images/content-4.jpg" alt="" class="hero-bg">
-    <span class="label">Get in Touch</span>
-    <h1>Contact Me</h1>
-    <p>Have a collaboration idea or just want to say hello? I'd love to hear from you.</p>
-  </section>
-
-  <section class="section" id="contact-form">
-    <div class="section-header" style="text-align:center; margin-bottom:2rem;">
-      <span class="section-label">Let's Connect</span>
-      <h2 class="section-title">Send Me a Message</h2>
-      <p class="section-desc">
-        Whether it's a brand partnership, speaking opportunity, or just a friendly hello — I'm here to connect.
-      </p>
-    </div>
-    <div class="form-panel">
-      <h3>Send a Message</h3>
-      <p>Fill out the form and I'll get back to you soon.</p>
-      <form id="contactForm" action="https://formsubmit.co/infosupport247@gmail.com" method="POST">
+      <form class="contact-form-wrap" action="https://formsubmit.co/infosupport247@gmail.com" method="POST" id="contactFormEl">
         <input type="hidden" name="_subject" value="New Contact Form Submission - Nyra Lifestyle">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://www.nyraluxelifestyle.com">
+        <input type="hidden" name="_next" value="https://infosupport247-gif.github.io/nyraluxelifestyle/">
         <div class="form-row">
           <div class="form-group">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" required placeholder="Your full name">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
           </div>
           <div class="form-group">
-            <label for="company">Company / Brand</label>
-            <input type="text" id="company" name="company" placeholder="Your company (optional)">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" required placeholder="your@email.com">
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
           </div>
         </div>
         <div class="form-group">
-          <label for="inquiry">Type of Inquiry *</label>
-          <select id="inquiry" name="inquiry" required>
-            <option value="">Select an option</option>
-            <option value="brand">Brand Partnership</option>
-            <option value="sponsored">Sponsored Content</option>
-            <option value="ambassador">Brand Ambassador</option>
-            <option value="event">Event Appearance</option>
-            <option value="content">Content Creation</option>
-            <option value="press">Press & Media</option>
-            <option value="other">Other</option>
-          </select>
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="What's this about?">
         </div>
         <div class="form-group">
-          <label for="campaign">Campaign Details</label>
-          <textarea id="campaign" name="campaign" placeholder="Tell me about your campaign, product, or event..."></textarea>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="Tell me what's on your mind..."></textarea>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="budget">Budget Range</label>
-            <select id="budget" name="budget">
-              <option value="">Select range</option>
-              <option value="1k">Under $1,000</option>
-              <option value="5k">$1,000 - $5,000</option>
-              <option value="10k">$5,000 - $10,000</option>
-              <option value="25k">$10,000 - $25,000</option>
-              <option value="50k">$25,000 - $50,000</option>
-              <option value="custom">Custom / TBD</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="timeline">Timeline</label>
-            <select id="timeline" name="timeline">
-              <option value="">Select timeline</option>
-              <option value="immediate">Immediate</option>
-              <option value="1month">Within 1 month</option>
-              <option value="3months">1-3 months</option>
-              <option value="6months">3-6 months</option>
-              <option value="flexible">Flexible</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="message">Additional Information</label>
-          <textarea id="message" name="message" placeholder="Anything else you'd like me to know..."></textarea>
-        </div>
-        <button type="submit" class="btn-submit">
-          <i class="fas fa-paper-plane"></i> Submit Inquiry
-        </button>
+        <button type="submit" class="btn-submit btn-3d" data-magnetic>Send Message <span>→</span></button>
       </form>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-logo">Nyra<span>.</span></div>
-    <div class="footer-tagline">"Fashion, travel, lifestyle"</div>
-<div class="footer-bottom">
-      <p>&copy; 2026 Nyra. All rights reserved. &nbsp;·&nbsp; Mumbai, India</p>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navLinks.classList.toggle('active');
+<div class="bottom-tagline">
+  style <span class="bullet">&bull;</span> travel <span class="bullet">&bull;</span> everyday luxury
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Nyra<span>.</span></div>
+      <div class="footer-tagline">"Fashion, travel, lifestyle"</div>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/nyra.luxe.lifestyle" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@nyra.luxe.lifestyle" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.youtube.com/@nyraluxelifestyle" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://pin.it/6qtLMTBnw" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      <a href="https://t.me/+y7lEEeXcLA4wZjhl" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Nyra. All rights reserved. &nbsp;&middot;&nbsp; Mumbai, India</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="3d-global.js"></script>
+<script>
+(function () {
+  'use strict';
+  window.addEventListener('load', () => setTimeout(() => document.getElementById('loading').classList.add('hidden'), 500));
+
+  const canvas = document.getElementById('hero-canvas');
+  if (canvas) {
+    _3D.init3D({
+      id: 'contact-hero',
+      canvas,
+      onInit(s) {
+        const ringMat = new THREE.MeshStandardMaterial({ color:0xd4a0a0, emissive:0xd4a0a0, emissiveIntensity:0.10, transparent:true, opacity:0.22 });
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(2.0, 0.025, 24, 60), ringMat);
+        ring.position.set(0, 0, -1.5); ring.rotation.x = Math.PI * 0.4;
+        s.scene.add(ring); s.userData.ring = ring;
+
+        const ring2Mat = ringMat.clone(); ring2Mat.color.setHex(0xc9a84c); ring2Mat.opacity = 0.15;
+        const ring2 = new THREE.Mesh(new THREE.TorusGeometry(1.4, 0.018, 18, 44), ring2Mat);
+        ring2.position.set(0.3, -0.2, -1.2); ring2.rotation.x = Math.PI * 0.55;
+        s.scene.add(ring2); s.userData.ring2 = ring2;
+
+        const particles = _3D.createParticles(80, 16, 0xd4a0a0, 0.04, 0.4);
+        s.scene.add(particles); s.userData.particles = particles;
+
+        const dotsMat = new THREE.PointsMaterial({ color:0xc9a84c, size:0.03, transparent:true, opacity:0.2, blending:THREE.AdditiveBlending, depthWrite:false, sizeAttenuation:true });
+        const dotsGeo = new THREE.BufferGeometry();
+        const d = [];
+        for (let i = 0; i < 50; i++) { d.push((Math.random()-0.5)*14); d.push((Math.random()-0.5)*9); d.push((Math.random()-0.5)*5 - 2); }
+        dotsGeo.setAttribute('position', new THREE.Float32BufferAttribute(d, 3));
+        const dots = new THREE.Points(dotsGeo, dotsMat);
+        s.scene.add(dots); s.userData.dots = dots;
+      },
+      onAnimate(s, t) {
+        const u = s.userData;
+        if (u.ring) { u.ring.rotation.z += 0.002; u.ring.rotation.x = Math.PI*0.4 + Math.sin(t*0.0004)*0.04; }
+        if (u.ring2) { u.ring2.rotation.z -= 0.0025; u.ring2.rotation.y += 0.0015; }
+        if (u.particles) _3D.animateParticles(u.particles, t);
+        if (u.dots) {
+          const pos = u.dots.geometry.attributes.position.array;
+          for (let i = 0; i < pos.length; i += 3) {
+            pos[i+1] += Math.sin(t*0.0007 + i)*0.001;
+            pos[i]   += Math.cos(t*0.0005 + i*0.4)*0.0007;
+          }
+          u.dots.geometry.attributes.position.needsUpdate = true;
+        }
+        s.camera.position.x = _3D.mouse.x * 0.2;
+        s.camera.position.y = _3D.mouse.y * 0.15;
+        s.camera.lookAt(0, 0, 0);
+      }
     });
+  }
+
+  (function () {
+    const container = document.getElementById('hero-particles');
+    if (!container) return;
+    for (let i = 0; i < 14; i++) {
+      const star = document.createElement('div');
+      star.className = 'star-particle';
+      star.style.left = (Math.random()*92+4)+'%';
+      star.style.top = (Math.random()*85+5)+'%';
+      star.style.animationDelay = (Math.random()*5).toFixed(2)+'s';
+      star.style.animationDuration = (6+Math.random()*4).toFixed(1)+'s';
+      star.style.width = star.style.height = (2+Math.random()*3).toFixed(1)+'px';
+      star.style.background = Math.random()>0.5 ? 'var(--rose)' : 'var(--gold)';
+      container.appendChild(star);
+    }
+  })();
+
+  setTimeout(() => {
+    document.querySelectorAll('.tilt-3d[data-tilt]').forEach(el => _3D.tiltCard(el, 10));
+  }, 200);
+
+  document.querySelectorAll('[data-magnetic]').forEach(el => _3D.magneticBtn(el, 10));
+  document.querySelectorAll('.slide-up').forEach(el => _3D.observeEl(el));
+
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('open'); });
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
         link.classList.add('active');
+        hamburger.classList.remove('active'); navLinks.classList.remove('open');
       });
     });
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-    });
-    const form = document.getElementById('contactForm');
-    // FormSubmit.co handles the POST + redirect natively — no JS needed
-  </script>
+  }
+  window.addEventListener('scroll', () => { const nav = document.getElementById('navbar'); if (nav) nav.classList.toggle('scrolled', window.scrollY > 20); });
+})();
+</script>
 </body>
 </html>
-// force 1788369667
-<!-- 1788369691 -->
-
